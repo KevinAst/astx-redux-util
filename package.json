@@ -1,0 +1,36 @@
+{
+  "name": "astx-redux-util",
+  "version": "1.0.0",
+  "description": "Several redux reducer composition utilities.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "L8TR"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinAst/astx-redux-util.git"
+  },
+  "keywords": [
+    "astx",
+    "flux",
+    "redux",
+    "reducer",
+    "action",
+    "compose",
+    "composition",
+    "higher-order",
+    "switch",
+    "case",
+    "utility",
+    "util",
+    "utils",
+    "helper",
+    "helpers"
+  ],
+  "author": "Kevin J. Bridges",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KevinAst/astx-redux-util/issues"
+  },
+  "homepage": "https://github.com/KevinAst/astx-redux-util"
+}
