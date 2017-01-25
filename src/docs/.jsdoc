@@ -7,12 +7,11 @@
   "source": {
     "include": [
       "./src",
-//? "./package.json", // ?? NOTE: we remove this to eliminates the version number directory in the output (supporting auto deploy for GitHub pages)
-      "./README.md" // ?? think this generates the content of the HOME page (index.html)
+//    "./package.json", // NOTE: we explicitly do not parse package.json because JSDoc injects {project/version} in generated docs (breaking GitHub Pages auto-deploy)
+      "./README.md"     // ?? research: believe JSDoc generates the content of the HOME page (index.html)
     ],
     "includePattern": ".js$"
-//? "excludePattern": "index.js"
-//? "excludePattern": "(node_modules|docs|dist)" // not sure WHY we need this
+//  "excludePattern": "index.js" // no longer applicable with re-structuring of src/docs location
   },
   "plugins": [
     "plugins/markdown",
@@ -22,7 +21,7 @@
     "cleverLinks":    true,
     "monospaceLinks": true,
     "default": {
-      "includeDate":    false
+      "includeDate":    false // exclude date/time from footers (minimizing resources checked in and auto-published to GitHub Pages)
     }
   },
   "opts": { // command line options here
