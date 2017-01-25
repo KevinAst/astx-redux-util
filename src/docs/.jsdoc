@@ -1,3 +1,4 @@
+// NOTE: all file references are from the perspective of the project root (where the jsdoc command was issued)
 {
   "tags": {
     "allowUnknownTags": true,
@@ -5,9 +6,9 @@
   },
   "source": {
     "include": [
-      "src",
-      "package.json",
-      "README.md"
+      "./src",
+      "./package.json",
+      "./README.md" // ?? may NOT want to include this
     ],
     "includePattern": ".js$"
 //? "excludePattern": "index.js"
@@ -15,18 +16,21 @@
   },
   "plugins": [
     "plugins/markdown",
-    "node_modules/jsdoc-babel"
+    "./node_modules/jsdoc-babel"
   ],
   "templates": {
     "cleverLinks":    true,
-    "monospaceLinks": true
+    "monospaceLinks": true,
+    "default": {
+      "includeDate":    false
+    }
   },
-  "opts": {
+  "opts": { // command line options here
     "destination": "./docs/",
     "encoding":    "utf8",
     "private":     true,
     "recurse":     true,
     "template":    "./node_modules/docdash",
-    "tutorials":   "./guide"
+    "tutorials":   "./src/docs"
   }
 }

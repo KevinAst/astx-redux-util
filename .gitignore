@@ -15,7 +15,7 @@ pids
 # lib-cov
 
 # documentation from jsdoc (machine generated)
-docs
+# docs # NOTE: even though this is machine generated, we have configured GitHub Project Page to auto deploy from here!
 
 # node dependencies
 node_modules
