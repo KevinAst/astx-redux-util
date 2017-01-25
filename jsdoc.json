@@ -1,0 +1,32 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries":     ["jsdoc"]
+  },
+  "source": {
+    "include": [
+      "src",
+      "package.json",
+      "README.md"
+    ],
+    "includePattern": ".js$"
+//? "excludePattern": "index.js"
+//? "excludePattern": "(node_modules|docs|dist)" // not sure WHY we need this
+  },
+  "plugins": [
+    "plugins/markdown",
+    "node_modules/jsdoc-babel"
+  ],
+  "templates": {
+    "cleverLinks":    true,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "destination": "./docs/",
+    "encoding":    "utf8",
+    "private":     true,
+    "recurse":     true,
+    "template":    "./node_modules/docdash",
+    "tutorials":   "./guide"
+  }
+}

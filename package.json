@@ -4,7 +4,8 @@
   "description": "Several redux reducer composition utilities.",
   "main": "src/index.js",
   "scripts": {
-    "test": "L8TR"
+    "test": "L8TR",
+    "buildDocs": "./node_modules/.bin/jsdoc --configure jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,13 @@
   "bugs": {
     "url": "https://github.com/KevinAst/astx-redux-util/issues"
   },
-  "homepage": "https://github.com/KevinAst/astx-redux-util"
+  "homepage": "https://github.com/KevinAst/astx-redux-util",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.4.3",
+    "jsdoc-babel": "^0.3.0"
+  }
 }

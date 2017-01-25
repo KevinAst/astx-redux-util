@@ -1,0 +1,13 @@
+{
+  "overview": {
+      "title": "Overview",
+      "children": {
+          "examples": {
+              "title": "Examples"
+          }
+      }
+  },
+  "sidebar": {
+      "title": "Side Bar"
+  }
+}
