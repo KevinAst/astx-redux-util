@@ -7,8 +7,8 @@
   "source": {
     "include": [
       "./src",
-      "./package.json",
-      "./README.md" // ?? may NOT want to include this
+//? "./package.json", // ?? NOTE: we remove this to eliminates the version number directory in the output (supporting auto deploy for GitHub pages)
+      "./README.md" // ?? think this generates the content of the HOME page (index.html)
     ],
     "includePattern": ".js$"
 //? "excludePattern": "index.js"
