@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "L8TR",
-    "buildDocs": "./node_modules/.bin/jsdoc --configure ./src/docs/.jsdoc --verbose"
+    "buildDocs": "./node_modules/.bin/jsdoc --configure ./UserGuide/.jsdoc --verbose"
   },
   "repository": {
     "type": "git",

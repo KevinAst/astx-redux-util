@@ -1,4 +1,4 @@
-// NOTE: all file references are from the perspective of the project root (where the jsdoc command was issued)
+// NOTE: all file references are from the perspective of the project root (where the jsdoc command is issued)
 {
   "tags": {
     "allowUnknownTags": true,
@@ -11,7 +11,7 @@
       "./README.md"     // ?? research: believe JSDoc generates the content of the HOME page (index.html)
     ],
     "includePattern": ".js$"
-//  "excludePattern": "index.js" // no longer applicable with re-structuring of src/docs location
+//  "excludePattern": "index.js" // just for future reference :-)
   },
   "plugins": [
     "plugins/markdown",
@@ -21,7 +21,7 @@
     "cleverLinks":    true,
     "monospaceLinks": true,
     "default": {
-      "includeDate":    false // exclude date/time from footers (minimizing resources checked in and auto-published to GitHub Pages)
+      "includeDate":  false // exclude date/time from footers (minimizing resources checked in and auto-published to GitHub Pages)
     }
   },
   "opts": { // command line options here
@@ -30,6 +30,6 @@
     "private":     true,
     "recurse":     true,
     "template":    "./node_modules/docdash",
-    "tutorials":   "./src/docs"
+    "tutorials":   "./UserGuide"
   }
 }
