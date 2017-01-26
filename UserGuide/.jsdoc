@@ -7,7 +7,7 @@
   "source": {
     "include": [
       "./src",
-      "./package.json", // NOTE: allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory) ??? (breaking GitHub Pages auto-deploy)
+      "./package.json", // NOTE: allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory)
       "./README.md"     // ?? research: believe JSDoc generates the content of the HOME page (index.html)
     ],
     "includePattern": ".js$"
