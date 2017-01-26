@@ -1,11 +1,22 @@
 {
   "overview": {
-      "title": "Overview"
+      "order": 1,
+      "title": "Overview",
+      "children": {
+          "aTest2": {
+              "title": "Sub Topic 2 ... is this BEFORE Sub Topic?"
+          },
+          "overview2": {
+              "title": "Sub Topic"
+          }
+      }
   },
   "examples": {
+      "order": 2,
       "title": "Examples"
   },
   "sidebar": {
+      "order": 3,
       "title": "Side Bar"
   }
 }
