@@ -49,20 +49,20 @@
         <article><h1>astx-redux-util</h1><p>The astx-redux-util library provides several redux reducer composition
 utilities, of which the most prevalent is <a href="global.html#reducerHash"><code>reducerHash</code></a> which
 allows you to displace the dreaded switch statement (but there are more).</p>
-<h1>Documentation</h1><p>Comprehensive documentation can be found at: 
-<a href="https://kevinast.github.io/astx-redux-util/">astx-redux-util</a>.</p>
-<h1>Install</h1><pre class="prettyprint source lang-shell"><code>npm install --save astx-redux-util</code></pre><h1>Usage</h1><pre class="prettyprint source lang-JavaScript"><code>  import {reducerHash}  from 'astx-redux-util';
-
-  const myReducer = reducerHash({
-          [ActionType.widget.edit]       (widget, action) => action.widget,
-          [ActionType.widget.edit.close] (widget, action) => null,
-        });
-
-  export default function widget(widget=null, action) {
-    return myReducer(widget, action);
-  }</code></pre><h1>Don't Miss</h1><p>For a more complete and thorough example of how these utilities can
-be used, don't miss the ?? full documentation (with this ?? Most Excellent
-Example).</p></article>
+<h2>Table of Contents</h2><ul>
+<li><p>start gets you started (installation and basic usage)</p>
+</li>
+<li><p><a href="tutorial-overview.html">Overview</a> provides overall concepts with a function summary</p>
+</li>
+<li><p>basics overall concepts and examples</p>
+</li>
+<li><p>fullExample a comprehensive example of how these utilities can be used</p>
+</li>
+<li><p>logExt describes how this utility can be extended to provide a very useful centralized logging point</p>
+</li>
+<li><p>initialReducerState a sidebar disussion of initialReducerState</p>
+</li>
+</ul></article>
     </section>
 
 

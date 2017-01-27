@@ -1,24 +1,24 @@
 # astx-redux-util
 
 The astx-redux-util library provides several redux reducer composition
-utilities, of which the most prevalent is {@link reducerHash} which
-allows you to displace the dreaded switch statement (but there are more).
+utilities, of which the most prevalent is **reducerHash()** which
+allows you to displace the dreaded switch statement *(but there is
+much more)*.
 
 
-# Documentation
+## Documentation
 
-Comprehensive documentation can be found at: 
-[astx-redux-util](https://kevinast.github.io/astx-redux-util/).
+Comprehensive documentation can be found at: [astx-redux-util].
 
 
-# Install
+## Install
 
 ```shell
 npm install --save astx-redux-util
 ```
 
 
-# Usage
+## Usage
 
 ```JavaScript
   import {reducerHash}  from 'astx-redux-util';
@@ -35,8 +35,11 @@ npm install --save astx-redux-util
 
 
 
-# Don't Miss
+## Don't Miss
 
-For a more complete and thorough example of how these utilities can
-be used, don't miss the ?? full documentation (with this ?? Most Excellent
-Example).
+For a more complete and thorough example of how these utilities can be
+used, don't miss the [astx-redux-util][Full Documentation] (including the **Most
+Excellent Example**).
+
+
+[astx-redux-util]: https://kevinast.github.io/astx-redux-util/

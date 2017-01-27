@@ -9,7 +9,7 @@
       "./src"
     ],
     "includePattern": ".js$"
-//  "excludePattern": "index.js" // just for future reference :-)
+//  "excludePattern": "index.js" // for future reference :-)
   },
   "plugins": [
     "plugins/markdown",
@@ -26,7 +26,7 @@
   "opts": { // command line options here
     "destination": "./docs/",
     "package":     "./package.json", // allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory)
-    "readme":      "./README.md",    // used in root home page (index.html)
+    "readme":      "./docs/HOME.md", // used in root home page (index.html)
     "encoding":    "utf8",
     "private":     true,
     "recurse":     true,
