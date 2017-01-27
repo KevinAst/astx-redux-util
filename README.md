@@ -38,8 +38,8 @@ npm install --save astx-redux-util
 ## Don't Miss
 
 For a more complete and thorough example of how these utilities can be
-used, don't miss the [astx-redux-util][Full Documentation] (including the **Most
-Excellent Example**).
+used, don't miss the [astx-redux-util][Full Documentation] including
+the **Most Excellent Example**.
 
 
 [astx-redux-util]: https://kevinast.github.io/astx-redux-util/
