@@ -1,6 +1,6 @@
 # astx-redux-util
 
-The astx-redux-util library provides several redux reducer composition
+The [astx-redux-util] library provides several redux reducer composition
 utilities, of which the most prevalent is **reducerHash()** which
 allows you to displace the dreaded switch statement *(but there is
 much more)*.
@@ -38,8 +38,8 @@ npm install --save astx-redux-util
 ## Don't Miss
 
 For a more complete and thorough example of how these utilities can be
-used, don't miss the [astx-redux-util][Full Documentation] including
-the **Most Excellent Example**.
+used, don't miss the **Full Documentation** at [astx-redux-util]
+which includes the **Most Excellent Example**.
 
 
 [astx-redux-util]: https://kevinast.github.io/astx-redux-util/
