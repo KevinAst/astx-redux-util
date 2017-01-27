@@ -1,40 +1,42 @@
 # astx-redux-util
-Several redux reducer composition utilities.
 
-## Welcome to GitHub Pages
+The astx-redux-util library provides several redux reducer composition
+utilities, of which the most prevalent is {@link reducerHash} which
+allows you to displace the dreaded switch statement (but there are more).
 
-You can use the [editor on GitHub](https://github.com/KevinAst/astx-redux-util/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Documentation
 
-### Markdown
+Comprehensive documentation can be found at: 
+[astx-redux-util](https://kevinast.github.io/astx-redux-util/).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+# Install
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```shell
+npm install --save astx-redux-util
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+# Usage
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/KevinAst/astx-redux-util/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```JavaScript
+  import {reducerHash}  from 'astx-redux-util';
 
-### Support or Contact
+  const myReducer = reducerHash({
+          [ActionType.widget.edit]       (widget, action) => action.widget,
+          [ActionType.widget.edit.close] (widget, action) => null,
+        });
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+  export default function widget(widget=null, action) {
+    return myReducer(widget, action);
+  }
+```
+
+
+
+# Don't Miss
+
+For a more complete and thorough example of how these utilities can
+be used, don't miss the ?? full documentation (with this ?? Most Excellent
+Example).
