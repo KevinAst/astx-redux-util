@@ -2,8 +2,8 @@
 
 The [astx-redux-util] library provides several redux reducer composition
 utilities, of which the most prevalent is **reducerHash()** which
-allows you to displace the dreaded switch statement *(but there is
-much more)*.
+allows you to displace the dreaded switch statement ... **but there is
+much more!**
 
 
 ## Documentation

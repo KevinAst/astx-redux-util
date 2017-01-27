@@ -2,19 +2,15 @@
 
 The astx-redux-util library provides several redux reducer composition
 utilities, of which the most prevalent is {@link reducerHash} which
-allows you to displace the dreaded switch statement (but there are more).
+allows you to displace the dreaded switch statement ... *but there is
+much more!*
 
 
 ## Table of Contents
 
-- {@tutorial start} gets you started (installation and basic usage)
-
-- {@tutorial overview} provides overall concepts with a function summary
-
-- {@tutorial basics} overall concepts and examples
-
-- {@tutorial fullExample} a comprehensive example of how these utilities can be used
-
-- {@tutorial logExt} describes how this utility can be extended to provide a very useful centralized logging point
-
-- {@tutorial initialReducerState} a sidebar disussion of initialReducerState
+- {@tutorial start} ... installation and basic usage
+- {@tutorial overview} ... overall concepts with a function summary
+- {@tutorial basics} ... develop rudimentary concepts
+- {@tutorial fullExample} ... comprehensive example of reducer composition
+- {@tutorial logExt} ... conceptual extension for a centralized reducer logging point
+- {@tutorial originalReducerState} ... sidebar discussion of originalReducerState

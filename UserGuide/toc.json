@@ -1,22 +1,26 @@
 {
-  "overview": {
+  "start": {
       "order": 1,
-      "title": "Overview",
-      "children": {
-          "aTest2": {
-              "title": "Sub Topic 2 ... is this BEFORE Sub Topic?"
-          },
-          "overview2": {
-              "title": "Sub Topic"
-          }
-      }
+      "title": "Getting Started"
   },
-  "examples": {
+  "overview": {
       "order": 2,
-      "title": "Examples"
+      "title": "Overview"
   },
-  "sidebar": {
+  "basics": {
       "order": 3,
-      "title": "Side Bar"
+      "title": "Basics"
+  },
+  "fullExample": {
+      "order": 4,
+      "title": "Most Excellent Example"
+  },
+  "logExt": {
+      "order": 5,
+      "title": "Logging Extension"
+  },
+  "originalReducerState": {
+      "order": 6,
+      "title": "originalReducerState"
   }
 }

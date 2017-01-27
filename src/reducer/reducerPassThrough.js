@@ -15,7 +15,7 @@ import poop from './nonExistant'; // ?? for some reason jsdoc will not output th
  * @param {ReduxAction} action - The standard redux action which drives the reduction process.
  * @param {string} action.type - The action type.
  * 
- * @returns {*} The next state after reduction - .
+ * @returns {*} The resulting state after reduction *(in this case the supplied state as-is)*.
  */
 export default function reducerPassThrough(state, action) {
   return state;
