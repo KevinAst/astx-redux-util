@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Global</h3><ul><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
@@ -115,7 +115,7 @@
 
     
 
-    <h4 class="name" id="reducerHash"><span class="type-signature"></span>reducerHash<span class="signature">(actionHandlers)</span><span class="type-signature"> &rarr; {function}</span></h4>
+    <h4 class="name" id="conditionalReducer"><span class="type-signature"></span>conditionalReducer<span class="signature">(conditionalFn, reducerFn)</span><span class="type-signature"> &rarr; {<a href="global.html#reducerFn">reducerFn</a>}</span></h4>
 
     
 
@@ -127,7 +127,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducerHash.js.html">reducerHash.js</a>, <a href="reducerHash.js.html#line69">line 69</a>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -156,12 +156,187 @@
     
 
     
-    <dt class="tag-tutorial">Tutorials:</dt>
-    <dd class="tag-tutorial">
-        <ul>
-            <li><em class="disabled">Tutorial: examples</em></li>
-        </ul>
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a higher-order reducer that conditionally executes the
+supplied reducerFn, when the conditionalFn returns truthy.</p>
+<p>?? refer to examples of this being used</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>conditionalFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#conditionalReducerCB">conditionalReducerCB</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a callback function
+which determines when the supplied reducerFn will be executed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reducerFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the &quot;wrapped&quot; reducer function that
+is conditionally executed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a newly created reducer function (described above).</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
     </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="reducerHash"><span class="type-signature"></span>reducerHash<span class="signature">(actionHandlers)</span><span class="type-signature"> &rarr; {<a href="global.html#reducerFn">reducerFn</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -260,7 +435,7 @@ TODO</i></li>
             
 
             <td class="description last"><p>a hash of reducer functions,
-indexed by the standard redux action.type (see examples).</p></td>
+indexed by the standard redux action.type (see examples ??).</p></td>
         </tr>
 
     
@@ -295,7 +470,7 @@ indexed by the standard redux action.type (see examples).</p></td>
     </dt>
     <dd>
         
-<span class="param-type">function</span>
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
 
 
     </dd>
@@ -321,7 +496,7 @@ indexed by the standard redux action.type (see examples).</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducerPassThrough.js.html">reducerPassThrough.js</a>, <a href="reducerPassThrough.js.html#line30">line 30</a>
+        <a href="reducer_reducerPassThrough.js.html">reducer/reducerPassThrough.js</a>, <a href="reducer_reducerPassThrough.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -428,7 +603,7 @@ indexed by the standard redux action.type (see examples).</p></td>
             <td class="type">
             
                 
-<span class="param-type">ReduxAction</span>
+<span class="param-type"><a href="Action.html">Action</a></span>
 
 
             
@@ -438,7 +613,7 @@ indexed by the standard redux action.type (see examples).</p></td>
 
             
 
-            <td class="description last"><p>The standard redux action which drives the reduction process.</p></td>
+            <td class="description last"><p>The standard redux Action object that drives the reduction process.</p></td>
         </tr>
 
     
@@ -485,6 +660,399 @@ indexed by the standard redux action.type (see examples).</p></td>
         
     
 
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+    
+
+    <h4 class="name" id="conditionalReducerCB"><span class="type-signature"></span>conditionalReducerCB<span class="signature">(state, action, originalReducerState)</span><span class="type-signature"> &rarr; {truthy}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>A callback function (used in <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>) which
+conditionally determines whether it's supplied reducerFn will be
+executed.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current immutable state that is the reduction target.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Action.html">Action</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The standard redux Action object that
+drives the reduction process.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>originalReducerState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The immutable state at the time
+of the start of the reduction process.</p>
+<p>This is useful in determining whether state has changed within a
+series of reductions ... because each individual reducer only has
+visibility of the state within it's own reduction process.</p>
+<p>Further information can be found in the <a href="tutorial-originalReducerState.html">originalReducerState</a> discussion of the User Guide.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A truthy value indicating whether the reducerFn
+should be executed or not.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">truthy</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="reducerFn"><span class="type-signature"></span>reducerFn<span class="signature">(state, action)</span><span class="type-signature"> &rarr; {*}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reduxAPI.js.html">reduxAPI.js</a>, <a href="reduxAPI.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>A standard <a href="http://redux.js.org/docs/basics/Reducers.html">redux reducer function</a>
+that is responsible for state changes.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current immutable state that is the reduction target.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Action.html">Action</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The standard redux action which drives the reduction process.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The resulting state after reduction.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+            
     
 
     

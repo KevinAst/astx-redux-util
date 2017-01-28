@@ -12,7 +12,7 @@ import poop from './nonExistant'; // ?? for some reason jsdoc will not output th
  * A "placebo" reducer that passes through it's supplied state as-is.
  * 
  * @param {*} state - The current immutable state that is the reduction target.
- * @param {ReduxAction} action - The standard redux action which drives the reduction process.
+ * @param {Action} action - The standard redux Action object that drives the reduction process.
  * 
  * @returns {*} The resulting state after reduction *(in this case the supplied state as-is)*.
  */

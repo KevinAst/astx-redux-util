@@ -1,8 +1,7 @@
 ??? provide linkage (when classes are available.
 
-
-The conditionalReducer exposes an "originalReducerState" parameter to
-it's comparator function.  
+The {@link conditionalReducer} function exposes an
+"originalReducerState" parameter to it's conditionalFn callback.
 
 The originalReducerState represents the immutable state at the time of
 the start of the reduction process.  This is useful in determining
@@ -29,18 +28,18 @@ future point) start to employ additional reducer parameters.
 
 Here are the significant take-away points of interest:
 
-- If your conditionalReducer comparators never reason about
+- If your conditionalReducer conditionalFn never reasons about
   originalReducerState:
   * Then you have NO worries whatsoever!
 
-- If your conditionalReducer comparators DO reason about
+- If your conditionalReducer conditionalFn DOES reason about
   originalReducerState:
 
   * In the normal use case (where your conditionalReducer is
     orchestrated by a joinReducers - in the first order), then you
     STILL have NOTHING to worry about!
 
-    Please Note: The points above cover 99.9% of all use cases!
+    **Please Note:** The points above cover 99.9% of all use cases!
 
   * If however, your conditionalReducer is invoked in a less
     conventional way, then you must manually supply the appropriate

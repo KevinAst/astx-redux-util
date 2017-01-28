@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>reducerPassThrough.js - Documentation</title>
+    <title>reducer/reducerPassThrough.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Global</h3><ul><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">reducerPassThrough.js</h1>
+    <h1 class="page-title">reducer/reducerPassThrough.js</h1>
     
 
     
@@ -51,7 +51,7 @@ import poop from './nonExistant'; // ?? for some reason jsdoc will not output th
  * A "placebo" reducer that passes through it's supplied state as-is.
  * 
  * @param {*} state - The current immutable state that is the reduction target.
- * @param {ReduxAction} action - The standard redux action which drives the reduction process.
+ * @param {Action} action - The standard redux Action object that drives the reduction process.
  * 
  * @returns {*} The resulting state after reduction *(in this case the supplied state as-is)*.
  */

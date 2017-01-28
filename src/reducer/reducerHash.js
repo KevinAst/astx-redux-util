@@ -52,10 +52,9 @@ import reducerPassThrough  from './reducerPassThrough';
  *   TODO</i>
  *
  * @param {Hash} actionHandlers - a hash of reducer functions,
- * indexed by the standard redux action.type (see examples).
+ * indexed by the standard redux action.type (see examples ??).
  * 
- * @returns {function} a newly created reducer function (described above).
- * @tutorial examples
+ * @returns {reducerFn} a newly created reducer function (described above).
  */
 export default function reducerHash(actionHandlers) {
 
