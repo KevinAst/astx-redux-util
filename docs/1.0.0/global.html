@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
@@ -249,6 +249,178 @@ which determines when the supplied reducerFn will be executed.</p></td>
 
             <td class="description last"><p>the &quot;wrapped&quot; reducer function that
 is conditionally executed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a newly created reducer function (described above).</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="joinReducers"><span class="type-signature"></span>joinReducers<span class="signature">(&hellip;reducerFns)</span><span class="type-signature"> &rarr; {<a href="global.html#reducerFn">reducerFn</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a higher-order reducer by combining two or more reducers,
+logically executing each in sequence (in essence combining their
+functionality into one).  This is useful when combining various
+reducer types into one logical construct.</p>
+<p>?? refer to examples of this being used</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reducerFns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>two or more reducer functions to join
+together.</p></td>
         </tr>
 
     
