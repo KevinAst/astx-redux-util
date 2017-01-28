@@ -1,7 +1,10 @@
 'use strict'
 
-import reducerPassThrough   from './reducer/reducerPassThrough';
+import conditionalReducer   from './reducer/conditionalReducer';
+import joinReducers         from './reducer/joinReducers';
 import reducerHash          from './reducer/reducerHash';
+import reducerPassThrough   from './reducer/reducerPassThrough';
+
 
 // TODO: promote this doc through a JSDoc mechanism.
 
@@ -17,8 +20,10 @@ import reducerHash          from './reducer/reducerHash';
 //       -or-
 //         import * as AstxReduxUtil     from 'astx-redux-util';
 export {
-  reducerPassThrough,
+  conditionalReducer,
+  joinReducers,
   reducerHash,
+  reducerPassThrough,
 };
 
 // NOTE: This default export supports CommonJS modules (because Babel does NOT promote them otherwise).
@@ -29,6 +34,8 @@ export {
 //       -or-
 //         import AstxReduxUtil         from 'astx-redux-util';
 export default {
-  reducerPassThrough,
+  conditionalReducer,
+  joinReducers,
   reducerHash,
+  reducerPassThrough,
 };
