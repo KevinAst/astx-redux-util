@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>reducerPassThrough.js - Documentation</title>
+    <title>Usage - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,43 +27,43 @@
 
 <div id="main">
     
-    <h1 class="page-title">reducerPassThrough.js</h1>
+    <h1 class="page-title">Usage</h1>
     
 
-    
-
-
-
-    
     <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/*
- * @file
- * @author Kevin Bridges ({@link https://github.com/KevinAst/})
- * @copyright Copyright (c) 2017 Kevin Bridges
- * @license MIT (see: LICENSE project file)
- */
-'use strict';
 
-import poop from './nonExistant'; // ?? for some reason jsdoc will not output the doc for this module WITHOUT an import ... MAKES NO SENSE AT ALL
+<header>
+    
 
-/**
- * A "placebo" reducer that passes through it's supplied state as-is.
- * 
- * @param {*} state - The current immutable state that is the reduction target.
- * @param {ReduxAction} action - The standard redux action which drives the reduction process.
- * 
- * @returns {*} The resulting state after reduction *(in this case the supplied state as-is)*.
- */
-export default function reducerPassThrough(state, action) {
-  return state;
-}
-</code></pre>
-        </article>
-    </section>
+    <!-- KJB: removed level 2 header
+    <h2>Usage</h2>
+    -->
+</header>
 
+<article>
+    <p>@todo: develop rudimentary concepts with examples</p>
+<p>TODO: where would a function summary go?</p>
+<p>TODO: this sounds a bit embellished ... consider rewording with LESS fluff</p>
+<h2><a href="global.html#reducerHash"><code>reducerHash</code></a></h2><p>A switch statement is commonly used to drive the reduction's
+conditional logic, reasoning about the action.type:</p>
+<p>  TODO: EXAMPLE</p>
+<p>A rudementary desire for many developers is to better encapsolate this
+conditional logic.</p>
+<p>This can be accomplished using the <a href="global.html#reducerHash"><code>reducerHash</code></a> function (the
+most common composition reducer).  This creates a higher-order
+reducer, by combining a a set of sub-reducer functions that are
+indexed by the standard action.type.</p>
+<p>The following example, is equavelent to the one above:</p>
+<p>  TODO: EXAMPLE</p>
+<p>Not only is this more encapsolated, but it provides an automated
+catch-all TODO: more</p>
+<p>As it turns out, this utility is so centrao to the nature of
+reduction, it can be extended for logging to provide a central spot by
+which logging TODO: I AM TOO TIRED RIGHT NOW (continue L8TR)</p>
+<p>TODO: refer to the special doc</p>
+</article>
 
-
+</section>
 
 </div>
 

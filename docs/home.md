@@ -9,8 +9,7 @@ much more!*
 ## Table of Contents
 
 - {@tutorial start} ... installation and basic usage
-- {@tutorial overview} ... overall concepts with a function summary
-- {@tutorial basics} ... develop rudimentary concepts
+- {@tutorial usage} ... develop rudimentary concepts with a function summary
 - {@tutorial fullExample} ... comprehensive example of reducer composition
 - {@tutorial logExt} ... conceptual extension for a centralized reducer logging point
 - {@tutorial originalReducerState} ... sidebar discussion of originalReducerState

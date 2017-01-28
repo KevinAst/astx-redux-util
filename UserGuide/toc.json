@@ -3,13 +3,9 @@
       "order": 1,
       "title": "Getting Started"
   },
-  "overview": {
+  "usage": {
       "order": 2,
-      "title": "Overview"
-  },
-  "basics": {
-      "order": 3,
-      "title": "Basics"
+      "title": "Usage"
   },
   "fullExample": {
       "order": 4,
