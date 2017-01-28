@@ -41,7 +41,18 @@
 </header>
 
 <article>
-    <p>??? describe how this utility can be extended to provide a very useful centralized logging point</p>
+    <h4 class="name" id="smarterLogging">Smarter Logging</h4>
+
+<p>Because the <a href="global.html#reducerHash"><code>reducerHash</code></a> function is so central to the
+rudimentary aspect of reduction, it is a common practice to extend
+this function, providing a common spot to emit valuable logging
+probes.</p>
+<p>Not only are these probes centrally located in a common spot, but they
+can easily correlate logging levels to state changes, providing a
+means to filter logs at a high level with minimal output.</p>
+<p>As an example: filter the logs to named reducers that actually change
+the state.</p>
+<p>TODO: build up an example of this.</p>
 </article>
 
 </section>

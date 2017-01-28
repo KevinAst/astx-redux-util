@@ -4,30 +4,60 @@ TODO: where would a function summary go?
 
 TODO: this sounds a bit embellished ... consider rewording with LESS fluff
 
-## {@link reducerHash}
 
-A switch statement is commonly used to drive the reduction's
-conditional logic, reasoning about the action.type:
+<h4 class="name" id="reducerHash">Eradicate the Switch</h4>
 
-  TODO: EXAMPLE
+Reducers commonly reason about the action.type, driving conditional
+logic through a switch statement:
 
-A rudementary desire for many developers is to better encapsolate this
-conditional logic.
+```JavaScript
+  export default function widget(widget=null, action) {
 
-This can be accomplished using the {@link reducerHash} function (the
-most common composition reducer).  This creates a higher-order
-reducer, by combining a a set of sub-reducer functions that are
-indexed by the standard action.type.
+    switch (action.type) {
 
-The following example, is equavelent to the one above:
+      case ActionType.widget.edit:
+        return action.widget;
 
-  TODO: EXAMPLE
+      case ActionType.widget.edit.close:
+        return null;
 
-Not only is this more encapsolated, but it provides an automated
-catch-all TODO: more
+      default:
+        return state;
+    }
+  }
+```
 
-As it turns out, this utility is so centrao to the nature of
-reduction, it can be extended for logging to provide a central spot by
-which logging TODO: I AM TOO TIRED RIGHT NOW (continue L8TR)
+The {@link reducerHash} function provides a more elegant solution,
+eliminating the switch statement altogether.  *The following snippet,
+is equivalent to the one above.*
 
-TODO: refer to the special doc
+```
+  import { reducerHash } from 'astx-redux-util';
+
+  const myReducer = reducerHash({
+          [ActionType.widget.edit]       (widget, action) => action.widget,
+          [ActionType.widget.edit.close] (widget, action) => null,
+        });
+
+  export default function widget(widget=null, action) {
+    return myReducer(widget, action);
+  }
+```
+
+The {@link reducerHash} function (the most common of the composition
+reducers) creates a higher-order reducer, by combining a set of
+sub-reducer functions that are indexed by the standard action.type.
+
+Not only is the conditional logic better encapsulated, but the default
+pass-through logic is automatically applied ... passing the original
+state when no action.type is acted on.
+
+**Please Note** that because the reducerHash() is a higher-order
+creator function, it is invoked outside the scope of the widget()
+reducer.  This is an optimization, so as to not incur the creation
+overhead on each reducer invocation.
+
+As it turns out, this utility is so central to the rudimentary aspect
+of reduction, that a logging extension can easily be created to
+provide a common spot to emit valuable logging probes.  Please refer
+to the {@tutorial logExt} discussion for more information.

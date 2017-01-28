@@ -481,7 +481,7 @@ together.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line68">line 68</a>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -521,38 +521,19 @@ together.</p></td>
 
 
 <div class="description">
-    <p>Create a higher-order reducer through the set of reducer functions
-supplied in the actionHandlers parameter.</p>
-<p>This provides a more elegant solution to the switch statement,
-commonly used to provide this control mechanism.</p>
-<p><em>So instead of this:</em></p>
-<pre class="prettyprint source lang-javascript"><code>  export default function widget(widget=null, action) {
-    switch (action.type) {
-      case ActionType.widget.edit:
-        return action.widget;
-      case ActionType.widget.edit.close:
-        return null;
-      default:
-        return state;
-    }
-  }</code></pre><p><em>You can simply do this:</em></p>
-<pre class="prettyprint source"><code>  const myReducer = reducerHash({
-          [ActionType.widget.edit]       (widget, action) => action.widget,
-          [ActionType.widget.edit.close] (widget, action) => null,
-        });
-  export default function widget(widget=null, action) {
-    return myReducer(widget, action);
-  }</code></pre><p><strong>NOTE</strong>: </p>
-<ul>
-<li><i>Because of the central nature of this utility, it is a common
-practice to inject logging probes by extending this function.
-Not only are these probes centrally located in a common spot, but
-they can easily correlate logging levels to state changes,
-providing a means to filter logs at a high level with minimal
-output (for example: filter the logs to named reducers that
-actually change the state).  You can find an example of this at
-TODO</i></li>
-</ul>
+    <p>Create a higher-order reducer by combining a set of sub-reducer
+functions that are indexed by the standard action.type.  </p>
+<p>A default pass-through heuristic is automatically applied - passing
+the original state when no action.type is acted on.</p>
+<p>This is the more prevalent composition reducer, and provides an
+elegant alternative to the switch statement (commonly used to
+provide this control mechanism).</p>
+<p>Please refer to the <a href='tutorial-usage.html#reducerHash'>Eradicate the Switch</a>
+section of the User Guide for examples and more information.</p>
+<p><strong>NOTE</strong>: 
+   Because of the central nature of this utility, it is a common
+   practice to inject logging probes by extending this function.
+   Please refer to the <a href="tutorial-logExt.html">Logging Extension</a> discussion for more information.</p>
 </div>
 
 

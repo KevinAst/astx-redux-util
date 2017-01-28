@@ -49,46 +49,23 @@
 import reducerPassThrough  from './reducerPassThrough';
 
 /**
- * Create a higher-order reducer through the set of reducer functions
- * supplied in the actionHandlers parameter.
+ * Create a higher-order reducer by combining a set of sub-reducer
+ * functions that are indexed by the standard action.type.  
  *
- * This provides a more elegant solution to the switch statement,
- * commonly used to provide this control mechanism.
+ * A default pass-through heuristic is automatically applied - passing
+ * the original state when no action.type is acted on.
  *
- * *So instead of this:*
- * ```javascript
- *   export default function widget(widget=null, action) {
- *     switch (action.type) {
- *       case ActionType.widget.edit:
- *         return action.widget;
- *       case ActionType.widget.edit.close:
- *         return null;
- *       default:
- *         return state;
- *     }
- *   }
- * ```
+ * This is the more prevalent composition reducer, and provides an
+ * elegant alternative to the switch statement (commonly used to
+ * provide this control mechanism).
  *
- * *You can simply do this:*
- * ```
- *   const myReducer = reducerHash({
- *           [ActionType.widget.edit]       (widget, action) => action.widget,
- *           [ActionType.widget.edit.close] (widget, action) => null,
- *         });
- *   export default function widget(widget=null, action) {
- *     return myReducer(widget, action);
- *   }
- * ```
- * 
+ * Please refer to the &lt;a href='tutorial-usage.html#reducerHash'>Eradicate the Switch&lt;/a>
+ * section of the User Guide for examples and more information.
+ *
  * **NOTE**: 
- * - &lt;i>Because of the central nature of this utility, it is a common
- *   practice to inject logging probes by extending this function.
- *   Not only are these probes centrally located in a common spot, but
- *   they can easily correlate logging levels to state changes,
- *   providing a means to filter logs at a high level with minimal
- *   output (for example: filter the logs to named reducers that
- *   actually change the state).  You can find an example of this at
- *   TODO&lt;/i>
+ *    Because of the central nature of this utility, it is a common
+ *    practice to inject logging probes by extending this function.
+ *    Please refer to the {@tutorial logExt} discussion for more information.
  *
  * @param {Hash} actionHandlers - a hash of reducer functions,
  * indexed by the standard redux action.type (see examples ??).
