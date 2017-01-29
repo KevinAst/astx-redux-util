@@ -1,10 +1,3 @@
-/*
- * @file
- * @author Kevin Bridges ({@link https://github.com/KevinAst/})
- * @copyright Copyright (c) 2017 Kevin Bridges
- * @license MIT (see: LICENSE project file)
- */
-
 'use strict';
 
 import reducerPassThrough  from './reducerPassThrough';

@@ -1,9 +1,3 @@
-/*
- * @file
- * @author Kevin Bridges ({@link https://github.com/KevinAst/})
- * @copyright Copyright (c) 2017 Kevin Bridges
- * @license MIT (see: LICENSE project file)
- */
 'use strict';
 
 import poop from './nonExistant'; // ?? for some reason jsdoc will not output the doc for this module WITHOUT an import ... MAKES NO SENSE AT ALL
