@@ -41,7 +41,127 @@
 </header>
 
 <article>
-    <p>??? DO IT</p>
+    <p>Occasionally it is necessary for a state to have multiple reductions
+applied to it.  This typically occurs when the involved reducers
+represent fundamentally different operational types.</p>
+<p>Let's review an example to clarify this concept.</p>
+<p>Say we have a widget state, that contains x/y properties:</p>
+<pre class="prettyprint source lang-JavaScript"><code>{
+  widget: {
+    x: 100,
+    y: 200
+  }
+}</code></pre><p>Typically this would be controlled through a standard
+Redux.combineReducers:</p>
+<pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
+import x           from './myAppReducer.x;
+import y           from './myAppReducer.y;
+
+const contentReducer = 
+  Redux.combineReducers({
+    x,
+    y
+  });
+
+export default function widget(widget={}, action) {
+  return contentReducer.reduce(nextState, action);
+}</code></pre><p>What happens, however, if the widget can take on a null value (say for
+example, it only exists when it is being edited)?  </p>
+<p>In this case, there is more work to do because </p>
+<ol>
+<li>we need to apply the editor open/close logic, and</li>
+<li>conditionally apply the Redux.combineReducer because it cannot
+operate on null state.</li>
+</ol>
+<p>One way to accomplish this is through procedural logic, as follows:</p>
+<pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
+import x           from './myAppReducer.x;
+import y           from './myAppReducer.y;
+
+const contentReducer = 
+  Redux.combineReducers({
+    x,
+    y
+  });
+
+export default function widget(widget=null, action) {
+
+  // first: determine content shape (i.e. null or {})
+  let nextState = widget;
+  switch (action.type) {
+
+    case 'editOpen':
+      nextState = action.widget;
+      break;
+
+    case 'editClose':
+      nextState = null;
+      break;
+
+    default:
+      nextState = widget;
+  }
+
+  // second: maintain individucal x/y fields ONLY when there is content
+  if (nextState !== null) {
+    nextState = contentReducer.reduce(nextState, action);
+  }
+
+  // are we done yet? ... that was painful!!
+  return nextState;
+}</code></pre><p>A more elegant solution can be accomplished using reducer composition,
+eliminating the procedural code completely.</p>
+<p><strong>Enter two new higher-order reducers</strong> <em>(in addition to <a href="global.html#reducerHash"><code>reducerHash</code></a> which we have covered previously)</em>:</p>
+<ol>
+<li><p><a href="global.html#joinReducers"><code>joinReducers</code></a> combines two or more reducers, logically
+executing each in sequence.</p>
+</li>
+<li><p><a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> conditionally executes a reducerFn when
+the conditionalFn returns truthy.</p>
+</li>
+</ol>
+<p><em>The following snippet, is equivalent to the one above:</em></p>
+<pre class="prettyprint source lang-JavaScript"><code>import * as Redux         from 'redux';
+import * as AstReduxUtil  from 'astx-redux-util';
+import x                  from './myAppReducer.x;
+import y                  from './myAppReducer.y;
+
+const reduceWidget = 
+  AstReduxUtil.joinReducers(
+    // first reducer: determines content shape (i.e. null or {})
+    AstReduxUtil.reducerHash({
+      editOpen (widget, action) => action.widget,
+      editClose(widget, action) => null
+    }),
+
+    // second reducer: detailing individucal x/y fields
+    // ... only executed when there is content
+    AstReduxUtil.conditionalReducer(
+      (curState, action, originalReducerState) => curState !== null,
+      Redux.combineReducers({
+        x,
+        y
+      })),
+  );
+
+export default function widget(widget=null, action) {
+  return reduceWidget(widget, action);
+}</code></pre><p>Here the joinReducers combines multiple reducers together as one.</p>
+<ul>
+<li><p>The first reducer (reducerHash) interprets the
+'editOpen'/'editClose' action.type, providing content shape or not
+(i.e. null).</p>
+</li>
+<li><p>The second reducer (conditionalReducer) conditionally invokes the
+third reducer (combineReducers), only when the state has content
+(i.e. non-null).</p>
+</li>
+</ul>
+<p><strong>Reducer composition provides a more elegant solution that is
+functional in nature.</strong></p>
+<p><strong>Please note</strong> that the higher-order reducer functions are invoked
+outside the scope of the widget() reducer, as an optimization, so as
+to not incur the creation overhead on each reducer invocation.</p>
 </article>
 
 </section>

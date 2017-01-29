@@ -22,10 +22,12 @@ much more!*
 
 
 The astx-redux-util project can be found on
-<a href="https://github.com/KevinAst/astx-redux-util">
+<a href="https://github.com/KevinAst/astx-redux-util"
+   style="text-decoration: none !important;">
   <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
        alt="GitHub"
        title="astx-redux-util on GitHub"
+       style="text-decoration: none !important;"
        height="20">
 </a>
 and 

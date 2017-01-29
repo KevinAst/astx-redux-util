@@ -24,17 +24,17 @@ statement altogether. It creates a higher-order reducer, by combining
 a set of sub-reducer functions that are indexed by the standard
 action.type.
 
-*The following snippet, is equivalent to the one above.*
+*The following snippet, is equivalent to the one above:*
 ```
   import { reducerHash } from 'astx-redux-util';
 
-  const myReducer = reducerHash({
+  const reduceWidget = reducerHash({
           [ActionType.widget.edit]       (widget, action) => action.widget,
           [ActionType.widget.edit.close] (widget, action) => null,
         });
 
   export default function widget(widget=null, action) {
-    return myReducer(widget, action);
+    return reduceWidget(widget, action);
   }
 ```
 
