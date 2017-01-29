@@ -18,8 +18,8 @@ logic through a switch statement:
   }
 ```
 
-The {@link reducerHash} *(the most common of the composition
-reducers)* provides a more elegant solution, eliminating the switch
+The {@link reducerHash} function *(the most common composition
+reducer)* provides a more elegant solution, eliminating the switch
 statement altogether. It creates a higher-order reducer, by combining
 a set of sub-reducer functions that are indexed by the standard
 action.type.

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Action - Documentation</title>
+    <title>ActionReducerHash - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Action</h1>
+    <h1 class="page-title">ActionReducerHash</h1>
     
 
     
@@ -40,7 +40,7 @@
 <header>
     
         <h2>
-        Action
+        ActionReducerHash
         </h2>
         
     
@@ -56,7 +56,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reduxAPI.js.html">reduxAPI.js</a>, <a href="reduxAPI.js.html#line36">line 36</a>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -119,16 +119,13 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
+                <td class="name"><code>actionType1</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Symbol</span>
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
 
 
             
@@ -138,20 +135,20 @@
 
             
 
-            <td class="description last"><p>The action type.</p></td>
+            <td class="description last"><p>The reducer function servicing: 'actionType1'.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>whatever</code></td>
+                <td class="name"><code>actionType2</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
 
 
             
@@ -161,7 +158,30 @@
 
             
 
-            <td class="description last"><p>Additional app-specific payload (as needed).</p></td>
+            <td class="description last"><p>The reducer function servicing: 'actionType2'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>...more</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>...etc.</p></td>
         </tr>
 
     
@@ -173,8 +193,8 @@
 
 
         
-            <div class="description"><p>A standard <a href="http://redux.js.org/docs/basics/Actions.html">redux Action object</a>
-that drives the reduction process.</p></div>
+            <div class="description"><p>A hash of reducer functions, indexed by the standard redux
+action.type.</p></div>
         
 
         

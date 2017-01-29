@@ -38,7 +38,7 @@ export default function conditionalReducer(conditionalFn, reducerFn) {
 
 
 //***
-//*** Callback doc for conditionalReducer
+//*** Specification: conditionalReducerCB
 //***
 
 /**

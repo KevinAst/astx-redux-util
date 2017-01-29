@@ -11,22 +11,22 @@ import reducerPassThrough  from './reducerPassThrough';
 
 /**
  * Create a higher-order reducer by combining a set of sub-reducer
- * functions that are indexed by the standard action.type.  
+ * functions that are indexed by the standard action.type.  When no
+ * action.type is acted on, the original state is merely
+ * passed-through.
  *
- * A default pass-through heuristic is automatically applied - passing
- * the original state when no action.type is acted on.
- *
- * This is the more prevalent composition reducer, and provides an
- * elegant alternative to the switch statement (commonly used to
+ * This is one of the more prevalent composition reducers, and
+ * provides an alternative to the switch statement (commonly used to
  * provide this control mechanism).
- * The {@tutorial conceptHash} User Guide has more information about
- * reducerHash, **with examples**!
+ * 
+ * **Examples** can be found in the {@tutorial conceptHash}
+ * discussion, which contains more information about reducerHash.
  *
  * Because this function is so central to the rudimentary aspects of
  * reduction, it is common to provide a value-added {@tutorial logExt}.
  *
- * @param {Hash} actionHandlers - a hash of reducer functions,
- * indexed by the standard redux action.type (see examples ??).
+ * @param {ActionReducerHash} actionHandlers - a hash of reducer functions,
+ * indexed by the standard redux action.type.
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
@@ -39,3 +39,21 @@ export default function reducerHash(actionHandlers) {
   // expose the new reducer fn, which resolves according the the supplied hash
   return (state, action) => locateHandler(action)(state, action);
 }
+
+
+
+//***
+//*** Specification: ActionReducerHash
+//***
+
+/**
+ * A hash of reducer functions, indexed by the standard redux
+ * action.type.
+ *
+ * @namespace ActionReducerHash
+ * @type Object
+ *
+ * @property {reducerFn} actionType1 - The reducer function servicing: 'actionType1'.
+ * @property {reducerFn} actionType2 - The reducer function servicing: 'actionType2'.
+ * @property {reducerFn} ...more - ...etc.
+ */

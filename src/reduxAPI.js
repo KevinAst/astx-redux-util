@@ -6,6 +6,10 @@
 'use strict';
 
 
+//***
+//*** Specification: reducerFn
+//***
+
 // TODO: consider reducerFn: defined with @function instead of @callback 
 //       - @callback is hidden [NOT indexed] in GLOBAL, and appears under Type definitions
 //       - while @function is promoted in the GLOBAL index, and appears with all other functions
@@ -23,6 +27,10 @@
  */
 
 
+
+//***
+//*** Specification: Action
+//***
 
 // TODO: consider Action: defined with @namespace/@property (promoted as NAMESPACES)
 //                        - only bad thing is it insists on placing description at bottom
