@@ -3,9 +3,13 @@
       "order": 1,
       "title": "Getting Started"
   },
-  "usage": {
+  "conceptHash": {
       "order": 2,
-      "title": "Usage"
+      "title": "Switch Eradication"
+  },
+  "conceptJoin": {
+      "order": 3,
+      "title": "Reducer Composition"
   },
   "fullExample": {
       "order": 4,

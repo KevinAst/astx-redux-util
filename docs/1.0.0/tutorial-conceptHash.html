@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Usage - Documentation</title>
+    <title>Switch Eradication - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-usage.html">Usage</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Switch Eradication</a></li><li><a href="tutorial-conceptJoin.html">Reducer Composition</a></li><li><a href="tutorial-fullExample.html">Comprehensive Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">Usage</h1>
+    <h1 class="page-title">Switch Eradication</h1>
     
 
     <section>
@@ -36,17 +36,12 @@
     
 
     <!-- KJB: removed level 2 header
-    <h2>Usage</h2>
+    <h2>Switch Eradication</h2>
     -->
 </header>
 
 <article>
-    <p>TODO: develop rudimentary concepts with examples</p>
-<p>TODO: where would a function summary go?</p>
-<p>TODO: this sounds a bit embellished ... consider rewording with LESS fluff</p>
-<h4 class="name" id="reducerHash">Eradicate the Switch</h4>
-
-<p>Reducers commonly reason about the action.type, driving conditional
+    <p>Reducers commonly reason about the action.type, driving conditional
 logic through a switch statement:</p>
 <pre class="prettyprint source lang-JavaScript"><code>  export default function widget(widget=null, action) {
 
@@ -61,9 +56,12 @@ logic through a switch statement:</p>
       default:
         return state;
     }
-  }</code></pre><p>The <a href="global.html#reducerHash"><code>reducerHash</code></a> function provides a more elegant solution,
-eliminating the switch statement altogether.  <em>The following snippet,
-is equivalent to the one above.</em></p>
+  }</code></pre><p>The <a href="global.html#reducerHash"><code>reducerHash</code></a> <em>(the most common of the composition
+reducers)</em> provides a more elegant solution, eliminating the switch
+statement altogether. It creates a higher-order reducer, by combining
+a set of sub-reducer functions that are indexed by the standard
+action.type.</p>
+<p><em>The following snippet, is equivalent to the one above.</em></p>
 <pre class="prettyprint source"><code>  import { reducerHash } from 'astx-redux-util';
 
   const myReducer = reducerHash({
@@ -73,20 +71,16 @@ is equivalent to the one above.</em></p>
 
   export default function widget(widget=null, action) {
     return myReducer(widget, action);
-  }</code></pre><p>The <a href="global.html#reducerHash"><code>reducerHash</code></a> function (the most common of the composition
-reducers) creates a higher-order reducer, by combining a set of
-sub-reducer functions that are indexed by the standard action.type.</p>
-<p>Not only is the conditional logic better encapsulated, but the default
+  }</code></pre><p>Not only is the conditional logic better encapsulated, but the default
 pass-through logic is automatically applied ... passing the original
 state when no action.type is acted on.</p>
-<p><strong>Please Note</strong> that because the reducerHash() is a higher-order
+<p><strong>Please note</strong> that because <a href="global.html#reducerHash"><code>reducerHash</code></a> is a higher-order
 creator function, it is invoked outside the scope of the widget()
 reducer.  This is an optimization, so as to not incur the creation
 overhead on each reducer invocation.</p>
-<p>As it turns out, this utility is so central to the rudimentary aspect
-of reduction, that a logging extension can easily be created to
-provide a common spot to emit valuable logging probes.  Please refer
-to the <a href="tutorial-logExt.html">Logging Extension</a> discussion for more information.</p>
+<p><strong>Also note</strong> that because <a href="global.html#reducerHash"><code>reducerHash</code></a> is so central to the
+rudimentary aspects of reduction, it is common to provide a
+value-added <a href="tutorial-logExt.html">Logging Extension</a>.</p>
 </article>
 
 </section>

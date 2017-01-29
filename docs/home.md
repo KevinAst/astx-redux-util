@@ -6,13 +6,19 @@ allows you to displace the dreaded switch statement ... *but there is
 much more!*
 
 
-## Table of Contents
+## At a Glance
 
-- {@tutorial start} ... installation and basic usage
-- {@tutorial usage} ... develop rudimentary concepts with a function summary
-- {@tutorial fullExample} ... comprehensive example of reducer composition
-- {@tutorial logExt} ... conceptual extension for a centralized reducer logging point
-- {@tutorial originalReducerState} ... sidebar discussion of originalReducerState
+- {@tutorial start} ... installation and setup
+
+- Basic Concepts
+  * {@tutorial conceptHash} ... eliminate the reducer switch statement
+  * {@tutorial conceptJoin} ... team up multiple reducers
+
+- {@tutorial fullExample} ... more complete example of astx-redux-util
+
+- {@tutorial logExt} ... conceptual extension for reducer-based centralized logging
+
+- SideBar: {@tutorial originalReducerState} ... sidebar discussion of originalReducerState
 
 
 The astx-redux-util project can be found on
@@ -23,7 +29,7 @@ The astx-redux-util project can be found on
        height="20">
 </a>
 and 
-<a href="https://www.npmjs.com/">
+<a href="https://www.npmjs.com/package/astx-redux-util">
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
        alt="npm"
        title="astx-redux-util on npm"

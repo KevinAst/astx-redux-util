@@ -19,14 +19,11 @@ import reducerPassThrough  from './reducerPassThrough';
  * This is the more prevalent composition reducer, and provides an
  * elegant alternative to the switch statement (commonly used to
  * provide this control mechanism).
+ * The {@tutorial conceptHash} User Guide has more information about
+ * reducerHash, **with examples**!
  *
- * Please refer to the <a href='tutorial-usage.html#reducerHash'>Eradicate the Switch</a>
- * section of the User Guide for examples and more information.
- *
- * **NOTE**: 
- *    Because of the central nature of this utility, it is a common
- *    practice to inject logging probes by extending this function.
- *    Please refer to the {@tutorial logExt} discussion for more information.
+ * Because this function is so central to the rudimentary aspects of
+ * reduction, it is common to provide a value-added {@tutorial logExt}.
  *
  * @param {Hash} actionHandlers - a hash of reducer functions,
  * indexed by the standard redux action.type (see examples ??).

@@ -1,9 +1,7 @@
-/*
- * @file Redux Component Types - used in our JSDocs (supporting unambiguous API definitions).
- * @author Kevin Bridges ({@link https://github.com/KevinAst/})
- * @copyright Copyright (c) 2017 Kevin Bridges
- * @license MIT (see: LICENSE project file)
- */
+//***
+//*** This file contains NO executable code, rather "JSDoc tags only", 
+//*** providing more concise API documentation for redux expectations.
+//***
 
 'use strict';
 
@@ -11,7 +9,6 @@
 // TODO: consider reducerFn: defined with @function instead of @callback 
 //       - @callback is hidden [NOT indexed] in GLOBAL, and appears under Type definitions
 //       - while @function is promoted in the GLOBAL index, and appears with all other functions
-
 
 /**
  * A standard [redux reducer function]{@link http://redux.js.org/docs/basics/Reducers.html}
