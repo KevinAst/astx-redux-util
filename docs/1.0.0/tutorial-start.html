@@ -41,7 +41,28 @@
 </header>
 
 <article>
-    <p>??? describe installation and basic usage</p>
+    <h2>Install</h2><pre class="prettyprint source lang-shell"><code>npm install --save astx-redux-util</code></pre><h2>Setup</h2><p>All functions are exposed through BOTH default and non-default
+semantics.  Access is therefore provided through the following
+options:</p>
+<h3>ES6 Import</h3><pre class="prettyprint source lang-JavaScript"><code>  import { reducerHash, joinReducers }  from 'astx-redux-util';
+
+  // ... use reducerHash(...)
+  // ... use joinReducers(...)</code></pre><p><strong>... or</strong></p>
+<pre class="prettyprint source lang-JavaScript"><code>  import * as AstxReduxUtil from 'astx-redux-util';
+
+  // ... use AstxReduxUtil.reducerHash(...)
+  // ... use AstxReduxUtil.joinReducers(...)</code></pre><p><strong>... or</strong></p>
+<pre class="prettyprint source lang-JavaScript"><code>  import AstxReduxUtil from 'astx-redux-util';
+
+  // ... use AstxReduxUtil.reducerHash(...)
+  // ... use AstxReduxUtil.joinReducers(...)</code></pre><h3>CommonJS</h3><pre class="prettyprint source lang-JavaScript"><code>  const { reducerHash, joinReducers } = require('astx-redux-util');
+
+  // ... use reducerHash(...)
+  // ... use joinReducers(...)</code></pre><p><strong>... or</strong></p>
+<pre class="prettyprint source lang-JavaScript"><code>  const AstxReduxUtil = require('astx-redux-util');
+
+  // ... use AstxReduxUtil.reducerHash(...)
+  // ... use AstxReduxUtil.joinReducers(...)</code></pre>
 </article>
 
 </section>
