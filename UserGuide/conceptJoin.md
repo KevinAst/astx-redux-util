@@ -117,7 +117,7 @@ const reduceWidget =
       Redux.combineReducers({
         x,
         y
-      })),
+      }))
   );
 
 export default function widget(widget=null, action) {

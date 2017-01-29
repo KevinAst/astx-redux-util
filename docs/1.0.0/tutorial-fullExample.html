@@ -41,7 +41,71 @@
 </header>
 
 <article>
-    <p>??? full blown example</p>
+    <p>If we take our widget example one step further, let's say in addition
+to the x/y parameters, there is a curHash that easily determines</p>
+<pre class="prettyprint source lang-JavaScript"><code>{
+  widget: {
+    x:       100,
+    y:       200,
+    curHash: 'IEFBR14'
+  }
+}</code></pre><p>Our widget reducer is the obvious choice to maintain this curHash.  It
+has a unique vantage point for this task, because it is a central
+clearing house that has knowledge anytime the widget state changes.
+This is even independent of how many properties the widget has!  Our
+immutable pattern dictates that if our state changes, a new instance
+will be created.  Therefore, we can safely change the curHash anytime
+the widget instance has changed.</p>
+<p>Building on our last example (in <a href="tutorial-conceptJoin.html">Reducer Composition</a>), we
+can accomplish this new requirement by simply adding a third
+sub-reducer to our reduceWidget function.</p>
+<pre class="prettyprint source lang-JavaScript"><code>import * as Redux         from 'redux';
+import * as AstReduxUtil  from 'astx-redux-util';
+import x                  from './myAppReducer.x;
+import y                  from './myAppReducer.y;
+
+const reduceWidget = 
+  AstReduxUtil.joinReducers(
+    // first reducer: determines content shape (i.e. null or {})
+    AstReduxUtil.reducerHash({
+      editOpen (widget, action) => action.widget,
+      editClose(widget, action) => null
+    }),
+
+    // second reducer: detailing individucal x/y fields
+    // ... only executed when there is content
+    AstReduxUtil.conditionalReducer(
+      (curState, action, originalReducerState) => curState !== null,
+      Redux.combineReducers({
+        x,
+        y,
+        curHash: AstReduxUtil.reducerPassThrough
+      })),
+
+    // third reducer: maintaining the curHash (NEW from last example)
+    // ... only executed when widget has changed
+    AstReduxUtil.conditionalReducer(
+      (curState, action, originalReducerState) => curState !== null && 
+                                                  originalReducerState !== curState,
+      (curState, action) => {
+        curState.curHash = someHashOf(curState); // OK to mutate (different instance)
+        return curState;
+      })
+  );
+
+export default function widget(widget=null, action) {
+  return reduceWidget(widget, action);
+}</code></pre><p>This represents a very comprehensive example of how <strong>Reducer
+Composition</strong> can <strong>simplify your life</strong>!  We have combined 3
+sub-reducers into one, applying conditional logic as needed through
+functional decomposition!</p>
+<p><strong>Please note</strong> that we use the <a href="tutorial-originalReducerState.html">originalReducerState</a> to
+determine if the widget has changed from ANY of the prior sub-reducers
+(see the discussion of this topic in the provided link).</p>
+<p><strong>Also note</strong> that contrary to any <strong>red flags</strong> that may have
+been raised on your initial glance of the code, <strong>it is OK</strong> to mutate
+the curState variable in our third reducer, because we know a new instance
+has already been created (via one of the prior reducers).</p>
 </article>
 
 </section>
