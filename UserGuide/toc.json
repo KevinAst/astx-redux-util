@@ -5,15 +5,15 @@
   },
   "conceptHash": {
       "order": 2,
-      "title": "Switch Eradication"
+      "title": "Basics"
   },
   "conceptJoin": {
       "order": 3,
-      "title": "Reducer Composition"
+      "title": "Composition"
   },
   "fullExample": {
       "order": 4,
-      "title": "Comprehensive Example"
+      "title": "Most Excellent Example"
   },
   "logExt": {
       "order": 5,
