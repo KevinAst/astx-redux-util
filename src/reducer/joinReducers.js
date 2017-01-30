@@ -7,9 +7,9 @@ import poop from './nonExistant'; // ?? for some reason jsdoc will not output th
  * logically executing each in sequence (in essence combining their
  * functionality into one).  This is useful when combining various
  * reducer types into one logical construct.
- * 
- * **Examples** can be found in the {@tutorial conceptJoin}
- * discussion, which contains more information about joinReducers.
+ *
+ * **Examples** of joinReducers can be found in {@tutorial
+ * conceptJoin} and {@tutorial fullExample}.
  *
  * @param {...reducerFn} reducerFns two or more reducer functions to join
  * together.

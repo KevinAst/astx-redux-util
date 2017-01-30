@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Most Excellent Example - Documentation</title>
+    <title>A Most Excellent Example - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptJoin.html">Composition</a></li><li><a href="tutorial-fullExample.html">Most Excellent Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li><li><a href="ActionReducerHash.html">ActionReducerHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptJoin.html">Composition</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li><li><a href="ActionReducerHash.html">ActionReducerHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">Most Excellent Example</h1>
+    <h1 class="page-title">A Most Excellent Example</h1>
     
 
     <section>
@@ -36,14 +36,14 @@
     
 
     <!-- KJB: removed level 2 header
-    <h2>Most Excellent Example</h2>
+    <h2>A Most Excellent Example</h2>
     -->
 </header>
 
 <article>
-    <p>If we take our widget example one step further, let's say in addition
-to the x/y parameters, there is a curHash - a determinate of whether
-application content has changed.</p>
+    <p>If we take our widget example one step further (from our <a href="tutorial-conceptJoin.html">Composition</a> discussion), let's say in addition to the x/y properties,
+we now have a curHash - a determinate of whether application content
+has changed.</p>
 <pre class="prettyprint source lang-JavaScript"><code>{
   widget: {
     x:       100,
@@ -107,6 +107,7 @@ determine if the widget has changed from ANY of the prior sub-reducers
 been raised on your initial glance of the code, <strong>it is OK</strong> to mutate
 the curState variable in our third reducer, because we know a new instance
 has already been created (via one of the prior reducers).</p>
+<p><strong>Life is GOOD!</strong></p>
 </article>
 
 </section>

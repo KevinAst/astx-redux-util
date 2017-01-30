@@ -6,8 +6,8 @@ import poop from './nonExistant'; // ?? for some reason jsdoc will not output th
  * Create a higher-order reducer that conditionally executes the
  * supplied reducerFn, when the conditionalFn returns truthy.
  *
- * **Examples** can be found in the {@tutorial conceptJoin}
- * discussion, which contains more information about conditionalReducer.
+ * **Examples** of conditionalReducer can be found in {@tutorial
+ * conceptJoin} and {@tutorial fullExample}.
  *
  * @param {conditionalReducerCB} conditionalFn - a callback function
  * which determines when the supplied reducerFn will be executed.

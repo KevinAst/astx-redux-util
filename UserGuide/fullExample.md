@@ -1,6 +1,7 @@
-If we take our widget example one step further, let's say in addition
-to the x/y parameters, there is a curHash - a determinate of whether
-application content has changed.
+If we take our widget example one step further (from our {@tutorial
+conceptJoin} discussion), let's say in addition to the x/y properties,
+we now have a curHash - a determinate of whether application content
+has changed.
 
 ```JavaScript
 {
@@ -77,3 +78,5 @@ determine if the widget has changed from ANY of the prior sub-reducers
 been raised on your initial glance of the code, **it is OK** to mutate
 the curState variable in our third reducer, because we know a new instance
 has already been created (via one of the prior reducers).
+
+**Life is GOOD!**
