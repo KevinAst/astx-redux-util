@@ -8,7 +8,7 @@ much more!*
 
 ## At a Glance
 
-- {@tutorial start} ... installation and setup
+- {@tutorial start} ... installation and access
 - Basic Concepts
   - {@tutorial conceptHash} ... eliminate the reducer switch statement
   - {@tutorial conceptJoin} ... team up multiple reducers

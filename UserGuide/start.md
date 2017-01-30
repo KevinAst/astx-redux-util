@@ -5,38 +5,26 @@ npm install --save astx-redux-util
 ```
 
 
-## Setup
+## Access
 
-All functions are exposed through BOTH default and non-default
-semantics.  Access is therefore provided through the following
-options:
+All functions are exposed through [UMD](https://github.com/umdjs/umd),
+and therefore accessable through any one of the following techniques ...
 
 
-### ES6 Import
+### ES6 Import (Native JS)
 
 ```JavaScript
   import { reducerHash, joinReducers }  from 'astx-redux-util';
-
-  // ... use reducerHash(...)
-  // ... use joinReducers(...)
-```
-
-**... or**
-
-```JavaScript
+  -OR-
   import * as AstxReduxUtil from 'astx-redux-util';
-
-  // ... use AstxReduxUtil.reducerHash(...)
-  // ... use AstxReduxUtil.joinReducers(...)
-```
-
-**... or**
-
-```JavaScript
+  -OR-
   import AstxReduxUtil from 'astx-redux-util';
 
-  // ... use AstxReduxUtil.reducerHash(...)
-  // ... use AstxReduxUtil.joinReducers(...)
+  reducerHash(...)
+  joinReducers(...)
+  -OR-
+  AstxReduxUtil.reducerHash(...)
+  AstxReduxUtil.joinReducers(...)
 ```
 
 
@@ -44,16 +32,27 @@ options:
 
 ```JavaScript
   const { reducerHash, joinReducers } = require('astx-redux-util');
-
-  // ... use reducerHash(...)
-  // ... use joinReducers(...)
-```
-
-**... or**
-
-```JavaScript
+  -OR-
   const AstxReduxUtil = require('astx-redux-util');
 
-  // ... use AstxReduxUtil.reducerHash(...)
-  // ... use AstxReduxUtil.joinReducers(...)
+  reducerHash(...)
+  joinReducers(...)
+  -OR-
+  AstxReduxUtil.reducerHash(...)
+  AstxReduxUtil.joinReducers(...)
 ```
+
+
+### AMD
+
+```JavaScript
+define(['astx-redux-util', 'otherModule'], function(AstxReduxUtil, otherModule) {
+  AstxReduxUtil.reducerHash(...)
+  AstxReduxUtil.joinReducers(...)
+});
+```
+
+
+### &lt;script&gt; tag
+
+hmmm ... really?
