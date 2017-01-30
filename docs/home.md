@@ -9,13 +9,9 @@ much more!*
 ## At a Glance
 
 - {@tutorial start} ... installation and setup
-
 - Basic Concepts
-  * {@tutorial conceptHash} ... eliminate the reducer switch statement
-  * {@tutorial conceptJoin} ... team up multiple reducers
-
+  - {@tutorial conceptHash} ... eliminate the reducer switch statement
+  - {@tutorial conceptJoin} ... team up multiple reducers
 - {@tutorial fullExample} ... more complete example of astx-redux-util
-
 - {@tutorial logExt} ... conceptual extension for reducer-based centralized logging
-
 - SideBar: {@tutorial originalReducerState} ... sidebar discussion of originalReducerState
