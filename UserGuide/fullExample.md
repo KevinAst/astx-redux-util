@@ -1,5 +1,6 @@
 If we take our widget example one step further, let's say in addition
-to the x/y parameters, there is a curHash that easily determines
+to the x/y parameters, there is a curHash - a determinate of whether
+application content has changed.
 
 ```JavaScript
 {
