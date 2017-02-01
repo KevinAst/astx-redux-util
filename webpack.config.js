@@ -36,12 +36,11 @@
  *
  *******************************************************************************/
 
-const webpack = require('webpack'); // provide access to webpack built-in plugins
-const path    = require('path');
+const path        = require('path');
 
 const devEnv  = true; // ?? interpret via some command-line or env var or some such thing
 
-const libraryName = 'astx-redux-util'; // ?? can I get this from some env ... via package.json
+const libraryName = packageInfo.name;
 const outFileName = libraryName + (devEnv ? '.min.js' : '.js');
 
 const sourceMaps = 'source-map'; // ?? vary this based on prod/dev needs ... https://webpack.js.org/configuration/devtool/
