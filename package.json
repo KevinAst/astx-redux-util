@@ -4,8 +4,11 @@
   "description": "Several redux reducer composition utilities.",
   "main": "src/index.js",
   "scripts": {
+    "start:COMMENT": "start: convenience script to initiate development process",
     "start": "npm run dev",
+    "dev:COMMENT": "dev: lauch development processes in parallel (continous build/test)",
     "dev": "parallelshell \"npm run build:watch\" \"npm run test:watch\"",
+    "dev:TODO": "parallelshell is being consolidated with other similar libs (see github page)",
     "build:COMMENT": "build: bundle JS modules in 'dist' dir (for development or publication)",
     "build": "webpack",
     "build:watch": "webpack --progress --colors --watch",
