@@ -1,6 +1,6 @@
 'use strict';
 
-// ??? import poop from './nonExistant'; // ?? for some reason jsdoc will not output the doc for this module WITHOUT an import ... MAKES NO SENSE AT ALL
+import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
 
 /**
  * Create a higher-order reducer that conditionally executes the
