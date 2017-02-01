@@ -43,28 +43,35 @@
 <article>
     <h2>Install</h2><pre class="prettyprint source lang-shell"><code>npm install --save astx-redux-util</code></pre><h2>Access</h2><p>All functions are exposed through <a href="https://github.com/umdjs/umd">UMD</a>,
 and therefore accessable through any one of the following techniques ...</p>
-<h3>ES6 Import (Native JS)</h3><pre class="prettyprint source lang-JavaScript"><code>  import { reducerHash, joinReducers }  from 'astx-redux-util';
-  -OR-
-  import * as AstxReduxUtil from 'astx-redux-util';
-  -OR-
-  import AstxReduxUtil from 'astx-redux-util';
+<h3>ES6 Import (Native JS)</h3><pre class="prettyprint source lang-JavaScript"><code>import { reducerHash, joinReducers }  from 'astx-redux-util';
+-OR-
+import * as AstxReduxUtil from 'astx-redux-util';
+-OR-
+import AstxReduxUtil from 'astx-redux-util';
 
-  reducerHash(...)
-  joinReducers(...)
-  -OR-
-  AstxReduxUtil.reducerHash(...)
-  AstxReduxUtil.joinReducers(...)</code></pre><h3>CommonJS</h3><pre class="prettyprint source lang-JavaScript"><code>  const { reducerHash, joinReducers } = require('astx-redux-util');
-  -OR-
-  const AstxReduxUtil = require('astx-redux-util');
+reducerHash(...)
+joinReducers(...)
+-OR-
+AstxReduxUtil.reducerHash(...)
+AstxReduxUtil.joinReducers(...)</code></pre><h3>CommonJS</h3><pre class="prettyprint source lang-JavaScript"><code>const { reducerHash, joinReducers } = require('astx-redux-util');
+-OR-
+const AstxReduxUtil = require('astx-redux-util');
 
-  reducerHash(...)
-  joinReducers(...)
-  -OR-
-  AstxReduxUtil.reducerHash(...)
-  AstxReduxUtil.joinReducers(...)</code></pre><h3>AMD</h3><pre class="prettyprint source lang-JavaScript"><code>define(['astx-redux-util', 'otherModule'], function(AstxReduxUtil, otherModule) {
+reducerHash(...)
+joinReducers(...)
+-OR-
+AstxReduxUtil.reducerHash(...)
+AstxReduxUtil.joinReducers(...)</code></pre><h3>AMD</h3><pre class="prettyprint source lang-JavaScript"><code>define(['astx-redux-util', 'otherModule'], function(AstxReduxUtil, otherModule) {
   AstxReduxUtil.reducerHash(...)
   AstxReduxUtil.joinReducers(...)
-});</code></pre><h3>&lt;script&gt; tag</h3><p>hmmm ... really?</p>
+});</code></pre><h3>&lt;script&gt; tag</h3><pre class="prettyprint source"><code>&lt;script src=&quot;astx-redux-util.js&quot;>&lt;/script>
+
+&lt;script>
+  var AstxReduxUtil = window['astx-redux-util'];
+
+  AstxReduxUtil.reducerHash(...)
+  AstxReduxUtil.joinReducers(...)
+&lt;/script></code></pre>
 </article>
 
 </section>
