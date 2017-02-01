@@ -4,6 +4,10 @@
   "description": "Several redux reducer composition utilities.",
   "main": "src/index.js",
   "scripts": {
+    "build:COMMENT": "build: bundle JS modules in 'dist' dir (for development or publication)",
+    "build": "webpack",
+    "build:watch": "webpack --progress --colors --watch",
+    "build:clean": "TODO: rimraf dist",
     "test": "L8TR",
     "buildDocs": "./node_modules/.bin/jsdoc --configure ./UserGuide/.jsdoc --verbose"
   },
@@ -36,10 +40,12 @@
   "homepage": "https://github.com/KevinAst/astx-redux-util",
   "devDependencies": {
     "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
     "docdash": "^0.4.0",
     "jsdoc": "^3.4.3",
-    "jsdoc-babel": "^0.3.0"
+    "jsdoc-babel": "^0.3.0",
+    "webpack": "^2.2.1"
   }
 }
