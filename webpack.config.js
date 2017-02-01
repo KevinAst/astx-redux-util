@@ -36,7 +36,9 @@
  *
  *******************************************************************************/
 
+const webpack     = require('webpack'); // webpack built-in plugins
 const path        = require('path');
+const packageInfo = require('./package.json');
 
 const devEnv  = true; // ?? interpret via some command-line or env var or some such thing
 
