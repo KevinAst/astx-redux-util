@@ -17,6 +17,9 @@ pids
 # documentation from jsdoc (machine generated)
 # docs # NOTE: even though this is machine generated, we have configured GitHub Project Page to auto deploy from here!
 
+# documentation distribution ... via a gh-pages branch that is cloned in this docsDist/ directory!
+docsDist/
+
 # node dependencies
 node_modules
 
