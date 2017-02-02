@@ -42,4 +42,4 @@ used, don't miss the **Full Documentation** at [astx-redux-util]
 which includes a **Comprehensive Example**.
 
 
-[astx-redux-util]: https://kevinast.github.io/astx-redux-util/
+[astx-redux-util]: https://astx-redux-util.js.org/
