@@ -73,7 +73,7 @@ export default function widget(widget=null, action) {
       nextState = widget;
   }
 
-  // second: maintain individucal x/y fields ONLY when there is content
+  // second: maintain individual x/y fields ONLY when there is content
   if (nextState !== null) {
     nextState = contentReducer.reduce(nextState, action);
   }
