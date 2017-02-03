@@ -110,7 +110,7 @@ const reduceWidget =
       editClose(widget, action) => null
     }),
 
-    // second reducer: detailing individucal x/y fields
+    // second reducer: detailing individual x/y fields
     // ... only executed when there is content
     AstReduxUtil.conditionalReducer(
       (curState, action, originalReducerState) => curState !== null,
