@@ -1,18 +1,26 @@
 'use strict';
 
 import expect                from 'expect';
-import {reducerPassThrough}  from '../../index';
+import {reducerPassThrough}  from '../../index'; // module under test
 
 describe('reducerPassThrough() tests', () => {
 
-  describe('insure pass-through state', () => {
-
-    it('is unmodifed', () => {
-      const state = 123;
-      const action = { type: 'type-not-referenced', payload: 'not-referenced' };
-      expect(reducerPassThrough(state, action)).toBe(state);
-    });
-
+  describe('insure state is passed through untouched', () => {
+    testIt('string',     'myStr');
+    testIt('number',     123);
+    testIt('boolean',    true);
+    testIt('object',     {myObjState: 55.0});
+    testIt('Symbol',     Symbol('Wow a Symbol'));
+    testIt('undefined',  undefined);
+    testIt('null',       null);
   });
 
 });
+
+const action = { type: 'type-not-referenced', payload: 'not-referenced' };
+
+function testIt(stateType, state) {
+  it(`for ${stateType}`, () => {
+    expect(reducerPassThrough(state, action)).toBe(state);
+  });
+}
