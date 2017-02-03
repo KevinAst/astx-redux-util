@@ -42,12 +42,6 @@ Doc related content include:
   package.json ... various npm scripts, INCLUDING docs generation
   README.md    ... readme specific to master/feature branch
 
-  docs/        ... LOCAL (not-checked-in) machine generated docs (via "npm run docs" script)
-    {project-version}/ ... version pulled package.json
-      *.html
-      *.js
-      *.css
-
   src/                 ... project source code (JSDoc JavaScript scan root)
     *.js               ... embedded JS JavaDoc drives our API documentation
 
@@ -57,4 +51,12 @@ Doc related content include:
       guide/           ... container for User Guide source (md)
         toc.json       ... JSDoc tutorial definition (provides meaning to the *.md resources)
         *.md           ... JSDoc tutorials (User Guide pages)
+
+  # docs/ are LOCAL (i.e. NOT Checked In)
+  # simply retained in developer workspace from master/feature branch build (via "npm run docs")
+  docs/                ... machine generated docs
+    {project-version}/ ... version pulled package.json
+      *.html
+      *.js
+      *.css
 ```
