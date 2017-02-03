@@ -15,7 +15,7 @@ pids
 # lib-cov
 
 # machine generated docs (via "npm run docs" script)
-docs/
+# docs/
 
 # node dependencies
 node_modules/
