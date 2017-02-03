@@ -19,18 +19,18 @@
     "cleverLinks":    true,
     "monospaceLinks": true,
     "default": {
-      "includeDate":       false  // exclude date/time from footers (minimizing resources checked in and auto-published to GitHub Pages)
+      "includeDate":       false  // exclude date/time from footers
 //    "outputSourceFiles": false  // exclude source files (line numbers are not accurate when babel transpiling)
     }
   },
   "opts": { // command line options here
     "destination": "./docs/",
-    "package":     "./package.json", // allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory)
-    "readme":      "./docs/HOME.md", // used in root home page (index.html)
+    "package":     "./package.json",     // allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory)
+    "readme":      "./src/docs/home.md", // used in root home page (index.html)
     "encoding":    "utf8",
     "private":     true,
     "recurse":     true,
     "template":    "./node_modules/docdash",
-    "tutorials":   "./UserGuide"
+    "tutorials":   "./src/docs/guide"
   }
 }

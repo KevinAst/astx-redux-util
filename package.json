@@ -17,7 +17,8 @@
     "test:COMMENT:worksOnAnyFileWithEmbeddedTest": "mocha --compilers js:babel-core/register --colors --recursive ./src",
     "test": "mocha --compilers js:babel-core/register --colors \"src/**/*.spec.js\"",
     "test:watch": "mocha --compilers js:babel-core/register --colors --watch \"src/**/*.spec.js\"",
-    "buildDocs": "./node_modules/.bin/jsdoc --configure ./UserGuide/.jsdoc --verbose"
+    "docs:COMMENT": "docs: documentation builder",
+    "docs": "./node_modules/.bin/jsdoc --configure ./src/docs/jsdoc.conf.json --verbose"
   },
   "repository": {
     "type": "git",
