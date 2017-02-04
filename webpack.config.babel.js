@@ -36,9 +36,11 @@
  *
  *******************************************************************************/
 
-const webpack     = require('webpack'); // webpack built-in plugins
-const path        = require('path');
-const packageInfo = require('./package.json');
+'use strict';
+
+import webpack      from 'webpack'; // webpack built-in plugins
+import path         from 'path';
+import packageInfo  from './package.json';
 
 const devEnv  = true; // ?? interpret via some command-line or env var or some such thing
 
@@ -50,7 +52,7 @@ const sourceMaps = 'source-map'; // ?? vary this based on prod/dev needs ... htt
 const plugins = [];
 
 // ??## http://survivejs.com/webpack/optimizing-build/minifying/
-minifyOps = {
+const minifyOps = {
 //compress: false, // default: true
   // (function e(t,r){if(typeof exports==="object"&&typeof module==="object")module.exports=r();else if(typeof define==="function"&&define.amd)define("astx-redux-util",[],r);else if(typeof exports==="object")exports["astx-redux-util"]=r();else t["astx-redux-util"]=r()})(this,function(){return function(e){var t={};function r(u){if(t[u])return t[u].exports;var n=t[u]={i:u,l:false,exports:{}};e[u].call(n.exports,n,n.exports,r);n.l=true;return n.exports}r.m=e;r.c=t;r.i=function(e){return e};r.d=function(e,t,u){if(!r.o(e,t)){Object.defineProperty(e,t,{configurable:false,enumerable:true,get:u})}};r.n=function(e){var t=e&&e.__esModule?function t(){return e["default"]}:function t(){return e};r.d(t,"a",t);return t};r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)};r.p="";return r(r.s=4)}([function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.default=u;function u(e,t){return e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.default=u;function u(e,t){return function(r,u,n){return e(r,u,n)?t(r,u,n):r}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.default=u;function u(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++){t[r]=arguments[r]}return function(e,r,u){if(u===undefined){u=e}return t.reduce(function(e,t){return t(e,r,u)},e)}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.default=f;var u=r(0);var n=o(u);function o(e){return e&&e.__esModule?e:{default:e}}function f(e){var t=function t(r){return e[r.type]||n.default};return function(e,r){return t(r)(e,r)}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:true});t.reducerPassThrough=t.reducerHash=t.joinReducers=t.conditionalReducer=undefined;var u=r(1);var n=l(u);var o=r(2);var f=l(o);var i=r(3);var c=l(i);var d=r(0);var a=l(d);function l(e){return e&&e.__esModule?e:{default:e}}t.conditionalReducer=n.default;t.joinReducers=f.default;t.reducerHash=c.default;t.reducerPassThrough=a.default;t.default={conditionalReducer:n.default,joinReducers:f.default,reducerHash:c.default,reducerPassThrough:a.default}}])});
 //compress: true, // default: true
@@ -106,4 +108,4 @@ const config = {
   plugins: plugins
 };
 
-module.exports = config;
+export default config;
