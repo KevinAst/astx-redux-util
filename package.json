@@ -7,8 +7,7 @@
     "start:COMMENT": "start: convenience script to initiate development process",
     "start": "npm run dev",
     "dev:COMMENT": "dev: lauch development processes in parallel (continous build/test)",
-    "dev": "parallelshell \"npm run build:watch\" \"npm run test:watch\"",
-    "dev:TODO": "parallelshell is being consolidated with other similar libs (see github page)",
+    "dev": "npm-run-all --parallel build:watch test:watch",
     "build:COMMENT": "build: bundle JS modules in 'dist' dir (for development or publication)",
     "build": "webpack",
     "build:watch": "webpack --progress --colors --watch",
@@ -60,7 +59,7 @@
     "jsdoc": "^3.4.3",
     "jsdoc-babel": "^0.3.0",
     "mocha": "^3.2.0",
-    "parallelshell": "^2.0.0",
+    "npm-run-all": "^4.0.1",
     "rimraf": "^2.5.4",
     "webpack": "^2.2.1"
   }
