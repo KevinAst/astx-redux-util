@@ -5,8 +5,8 @@ composition utilities.
 
 Reducer composition is not new.  Redux itself provides the innovative
 [combineReducers](http://redux.js.org/docs/api/combineReducers.html)
-utility which allows you to blend individul reducers together to build
-up the overall shape of your appliction state.
+utility which allows you to blend individual reducers together to build
+up the overall shape of your application state.
 
 The most prevalent astx-redux-util utility is {@link reducerHash},
 which allows you to combine sub-reducers in such a way as to eliminate
