@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Composition - Documentation</title>
+    <title>Joining Reducers - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptJoin.html">Composition</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li><li><a href="ActionReducerHash.html">ActionReducerHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">Composition</h1>
+    <h1 class="page-title">Joining Reducers</h1>
     
 
     <section>
@@ -36,26 +36,26 @@
     
 
     <!-- KJB: removed level 2 header
-    <h2>Composition</h2>
+    <h2>Joining Reducers</h2>
     -->
 </header>
 
 <article>
     <p>Occasionally it is necessary for a state to have multiple reductions
-applied to it.  This typically occurs when the involved reducers
+applied to it.  Typically this occurs when the reducers involved
 represent fundamentally different operational types.</p>
-<p>Let's review an example to clarify this concept.</p>
-<p>Say we have a widget state, that contains x/y properties:</p>
+<p>An example should clarify this concept.</p>
+<p>Let's say we have a widget that contains x/y properties:</p>
 <pre class="prettyprint source lang-JavaScript"><code>{
   widget: {
     x: 100,
     y: 200
   }
-}</code></pre><p>Typically this would be controlled through a standard
-Redux.combineReducers:</p>
+}</code></pre><p>The individual x/y properties are nicely managed by the standard
+<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers</a> function:</p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
-import x           from './myAppReducer.x;
-import y           from './myAppReducer.y;
+import x           from './myAppReducer.x';
+import y           from './myAppReducer.y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -65,18 +65,18 @@ const contentReducer =
 
 export default function widget(widget={}, action) {
   return contentReducer.reduce(nextState, action);
-}</code></pre><p>What happens, however, if the widget can take on a null value (say for
-example, it only exists when it is being edited)?  </p>
-<p>In this case, there is more work to do because </p>
+}</code></pre><p>However, <strong>what happens if the widget can take on a null value</strong> (say for
+example, it only exists when it is being edited)?</p>
+<p>In this case, <strong>we have more work to do</strong>:</p>
 <ol>
 <li>we need to apply the editor open/close logic, and</li>
-<li>conditionally apply the Redux.combineReducer because it cannot
-operate on null state.</li>
+<li>conditionally manage it's content <em>(because
+<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers</a> cannot operate on null state)</em>.</li>
 </ol>
-<p>One way to accomplish this is through procedural logic, as follows:</p>
+<p>One way to accomplish this is through the following procedural logic:</p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
-import x           from './myAppReducer.x;
-import y           from './myAppReducer.y;
+import x           from './myAppReducer.x';
+import y           from './myAppReducer.y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -90,11 +90,11 @@ export default function widget(widget=null, action) {
   let nextState = widget;
   switch (action.type) {
 
-    case 'editOpen':
+    case 'widget.edit':
       nextState = action.widget;
       break;
 
-    case 'editClose':
+    case 'widget.edit.close':
       nextState = null;
       break;
 
@@ -109,35 +109,29 @@ export default function widget(widget=null, action) {
 
   // are we done yet? ... that was painful!!
   return nextState;
-}</code></pre><p>A more elegant solution can be accomplished using reducer composition,
-eliminating the procedural code completely.</p>
-<p><strong>Enter two new higher-order reducers</strong> <em>(in addition to <a href="global.html#reducerHash"><code>reducerHash</code></a> which we have covered previously)</em>:</p>
-<ol>
-<li><p><a href="global.html#joinReducers"><code>joinReducers</code></a> combines two or more reducers, logically
-executing each in sequence.</p>
-</li>
-<li><p><a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> conditionally executes a reducerFn when
-the conditionalFn returns truthy.</p>
-</li>
-</ol>
+}</code></pre><p>A more elegant solution can be accomplished by employing reducer
+composition, eliminating the procedural code completely.  We have
+already discussed <a href="global.html#reducerHash"><code>reducerHash</code></a> and <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>.
+A third utility, the <a href="global.html#joinReducers"><code>joinReducers</code></a> function, combines two or
+more reducers logically executing each in sequence.</p>
 <p><em>The following snippet, is equivalent to the one above:</em></p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux         from 'redux';
-import * as AstReduxUtil  from 'astx-redux-util';
-import x                  from './myAppReducer.x;
-import y                  from './myAppReducer.y;
+import * as AstxReduxUtil from 'astx-redux-util';
+import x                  from './myAppReducer.x';
+import y                  from './myAppReducer.y';
 
 const reduceWidget = 
-  AstReduxUtil.joinReducers(
-    // first reducer: determines content shape (i.e. null or {})
-    AstReduxUtil.reducerHash({
-      editOpen (widget, action) => action.widget,
-      editClose(widget, action) => null
+  AstxReduxUtil.joinReducers(
+    // first: determine content shape (i.e. null or {})
+    AstxReduxUtil.reducerHash({
+      ['widget.edit']       (widget, action) => action.widget,
+      ['widget.edit.close'] (widget, action) => null
     }),
 
-    // second reducer: detailing individual x/y fields
-    // ... only executed when there is content
-    AstReduxUtil.conditionalReducer(
-      (curState, action, originalReducerState) => curState !== null,
+    // second: maintain individual x/y fields
+    AstxReduxUtil.conditionalReducer(
+      // ONLY when there is content
+      (widget, action, originalReducerState) => widget !== null,
       Redux.combineReducers({
         x,
         y
@@ -149,17 +143,17 @@ export default function widget(widget=null, action) {
 }</code></pre><p>Here the joinReducers combines multiple reducers together as one.</p>
 <ul>
 <li><p>The first reducer (reducerHash) interprets the
-'editOpen'/'editClose' action.type, providing content shape or not
-(i.e. null).</p>
+<code>'widget.edit</code>/<code>'widget.edit.close'</code> action type, providing object
+content or not (i.e. null).</p>
 </li>
 <li><p>The second reducer (conditionalReducer) conditionally invokes the
-third reducer (combineReducers), only when the state has content
+third reducer (<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers</a>), only when the state has content
 (i.e. non-null).</p>
 </li>
 </ul>
 <p><strong>Reducer composition provides a more elegant solution that is
-functional in nature.</strong></p>
-<p><strong>Please note</strong> that the higher-order reducer functions are invoked
+purely functional in nature.</strong></p>
+<p><strong>Please Note</strong> that the higher-order reducer functions are invoked
 outside the scope of the widget() reducer, as an optimization, so as
 to not incur the creation overhead on each reducer invocation.</p>
 </article>
@@ -175,7 +169,7 @@ to not incur the creation overhead on each reducer invocation.</p>
     
     <b>
       astx-redux-util 
-     (1.0.0)
+     (0.1.0)
     </b>
     &hellip;
 <a href="./tutorial-LICENSE.html">MIT License</a>

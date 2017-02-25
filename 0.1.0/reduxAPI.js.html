@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptJoin.html">Composition</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li><li><a href="ActionReducerHash.html">ActionReducerHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
@@ -49,10 +49,6 @@
 //*** Specification: reducerFn
 //***
 
-// TODO: consider reducerFn: defined with @function instead of @callback 
-//       - @callback is hidden [NOT indexed] in GLOBAL, and appears under Type definitions
-//       - while @function is promoted in the GLOBAL index, and appears with all other functions
-
 /**
  * A standard [redux reducer function]{@link http://redux.js.org/docs/basics/Reducers.html}
  * that is responsible for state changes.
@@ -71,40 +67,14 @@
 //*** Specification: Action
 //***
 
-// TODO: consider Action: defined with @namespace/@property (promoted as NAMESPACES)
-//                        - only bad thing is it insists on placing description at bottom
-//                          (even when using @description)
-
 /**
+ * @typedef {Object} Action
+ *
  * A standard [redux Action object]{@link http://redux.js.org/docs/basics/Actions.html}
  * that drives the reduction process.
- *
- * @namespace Action
- * @type Object
  *
  * @property {string|Symbol} type - The action type.
  * @property {*} whatever - Additional app-specific payload (as needed).
- */
-
-
-// TODO: consider Action: defined with @interface (promoted as INTERFACES)
-
-/*
- * A standard [redux Action object]{@link http://redux.js.org/docs/basics/Actions.html}
- * that drives the reduction process.
- * @interface Action
- */
-
-/*
- * The action type.
- * @name Action#type
- * @type string|Symbol
- */
-
-/*
- * Additional app-specific payload (as needed).
- * @name Action#whatever
- * @type *
  */
 </code></pre>
         </article>
@@ -122,7 +92,7 @@
     
     <b>
       astx-redux-util 
-     (1.0.0)
+     (0.1.0)
     </b>
     &hellip;
 <a href="./tutorial-LICENSE.html">MIT License</a>

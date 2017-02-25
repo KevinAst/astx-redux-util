@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Global - Documentation</title>
+    <title>astx-redux-util - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptJoin.html">Composition</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>Namespaces</h3><ul><li><a href="Action.html">Action</a></li><li><a href="ActionReducerHash.html">ActionReducerHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">astx-redux-util</h1>
     
 
     
@@ -115,7 +115,7 @@
 
     
 
-    <h4 class="name" id="conditionalReducer"><span class="type-signature"></span>conditionalReducer<span class="signature">(conditionalFn, reducerFn)</span><span class="type-signature"> &rarr; {<a href="global.html#reducerFn">reducerFn</a>}</span></h4>
+    <h4 class="name" id="conditionalReducer"><span class="type-signature"></span>conditionalReducer<span class="signature">(conditionalFn, thenReducerFn, elseReducerFn<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global.html#reducerFn">reducerFn</a>}</span></h4>
 
     
 
@@ -127,7 +127,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line27">line 27</a>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -167,9 +167,12 @@
 
 
 <div class="description">
-    <p>Create a higher-order reducer that conditionally executes the
-supplied reducerFn, when the conditionalFn returns truthy.</p>
-<p><strong>Examples</strong> of conditionalReducer can be found in <a href="tutorial-conceptJoin.html">Composition</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+    <p>Create a higher-order reducer that conditionally executes one of
+the supplied reducerFns, based on the conditionalFn() return
+directive.</p>
+<p>The <strong>User Guide</strong> discusses conditionalReducer() in more detail
+(see <a href="tutorial-conceptConditional.html">Conditional Reduction</a>), and additional examples can
+be found in <a href="tutorial-conceptJoin.html">Joining Reducers</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
 </div>
 
 
@@ -195,7 +198,11 @@ supplied reducerFn, when the conditionalFn returns truthy.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -220,18 +227,31 @@ supplied reducerFn, when the conditionalFn returns truthy.</p>
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>a callback function
-which determines when the supplied reducerFn will be executed.</p></td>
+whose return value determines which reducerFn is executed
+... truthy: thenReducerFn(), falsy: elseReducerFn().</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>reducerFn</code></td>
+                <td class="name"><code>thenReducerFn</code></td>
             
 
             <td class="type">
@@ -244,11 +264,64 @@ which determines when the supplied reducerFn will be executed.</p></td>
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"><p>the &quot;wrapped&quot; reducer function that
-is conditionally executed.</p></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the &quot;wrapped&quot; reducer invoked
+when conditionalFn returns truthy.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>elseReducerFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>reducerPassThrough</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the
+optional &quot;wrapped&quot; reducer invoked when conditionalFn returns
+falsy.</p></td>
         </tr>
 
     
@@ -309,7 +382,7 @@ is conditionally executed.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line26">line 26</a>
+        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -353,7 +426,9 @@ is conditionally executed.</p></td>
 logically executing each in sequence (in essence combining their
 functionality into one).  This is useful when combining various
 reducer types into one logical construct.</p>
-<p><strong>Examples</strong> of joinReducers can be found in <a href="tutorial-conceptJoin.html">Composition</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+<p>The <strong>User Guide</strong> discusses joinReducers() in more detail
+(see <a href="tutorial-conceptJoin.html">Joining Reducers</a>), and additional examples can
+be found in <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
 </div>
 
 
@@ -481,7 +556,7 @@ together.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line35">line 35</a>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -528,9 +603,10 @@ passed-through.</p>
 <p>This is one of the more prevalent composition reducers, and
 provides an alternative to the switch statement (commonly used to
 provide this control mechanism).</p>
-<p><strong>Examples</strong> can be found in the <a href="tutorial-conceptHash.html">Basics</a>
-discussion, which contains more information about reducerHash.</p>
-<p>Because this function is so central to the rudimentary aspects of
+<p>The <strong>User Guide</strong> discusses reducerHash() in more detail (see
+<a href="tutorial-conceptHash.html">Basics</a>), and additional examples can be found in
+<a href="tutorial-conceptJoin.html">Joining Reducers</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+<p><strong>NOTE</strong>: Because this function is so central to the rudimentary aspects of
 reduction, it is common to provide a value-added <a href="tutorial-logExt.html">Logging Extension</a>.</p>
 </div>
 
@@ -575,7 +651,7 @@ reduction, it is common to provide a value-added <a href="tutorial-logExt.html">
             <td class="type">
             
                 
-<span class="param-type"><a href="ActionReducerHash.html">ActionReducerHash</a></span>
+<span class="param-type"><a href="global.html#ActionReducerHash">ActionReducerHash</a></span>
 
 
             
@@ -754,7 +830,7 @@ indexed by the standard redux action.type.</p></td>
             <td class="type">
             
                 
-<span class="param-type"><a href="Action.html">Action</a></span>
+<span class="param-type"><a href="global.html#Action">Action</a></span>
 
 
             
@@ -816,6 +892,330 @@ indexed by the standard redux action.type.</p></td>
 
         
                 
+<h4 class="name" id="Action">Action</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reduxAPI.js.html">reduxAPI.js</a>, <a href="reduxAPI.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Symbol</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The action type.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>whatever</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Additional app-specific payload (as needed).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>A standard <a href="http://redux.js.org/docs/basics/Actions.html">redux Action object</a>
+that drives the reduction process.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="ActionReducerHash">ActionReducerHash</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actionType1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The reducer function servicing: 'actionType1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>actionType2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The reducer function servicing: 'actionType2'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>...more</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>...etc.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>A hash of reducer functions, indexed by the standard redux
+action.type.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
 
     
 
@@ -831,7 +1231,7 @@ indexed by the standard redux action.type.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line43">line 43</a>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -871,9 +1271,8 @@ indexed by the standard redux action.type.</p></td>
 
 
 <div class="description">
-    <p>A callback function (used in <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>) which
-conditionally determines whether it's supplied reducerFn will be
-executed.</p>
+    <p>A callback function (used in <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>) whose
+return value determines which reducerFn is executed.</p>
 </div>
 
 
@@ -940,7 +1339,7 @@ executed.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="Action.html">Action</a></span>
+<span class="param-type"><a href="global.html#Action">Action</a></span>
 
 
             
@@ -1003,8 +1402,8 @@ visibility of the state within it's own reduction process.</p>
 
         
 <div class="param-desc">
-    <p>A truthy value indicating whether the reducerFn
-should be executed or not.</p>
+    <p>A truthy value indicating which reducerFn is
+executed ... truthy: thenReducerFn(), falsy: elseReducerFn().</p>
 </div>
 
 
@@ -1041,7 +1440,7 @@ should be executed or not.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reduxAPI.js.html">reduxAPI.js</a>, <a href="reduxAPI.js.html#line16">line 16</a>
+        <a href="reduxAPI.js.html">reduxAPI.js</a>, <a href="reduxAPI.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -1149,7 +1548,7 @@ that is responsible for state changes.</p>
             <td class="type">
             
                 
-<span class="param-type"><a href="Action.html">Action</a></span>
+<span class="param-type"><a href="global.html#Action">Action</a></span>
 
 
             
@@ -1223,7 +1622,7 @@ that is responsible for state changes.</p>
     
     <b>
       astx-redux-util 
-     (1.0.0)
+     (0.1.0)
     </b>
     &hellip;
 <a href="./tutorial-LICENSE.html">MIT License</a>
