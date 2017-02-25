@@ -41,11 +41,10 @@ export default function reducerHash(actionHandlers) {
 //***
 
 /**
+ * @typedef {Object} ActionReducerHash
+ *
  * A hash of reducer functions, indexed by the standard redux
  * action.type.
- *
- * @namespace ActionReducerHash
- * @type Object
  *
  * @property {reducerFn} actionType1 - The reducer function servicing: 'actionType1'.
  * @property {reducerFn} actionType2 - The reducer function servicing: 'actionType2'.
