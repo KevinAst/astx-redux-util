@@ -43,9 +43,8 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
 //***
 
 /**
- * A callback function (used in {@link conditionalReducer}) which
- * conditionally determines whether it's supplied ??reducerFn will be
- * executed.
+ * A callback function (used in {@link conditionalReducer}) whose
+ * return value determines which reducerFn is executed.
  *
  * @callback conditionalReducerCB
  *
@@ -64,6 +63,6 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  * Further information can be found in the {@tutorial
  * originalReducerState} discussion of the User Guide.
  * 
- * @returns {truthy} A truthy value indicating whether the ??reducerFn
- * should be executed or not.
+ * @returns {truthy} A truthy value indicating which reducerFn is
+ * executed ... truthy: thenReducerFn(), falsy: elseReducerFn().
  */
