@@ -1,32 +1,39 @@
 'use strict';
 
-import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
+import reducerPassThrough  from './reducerPassThrough';
+
 
 /**
- * Create a higher-order reducer that conditionally executes the
- * supplied reducerFn, when the conditionalFn returns truthy.
- *
- * **Examples** of conditionalReducer can be found in {@tutorial
- * conceptJoin} and {@tutorial fullExample}.
+ * Create a higher-order reducer that conditionally executes one of
+ * the supplied reducerFns, based on the conditionalFn() return
+ * directive.
+ * 
+ * The **User Guide** discusses conditionalReducer() in more detail
+ * (see {@tutorial conceptConditional}), and additional examples can
+ * be found in {@tutorial conceptJoin} and {@tutorial fullExample}.
  *
  * @param {conditionalReducerCB} conditionalFn - a callback function
- * which determines when the supplied reducerFn will be executed.
+ * whose return value determines which reducerFn is executed
+ * ... truthy: thenReducerFn(), falsy: elseReducerFn().
  *
- * @param {reducerFn} reducerFn - the "wrapped" reducer function that
- * is conditionally executed.
+ * @param {reducerFn} thenReducerFn - the "wrapped" reducer invoked
+ * when conditionalFn returns truthy.
+ *
+ * @param {reducerFn} [elseReducerFn=reducerPassThrough] - the
+ * optional "wrapped" reducer invoked when conditionalFn returns
+ * falsy.
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-export default function conditionalReducer(conditionalFn, reducerFn) {
+export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=reducerPassThrough) {
 
   // TODO: consider validation of conditionalReducer() params
 
   // expose our new higher-order reducer
-  // ... which conditionally executes reducerFn(), when directed by conditionalFn()
-  //     NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}
+  // NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}
   return (state, action, originalReducerState) => conditionalFn(state, action, originalReducerState)
-                                                    ? reducerFn(state, action, originalReducerState)
-                                                    : state;
+                                                    ? thenReducerFn(state, action, originalReducerState)
+                                                    : elseReducerFn(state, action, originalReducerState);
 }
 
 
@@ -37,7 +44,7 @@ export default function conditionalReducer(conditionalFn, reducerFn) {
 
 /**
  * A callback function (used in {@link conditionalReducer}) which
- * conditionally determines whether it's supplied reducerFn will be
+ * conditionally determines whether it's supplied ??reducerFn will be
  * executed.
  *
  * @callback conditionalReducerCB
@@ -57,6 +64,6 @@ export default function conditionalReducer(conditionalFn, reducerFn) {
  * Further information can be found in the {@tutorial
  * originalReducerState} discussion of the User Guide.
  * 
- * @returns {truthy} A truthy value indicating whether the reducerFn
+ * @returns {truthy} A truthy value indicating whether the ??reducerFn
  * should be executed or not.
  */

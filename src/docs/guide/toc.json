@@ -7,24 +7,32 @@
       "order": 2,
       "title": "Basics"
   },
-  "conceptJoin": {
+  "conceptConditional": {
       "order": 3,
-      "title": "Composition"
+      "title": "Conditional Reduction"
+  },
+  "conceptJoin": {
+      "order": 4,
+      "title": "Joining Reducers"
   },
   "fullExample": {
-      "order": 4,
+      "order": 5,
       "title": "A Most Excellent Example"
   },
+  "why": {
+      "order": 6,
+      "title": "Why astx-redux-util?"
+  },
   "logExt": {
-      "order": 5,
+      "order": 7,
       "title": "Logging Extension"
   },
   "originalReducerState": {
-      "order": 6,
+      "order": 8,
       "title": "originalReducerState"
   },
   "LICENSE": {
-      "order": 7,
+      "order": 9,
       "title": "MIT License"
   }
 }

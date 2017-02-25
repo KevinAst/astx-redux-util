@@ -1,17 +1,48 @@
 # astx-redux-util
 
-The astx-redux-util library provides several redux reducer composition
-utilities, of which the most prevalent is {@link reducerHash} which
-allows you to displace the dreaded switch statement ... *but there is
-much more!*
+The astx-redux-util library promotes several redux reducer
+composition utilities.  
+
+Reducer composition is not new.  Redux itself provides the innovative
+[combineReducers](http://redux.js.org/docs/api/combineReducers.html)
+utility which allows you to blend individul reducers together to build
+up the overall shape of your appliction state.
+
+The most prevalent astx-redux-util utility is {@link reducerHash},
+which allows you to combine sub-reducers in such a way as to eliminate
+the switch statement commonly used to delineate action type.  
+
+Additionally, astx-redux-util promotes other reducer compositions that
+can be used in conjunction with one another.
 
 
 ## At a Glance
 
 - {@tutorial start} ... installation and access
-- Basic Concepts
-  - {@tutorial conceptHash} ... eliminate the reducer switch statement
-  - {@tutorial conceptJoin} ... team up multiple reducers
-- {@tutorial fullExample} ... more complete example of astx-redux-util
-- {@tutorial logExt} ... conceptual extension for reducer-based centralized logging
-- SideBar: {@tutorial originalReducerState} ... sidebar discussion of originalReducerState
+
+- Concepts:
+
+  - {@tutorial conceptHash} ... using {@link reducerHash}, eliminate
+    the switch statement commonly found in reducers *("look ma, no
+    switch")*
+
+  - {@tutorial conceptConditional} ... using {@link
+    conditionalReducer}, invoke a reducer only when certain
+    constraints are met *("to reduce or NOT to reduce; that is the
+    question")*
+
+  - {@tutorial conceptJoin} ... using {@link joinReducers}, team up
+    multiple reducers to promote higher order functionality *("working
+    together is success" - Henry Ford)*
+
+- {@tutorial fullExample} ... a more complete example employing many
+  of the astx-redux-util utility functions
+
+- {@tutorial why} ... why was astx-redux-util created, and how does it
+  compare to other utilities
+
+- {@tutorial logExt} ... conceptual extension for reducer-based
+  centralized logging
+
+- {@tutorial originalReducerState} ... a sidebar discussion of
+  originalReducerState

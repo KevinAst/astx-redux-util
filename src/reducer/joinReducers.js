@@ -7,9 +7,10 @@ import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE:
  * logically executing each in sequence (in essence combining their
  * functionality into one).  This is useful when combining various
  * reducer types into one logical construct.
- *
- * **Examples** of joinReducers can be found in {@tutorial
- * conceptJoin} and {@tutorial fullExample}.
+ * 
+ * The **User Guide** discusses joinReducers() in more detail
+ * (see {@tutorial conceptJoin}), and additional examples can
+ * be found in {@tutorial fullExample}.
  *
  * @param {...reducerFn} reducerFns two or more reducer functions to join
  * together.

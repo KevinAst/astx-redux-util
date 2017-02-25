@@ -12,10 +12,11 @@ import reducerPassThrough  from './reducerPassThrough';
  * provides an alternative to the switch statement (commonly used to
  * provide this control mechanism).
  * 
- * **Examples** can be found in the {@tutorial conceptHash}
- * discussion, which contains more information about reducerHash.
+ * The **User Guide** discusses reducerHash() in more detail (see
+ * {@tutorial conceptHash}), and additional examples can be found in
+ * {@tutorial conceptJoin} and {@tutorial fullExample}.
  *
- * Because this function is so central to the rudimentary aspects of
+ * **NOTE**: Because this function is so central to the rudimentary aspects of
  * reduction, it is common to provide a value-added {@tutorial logExt}.
  *
  * @param {ActionReducerHash} actionHandlers - a hash of reducer functions,
