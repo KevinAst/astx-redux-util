@@ -18,8 +18,7 @@ can be used in conjunction with one another.
 
 ## Comprehensive Documentation
 
-Docs can be found at
-[astx-redux-util][https://astx-redux-util.js.org/], which includes
+Docs can be found at https://astx-redux-util.js.org/, which includes
 both **API** details, and a **User Guide** with complete and thorough
 **examples**!
 
