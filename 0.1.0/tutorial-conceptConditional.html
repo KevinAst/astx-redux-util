@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -70,8 +70,9 @@ example, our action types are organized with a federated namespace, so
 it is easy to isolate which actions will impact various parts of our
 state.</p>
 <p><strong>Please Note</strong> that because we did not supply an &quot;elseReducerFn&quot; (the
-third parameter to <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>), the default <a href="global.html#reducerPassThrough"><code>reducerPassThrough</code></a> is used for the else condition, in essence
-retaining the same state for a falsy directive.</p>
+third parameter to <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>), the default <a href="https://lodash.com/docs#identity">identity
+function</a> is used for the else
+condition, in essence retaining the same state for a falsy directive.</p>
 <p><strong>Also Note</strong> that this example is merely intended to introduce you to
 the concept of conditional reduction.  It is somewhat &quot;contrived&quot;,
 allowing us to discuss the topic in isolation.  In reality, this

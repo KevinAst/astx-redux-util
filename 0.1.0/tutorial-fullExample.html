@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -68,29 +68,27 @@ import Widget             from './myWidgetUtil';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
-    // first: determine content shape (i.e. null or {})
+    // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
       ['widget.edit']       (widget, action) => action.widget,
       ['widget.edit.close'] (widget, action) => null
     }),
 
-    // next ...
     AstxReduxUtil.conditionalReducer(
-      // ... when widget is being edited (i.e. has content)
+      // NEXT: maintain individual x/y fields
+      //       ONLY when widget has content (i.e. is being edited)
       (widget, action, originalReducerState) => widget !== null,
       AstxReduxUtil.joinReducers(
-        // maintain individual x/y fields
         Redux.combineReducers({
           x,
           y
         }),
-        // ... NEW from last example
         AstxReduxUtil.conditionalReducer(
-          // ... when widget has changed
+          // LAST: maintain curHash
+          //       ONLY when widget has content (see condition above) -AND- has changed
           (widget, action, originalReducerState) => originalReducerState !== widget,
-          // maintain curHash
           (widget, action) => {
-            widget.curHash = Widget.hash(widget); // NOTE: OK to mutate (different instance)
+            widget.curHash = Widget.hash(widget); // OK to mutate (because of changed instance)
             return widget;
           })
         )
@@ -105,13 +103,19 @@ sub-reducers into one, applying conditional logic as needed through
 functional decomposition!</p>
 <p><strong>Please NOTE</strong>:</p>
 <ol>
-<li><p>The <a href="tutorial-originalReducerState.html">originalReducerState</a> is used to determine when the
-widget has changed from ANY of the prior sub-reducers (see the
-discussion of this topic in the provided link).</p>
+<li><p>The curHash should only be maintained when the widget <strong>has
+content</strong> (i.e. non-null), -AND- <strong>has changed</strong> .  </p>
+<ul>
+<li><p>The former condition is accomplished through conditionalReducer
+<strong>nesting</strong>.  In other words, the outer conditionalReducer insures
+the widget is non-null.</p>
 </li>
-<li><p>The curHash should only be maintained when the widget has content
-(i.e. non-null).  This is accomplished through the <strong>nesting</strong> of
-conditionalReducer (the outer one insures the widget is non-null).</p>
+<li><p>The latter condition utilizes the <a href="tutorial-originalReducerState.html">originalReducerState</a> parameter to determine when the widget has
+changed from ANY of the prior sub-reducers.  This parameter
+provides visibility to the <a href="tutorial-originalReducerState.html">originalReducerState</a> when
+multiple reducers are combined.  Please refer to the <a href="tutorial-originalReducerState.html">originalReducerState</a> discussion for more insight.</p>
+</li>
+</ul>
 </li>
 <li><p>Contrary to any <strong>red flags</strong> that may have been raised on your
 initial glance of the code, <strong>it is OK</strong> to mutate the <code>widget</code>

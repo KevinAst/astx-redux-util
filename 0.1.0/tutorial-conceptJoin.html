@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -86,7 +86,7 @@ const contentReducer =
 
 export default function widget(widget=null, action) {
 
-  // first: determine content shape (i.e. null or {})
+  // FIRST: determine content shape (i.e. {} or null)
   let nextState = widget;
   switch (action.type) {
 
@@ -102,7 +102,8 @@ export default function widget(widget=null, action) {
       nextState = widget;
   }
 
-  // second: maintain individual x/y fields ONLY when there is content
+  // SECOND: maintain individual x/y fields
+  //         ONLY when widget has content (i.e. is being edited)
   if (nextState !== null) {
     nextState = contentReducer.reduce(nextState, action);
   }
@@ -122,15 +123,15 @@ import y                  from './myAppReducer.y';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
-    // first: determine content shape (i.e. null or {})
+    // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
       ['widget.edit']       (widget, action) => action.widget,
       ['widget.edit.close'] (widget, action) => null
     }),
 
-    // second: maintain individual x/y fields
     AstxReduxUtil.conditionalReducer(
-      // ONLY when there is content
+      // SECOND: maintain individual x/y fields
+      //         ONLY when widget has content (i.e. is being edited)
       (widget, action, originalReducerState) => widget !== null,
       Redux.combineReducers({
         x,

@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li><li><a href="global.html#reducerPassThrough">reducerPassThrough</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -39,7 +39,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-import reducerPassThrough  from './reducerPassThrough';
+import identity from 'lodash.identity';
 
 
 /**
@@ -58,13 +58,13 @@ import reducerPassThrough  from './reducerPassThrough';
  * @param {reducerFn} thenReducerFn - the "wrapped" reducer invoked
  * when conditionalFn returns truthy.
  *
- * @param {reducerFn} [elseReducerFn=reducerPassThrough] - the
+ * @param {reducerFn} [elseReducerFn=identity] - the
  * optional "wrapped" reducer invoked when conditionalFn returns
- * falsy.
+ * falsy.  DEFAULT: [identity function](https://lodash.com/docs#identity)
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=reducerPassThrough) {
+export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=identity) {
 
   // TODO: consider validation of conditionalReducer() params
 
