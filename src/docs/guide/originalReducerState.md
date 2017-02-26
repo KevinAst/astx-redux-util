@@ -39,7 +39,7 @@ reducer functions are NOT reasoning about a 3rd parameter.  The only
 risk is if redux should (at some future point) start to employ
 additional reducer parameters.
 
-By an overwhelming majority (99.9% of the time), **you should seldom have
+By an overwhelming majority of the time (99.9%), **you should seldom have
 to worry about how originalReducerState is maintained**, because
 astx-redux-util does this for you.
 
