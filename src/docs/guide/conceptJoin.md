@@ -57,7 +57,7 @@ const contentReducer =
 
 export default function widget(widget=null, action) {
 
-  // first: determine content shape (i.e. null or {})
+  // FIRST: determine content shape (i.e. {} or null)
   let nextState = widget;
   switch (action.type) {
 
@@ -73,7 +73,8 @@ export default function widget(widget=null, action) {
       nextState = widget;
   }
 
-  // second: maintain individual x/y fields ONLY when there is content
+  // SECOND: maintain individual x/y fields
+  //         ONLY when widget has content (i.e. is being edited)
   if (nextState !== null) {
     nextState = contentReducer.reduce(nextState, action);
   }
@@ -98,15 +99,15 @@ import y                  from './myAppReducer.y';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
-    // first: determine content shape (i.e. null or {})
+    // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
       ['widget.edit']       (widget, action) => action.widget,
       ['widget.edit.close'] (widget, action) => null
     }),
 
-    // second: maintain individual x/y fields
     AstxReduxUtil.conditionalReducer(
-      // ONLY when there is content
+      // SECOND: maintain individual x/y fields
+      //         ONLY when widget has content (i.e. is being edited)
       (widget, action, originalReducerState) => widget !== null,
       Redux.combineReducers({
         x,

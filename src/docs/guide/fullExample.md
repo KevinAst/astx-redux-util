@@ -34,29 +34,27 @@ import Widget             from './myWidgetUtil';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
-    // first: determine content shape (i.e. null or {})
+    // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
       ['widget.edit']       (widget, action) => action.widget,
       ['widget.edit.close'] (widget, action) => null
     }),
 
-    // next ...
     AstxReduxUtil.conditionalReducer(
-      // ... when widget is being edited (i.e. has content)
+      // NEXT: maintain individual x/y fields
+      //       ONLY when widget has content (i.e. is being edited)
       (widget, action, originalReducerState) => widget !== null,
       AstxReduxUtil.joinReducers(
-        // maintain individual x/y fields
         Redux.combineReducers({
           x,
           y
         }),
-        // ... NEW from last example
         AstxReduxUtil.conditionalReducer(
-          // ... when widget has changed
+          // LAST: maintain curHash
+          //       ONLY when widget has content (see condition above) -AND- has changed
           (widget, action, originalReducerState) => originalReducerState !== widget,
-          // maintain curHash
           (widget, action) => {
-            widget.curHash = Widget.hash(widget); // NOTE: OK to mutate (different instance)
+            widget.curHash = Widget.hash(widget); // OK to mutate (because of changed instance)
             return widget;
           })
         )
@@ -75,13 +73,19 @@ functional decomposition!
 
 **Please NOTE**:
 
-1. The {@tutorial originalReducerState} is used to determine when the
-   widget has changed from ANY of the prior sub-reducers (see the
-   discussion of this topic in the provided link).
+1. The curHash should only be maintained when the widget **has
+   content** (i.e. non-null), -AND- **has changed** .  
 
-2. The curHash should only be maintained when the widget has content
-   (i.e. non-null).  This is accomplished through the **nesting** of
-   conditionalReducer (the outer one insures the widget is non-null).
+   - The former condition is accomplished through conditionalReducer
+     **nesting**.  In other words, the outer conditionalReducer insures
+     the widget is non-null.
+
+   - The latter condition utilizes the {@tutorial
+     originalReducerState} parameter to determine when the widget has
+     changed from ANY of the prior sub-reducers.  This parameter
+     provides visibility to the {@tutorial originalReducerState} when
+     multiple reducers are combined.  Please refer to the {@tutorial
+     originalReducerState} discussion for more insight.
 
 3. Contrary to any **red flags** that may have been raised on your
    initial glance of the code, **it is OK** to mutate the `widget`
