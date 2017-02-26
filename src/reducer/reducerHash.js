@@ -1,6 +1,6 @@
 'use strict';
 
-import reducerPassThrough  from './reducerPassThrough';
+import identity from 'lodash.identity';
 
 /**
  * Create a higher-order reducer by combining a set of sub-reducer
@@ -29,9 +29,9 @@ export default function reducerHash(actionHandlers) {
 
   // TODO: consider validation of actionHandlers param.
 
-  const locateHandler = (action) => actionHandlers[action.type] || reducerPassThrough;
+  const locateHandler = (action) => actionHandlers[action.type] || identity;
 
-  // expose the new reducer fn, which resolves according the the supplied hash
+  // expose the new reducer fn, which resolves according the the supplied actionHandlers
   return (state, action) => locateHandler(action)(state, action);
 }
 

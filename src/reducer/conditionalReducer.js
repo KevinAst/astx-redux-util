@@ -1,6 +1,6 @@
 'use strict';
 
-import reducerPassThrough  from './reducerPassThrough';
+import identity from 'lodash.identity';
 
 
 /**
@@ -25,7 +25,7 @@ import reducerPassThrough  from './reducerPassThrough';
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=reducerPassThrough) {
+export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=identity) {
 
   // TODO: consider validation of conditionalReducer() params
 

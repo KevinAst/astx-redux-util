@@ -3,7 +3,6 @@
 import conditionalReducer   from './reducer/conditionalReducer';
 import joinReducers         from './reducer/joinReducers';
 import reducerHash          from './reducer/reducerHash';
-import reducerPassThrough   from './reducer/reducerPassThrough';
 
 
 //*** 
@@ -19,7 +18,6 @@ export {
   conditionalReducer,
   joinReducers,
   reducerHash,
-  reducerPassThrough,
 };
 
 // NOTE: This default export supports CommonJS modules (otherwise Babel does NOT promote them).
@@ -31,5 +29,4 @@ export default {
   conditionalReducer,
   joinReducers,
   reducerHash,
-  reducerPassThrough,
 };
