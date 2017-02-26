@@ -48,7 +48,8 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  *
  * @callback conditionalReducerCB
  *
- * @param {*} state - The current immutable state that is the reduction target.
+ * @param {*} state - The current immutable state that is the
+ * reduction target.
  *
  * @param {Action} action - The standard redux Action object that
  * drives the reduction process.
@@ -57,8 +58,9 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  * of the start of the reduction process.
  *
  * This is useful in determining whether state has changed within a
- * series of reductions ... because each individual reducer only has
- * visibility of the state within it's own reduction process.
+ * series of reductions {@link joinReducers} ... because each
+ * individual reducer only has visibility of the state within it's own
+ * reduction process.
  * 
  * Further information can be found in the {@tutorial
  * originalReducerState} discussion of the User Guide.

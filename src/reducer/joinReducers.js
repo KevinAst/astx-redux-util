@@ -8,6 +8,16 @@ import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE:
  * functionality into one).  This is useful when combining various
  * reducer types into one logical construct.
  * 
+ * **Please Note:** Because each reducer is able to build on what has
+ * been accomplished by a prior reducer, joinReducers cumulatively
+ * passes the state parameter that was returned from any prior reducer
+ * (in the chain of reducers to execute).  In essence this is an
+ * accumulative process.  While this does NOT relax the immutable
+ * constraint of the reducer's state parameter, it is possible for a
+ * down-stream reducer to receive a state parameter that is a
+ * different instance from the start of the reduction process (because
+ * an up-stream reducer needed to alter it in some way).
+ * 
  * The **User Guide** discusses joinReducers() in more detail
  * (see {@tutorial conceptJoin}), and additional examples can
  * be found in {@tutorial fullExample}.
