@@ -34,15 +34,15 @@ example, our action types are organized with a federated namespace, so
 it is easy to isolate which actions will impact various parts of our
 state.
 
-**Please Note** that because we did not supply an "elseReducerFn" (the
-third parameter to {@link conditionalReducer}), the default [identity
+**Note:** Because we did not supply "elseReducerFn" to {@link
+conditionalReducer} (the third parameter), the default [identity
 function](https://lodash.com/docs#identity) is used for the else
 condition, in essence retaining the same state for a falsy directive.
 
-**Also Note** that this example is merely intended to introduce you to
+**More to Come:** This example is merely intended to introduce you to
 the concept of conditional reduction.  It is somewhat "contrived",
 allowing us to discuss the topic in isolation.  In reality, this
 example may be inappropriate because the optimization is minimal, and
-it tends to make the code more brittle.  With that said, however, keep
-in mind that there are "more legitimate" reasons to apply conditional
-reduction ... we will see this in subsequent discussions.
+it tends to make the code more brittle.  Keep in mind, however,
+**there are more legitimate reasons to apply conditional reduction**
+... we will see this in subsequent discussions.
