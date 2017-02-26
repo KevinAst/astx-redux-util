@@ -39,8 +39,10 @@ action.type.
 ```
 
 Not only is the conditional logic better encapsulated, but the default
-pass-through logic is automatically applied ... passing the original
-state when no action.type is acted on.
+pass-through logic is automatically applied (using the [identity
+function](https://lodash.com/docs#identity)), passing through the
+original state when no action.type is acted on.
+
 
 **Please Note** that because {@link reducerHash} is a higher-order
 creator function, it is invoked outside the scope of the widget()

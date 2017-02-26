@@ -22,8 +22,8 @@ function baseTest(actionType, expectedState) {
 }
 
 describe('reducerHash() tests', () => {
-  baseTest('widget.edit', actionWidget);
+  baseTest('widget.edit',       actionWidget);
   baseTest('widget.edit.close', null);
-  baseTest('some.other.task', stateWidget);
+  baseTest('some.other.action', stateWidget);
   // TODO: test edge case: a) validating hash, and b) hash containing an undefined key
 });

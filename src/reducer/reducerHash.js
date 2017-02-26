@@ -6,7 +6,8 @@ import reducerPassThrough  from './reducerPassThrough';
  * Create a higher-order reducer by combining a set of sub-reducer
  * functions that are indexed by the standard action.type.  When no
  * action.type is acted on, the original state is merely
- * passed-through.
+ * passed-through (using the [identity
+ * function](https://lodash.com/docs#identity)).
  *
  * This is one of the more prevalent composition reducers, and
  * provides an alternative to the switch statement (commonly used to

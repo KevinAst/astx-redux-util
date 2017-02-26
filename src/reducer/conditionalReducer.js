@@ -19,9 +19,9 @@ import reducerPassThrough  from './reducerPassThrough';
  * @param {reducerFn} thenReducerFn - the "wrapped" reducer invoked
  * when conditionalFn returns truthy.
  *
- * @param {reducerFn} [elseReducerFn=reducerPassThrough] - the
+ * @param {reducerFn} [elseReducerFn=identity] - the
  * optional "wrapped" reducer invoked when conditionalFn returns
- * falsy.
+ * falsy.  DEFAULT: [identity function](https://lodash.com/docs#identity)
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
