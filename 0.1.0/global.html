@@ -382,7 +382,7 @@ falsy.  DEFAULT: <a href="https://lodash.com/docs#identity">identity function</a
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line27">line 27</a>
+        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -426,6 +426,15 @@ falsy.  DEFAULT: <a href="https://lodash.com/docs#identity">identity function</a
 logically executing each in sequence (in essence combining their
 functionality into one).  This is useful when combining various
 reducer types into one logical construct.</p>
+<p><strong>Please Note:</strong> Because each reducer is able to build on what has
+been accomplished by a prior reducer, joinReducers cumulatively
+passes the state parameter that was returned from any prior reducer
+(in the chain of reducers to execute).  In essence this is an
+accumulative process.  While this does NOT relax the immutable
+constraint of the reducer's state parameter, it is possible for a
+down-stream reducer to receive a state parameter that is a
+different instance from the start of the reduction process (because
+an up-stream reducer needed to alter it in some way).</p>
 <p>The <strong>User Guide</strong> discusses joinReducers() in more detail
 (see <a href="tutorial-conceptJoin.html">Joining Reducers</a>), and additional examples can
 be found in <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
@@ -1149,7 +1158,8 @@ return value determines which reducerFn is executed.</p>
 
             
 
-            <td class="description last"><p>The current immutable state that is the reduction target.</p></td>
+            <td class="description last"><p>The current immutable state that is the
+reduction target.</p></td>
         </tr>
 
     
@@ -1199,8 +1209,9 @@ drives the reduction process.</p></td>
             <td class="description last"><p>The immutable state at the time
 of the start of the reduction process.</p>
 <p>This is useful in determining whether state has changed within a
-series of reductions ... because each individual reducer only has
-visibility of the state within it's own reduction process.</p>
+series of reductions <a href="global.html#joinReducers"><code>joinReducers</code></a> ... because each
+individual reducer only has visibility of the state within it's own
+reduction process.</p>
 <p>Further information can be found in the <a href="tutorial-originalReducerState.html">originalReducerState</a> discussion of the User Guide.</p></td>
         </tr>
 

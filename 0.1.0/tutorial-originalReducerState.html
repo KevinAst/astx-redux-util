@@ -41,26 +41,47 @@
 </header>
 
 <article>
-    <p>The <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> function exposes an
-&quot;originalReducerState&quot; parameter to it's (<a href="global.html#conditionalReducerCB"><code>conditionalReducerCB</code></a>).</p>
-<p>The originalReducerState represents the immutable state at the time of
-the start of the reduction process.  This is useful in determining
-that state has changed within a series of reductions (see <a href="global.html#joinReducers"><code>joinReducers</code></a>), 
+    <p>This sidebar discussion provides some insight into
+<strong>originalReducerState</strong> (<em>mostly an internal implementation detail</em>).</p>
+<p>A fundamental problem in sequentially joining reducers is that each
+reducer should be able to build on what has been accomplished by a
+prior reducer.  In essence it is an accumulative process.</p>
+<p>The <a href="global.html#joinReducers"><code>joinReducers</code></a> utility handles this by cumulatively passing the
+state parameter that was returned from any prior reducer (in the chain
+of reducers to execute).</p>
+<p>While this does NOT relax the immutable constraint of the reducer's
+state parameter, it is possible for a down-stream reducer to receive a
+state parameter that is a different instance from the start of the
+reduction process (because an up-stream reducer needed to alter it in
+some way).</p>
+<p>As it turns out, this is typically NOT a concern to a client, rather
+merely an implementation detail.</p>
+<p>There are edge cases, however, where a client needs visibility to the
+<strong>originalReducerState</strong>: <em>the immutable state at the start of the
+reduction process</em>.  One case in particular is determining that state
+has changed within a series of reductions (i.e. <a href="global.html#joinReducers"><code>joinReducers</code></a>),
 because each individual reducer only has visibility of the state
-within it's own reduction process.</p>
-<p>There is an example of this in the <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
-<p>Because this deals with how state changes over a series of reducers
-(run in sequence), it is natural that the <a href="global.html#joinReducers"><code>joinReducers</code></a> utility
-automatically maintains the originalReducerState.</p>
-<p>By an overwhelming majority (99.9% of the time), you should never have
-to worry about how this state is maintained, because <a href="global.html#joinReducers"><code>joinReducers</code></a> does
-this for you.</p>
-<p>With that said, the way in which originalReducerState is communicated
-(internally), is by passing it as a 3rd parameter through the reducer
-chain.  While from a redux perspective, this is non-standard, it
-doesn't really hurt, because reducer functions are NOT reasoning about
-a 3rd parameter.  The only risk is if redux should (at some
-future point) start to employ additional reducer parameters.</p>
+within it's own reduction process.  This case is higlighted in
+<a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+<p>As a result, the <strong>originalReducerState</strong> is <strong>publicly exposed</strong> as
+the 3rd parameter to the <a href="global.html#conditionalReducerCB"><code>conditionalReducerCB</code></a> function (the
+<a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> callback parameter that makes this
+determination).</p>
+<p>Internally, the way in which astx-redux-util manages the
+originalReducerState is by passing it as a 3rd parameter to any
+reducer it is in control of (i.e. invokes).  While from a redux
+perspective, this is non-standard, it doesn't really hurt, because
+reducer functions are NOT reasoning about a 3rd parameter.  The only
+risk is if redux should (at some future point) start to employ
+additional reducer parameters.</p>
+<p>By an overwhelming majority (99.9% of the time), <strong>you should seldom have
+to worry about how originalReducerState is maintained</strong>, because
+astx-redux-util does this for you.</p>
+<p>The only time any of this concerns you is if your application reducer
+is in a mid-stream execution chain which invokes a downstream <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>.  In this case (which is rare), your code is
+responsible for passing originalReducerState (the 3rd reducer
+parameter) to the downstream reducer.</p>
+<p>??? OLD ... TRASH BELOW (once a confirmation that it is NOT NEEDED)</p>
 <p>Here are the significant take-away points of interest:</p>
 <ul>
 <li><p>If your <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> conditionalFn never reasons about
