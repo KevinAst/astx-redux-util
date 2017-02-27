@@ -29,7 +29,7 @@ import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE:
  */
 export default function joinReducers(...reducerFns) {
 
-  // TODO: consider validation of joinReducers() params ... two or more reducerFns
+  // TODO: consider validation of joinReducers() params ... an array WITH 0,1,2? or more reducerFns
 
   // expose our new higher-order reducer
   return (state, action, originalReducerState) => {
