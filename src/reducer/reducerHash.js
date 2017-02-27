@@ -29,6 +29,8 @@ export default function reducerHash(actionHandlers) {
 
   // TODO: consider validation of actionHandlers param.
 
+  // internal function: locate handler from actionHandlers action.type hash lookup
+  //                    ... default: identity pass-through
   const locateHandler = (action) => actionHandlers[action.type] || identity;
 
   // expose the new reducer fn, which resolves according the the supplied actionHandlers
