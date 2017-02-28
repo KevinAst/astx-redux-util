@@ -6,6 +6,19 @@ import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 import Widget             from '../appReducer/Widget';
 
+// NOTE: placeboReducer is slightly different than lodash.identity
+//       in that it defaults the state parameter to null
+//       ... Avoids following Redux.combineReducers() issues:
+//           - with NO curHash entry, WARNING:
+//             Unexpected key "curHash" found in previous state received by the reducer.
+//             Expected to find one of the known reducer keys instead: "x", "y".
+//             Unexpected keys will be ignored.
+//           - with curHash using lodash.identy, ERROR:
+//             Error: Reducer "curHash" returned undefined during initialization.
+//                    If the state passed to the reducer is undefined, you must explicitly return the initial state.
+//                    The initial state may not be undefined.
+const placeboReducer = (state=null, action) => state;
+
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
@@ -21,7 +34,8 @@ const reduceWidget =
       AstxReduxUtil.joinReducers(
         Redux.combineReducers({
           x,
-          y
+          y,
+          curHash: placeboReducer
         }),
         AstxReduxUtil.conditionalReducer(
           // LAST: maintain curHash
