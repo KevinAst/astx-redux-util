@@ -10,8 +10,8 @@ This can be accomplished through the {@link conditionalReducer} utility.
 ```JavaScript
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
-import x                  from './myAppReducer.x';
-import y                  from './myAppReducer.y';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
 
 const reduceWidget = 
   AstxReduxUtil.conditionalReducer(
