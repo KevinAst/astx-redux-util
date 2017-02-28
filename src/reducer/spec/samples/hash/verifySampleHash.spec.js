@@ -14,7 +14,6 @@ function performTestSeries(reducer) {
   state = performTest(state, {type:'widget.edit', widget:widgetUnderEdit}, reducer, widgetUnderEdit);
   state = performTest(state, {type:'other.action.while.edit'},             reducer, widgetUnderEdit);
   state = performTest(state, {type:'widget.edit.close'},                   reducer, null);
-  state = performTest(state, {type:'widget.edit.close'},                   reducer, null);
   state = performTest(state, {type:'other.action.while.not.edit'},         reducer, null);
 }
 
