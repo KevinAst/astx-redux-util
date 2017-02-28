@@ -34,7 +34,20 @@ export default function reducerHash(actionHandlers) {
   const locateHandler = (action) => actionHandlers[action.type] || identity;
 
   // expose the new reducer fn, which resolves according the the supplied actionHandlers
-  return (state, action) => locateHandler(action)(state, action);
+  return (state, action, originalReducerState) => {
+
+    // maintain the originalReducerState as the immutable state
+    // at the time of the start of the reduction process
+    // ... in support of joinReducers()
+    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
+    if (originalReducerState === undefined) {
+      originalReducerState = state;
+    }
+
+    // execute the handler indexed by the action.type (or the identity pass-through)
+    return locateHandler(action)(state, action, originalReducerState);
+  }
+
 }
 
 

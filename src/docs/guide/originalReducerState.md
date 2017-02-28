@@ -43,35 +43,8 @@ By an overwhelming majority of the time (99.9%), **you should seldom have
 to worry about how originalReducerState is maintained**, because
 astx-redux-util does this for you.
 
-The only time any of this concerns you is if your application reducer
-is in a mid-stream execution chain which invokes a downstream {@link
-conditionalReducer}.  In this case (which is rare), your code is
-responsible for passing originalReducerState (the 3rd reducer
-parameter) to the downstream reducer.
-
-
-??? OLD ... TRASH BELOW (once a confirmation that it is NOT NEEDED)
-
-Here are the significant take-away points of interest:
-
-- If your {@link conditionalReducer} conditionalFn never reasons about
-  originalReducerState:
-  * Then you have NO worries whatsoever!
-
-- If your {@link conditionalReducer} conditionalFn DOES reason about
-  originalReducerState:
-
-  * In the normal use case (where your {@link conditionalReducer} is
-    orchestrated by a {@link joinReducers} - in the first order), then you
-    STILL have NOTHING to worry about!
-
-    **Please Note:** These points cover 99.9% of all use cases!
-
-  * If however, your {@link conditionalReducer} is invoked in a less
-    conventional way, then you must manually supply the appropriate
-    originalReducerState 3rd parameter when invoking the reducer.
-
-    - This could be when you are invoking the {@link conditionalReducer}
-      directly (outside of a {@link joinReducers} utility).
-
-    - Or if you have a nested {@link joinReducers} combination.
+**The only time any of this concerns you** is if your application
+reducer invokes one of the astx-redux-util reducers.  In this case
+(which is rare), your code is responsible for passing
+originalReducerState (the 3rd reducer parameter) to the downstream
+reducer.

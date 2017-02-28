@@ -31,9 +31,22 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
 
   // expose our new higher-order reducer
   // NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}
-  return (state, action, originalReducerState) => conditionalFn(state, action, originalReducerState)
-                                                    ? thenReducerFn(state, action, originalReducerState)
-                                                    : elseReducerFn(state, action, originalReducerState);
+  return (state, action, originalReducerState) => {
+
+    // maintain the originalReducerState as the immutable state
+    // at the time of the start of the reduction process
+    // ... in support of joinReducers()
+    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
+    if (originalReducerState === undefined) {
+      originalReducerState = state;
+    }
+
+    // execute either thenReducerFn or elseReducerFn, based on conditionalFn
+    return conditionalFn(state, action, originalReducerState)
+             ? thenReducerFn(state, action, originalReducerState)
+             : elseReducerFn(state, action, originalReducerState);
+  };
+
 }
 
 

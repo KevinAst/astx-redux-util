@@ -35,8 +35,9 @@ export default function joinReducers(...reducerFns) {
   return (state, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
-    // at the time of the start of the reduction process.
-    // ... please refer to the User Guide {@tutorial originalReducerState}
+    // at the time of the start of the reduction process
+    // ... in support of joinReducers()
+    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
