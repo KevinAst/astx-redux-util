@@ -20,8 +20,8 @@ The individual x/y properties are nicely managed by the standard
 
 ```JavaScript
 import * as Redux  from 'redux';
-import x           from './myAppReducer.x';
-import y           from './myAppReducer.y';
+import x           from '../appReducer/x';
+import y           from '../appReducer/y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -46,8 +46,8 @@ One way to accomplish this is through the following procedural logic:
 
 ```JavaScript
 import * as Redux  from 'redux';
-import x           from './myAppReducer.x';
-import y           from './myAppReducer.y';
+import x           from '../appReducer/x';
+import y           from '../appReducer/y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -76,7 +76,7 @@ export default function widget(widget=null, action) {
   // SECOND: maintain individual x/y fields
   //         ONLY when widget has content (i.e. is being edited)
   if (nextState !== null) {
-    nextState = contentReducer.reduce(nextState, action);
+    nextState = contentReducer(nextState, action);
   }
 
   // are we done yet? ... that was painful!!
@@ -94,15 +94,15 @@ more reducers logically executing each in sequence.
 ```JavaScript
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
-import x                  from './myAppReducer.x';
-import y                  from './myAppReducer.y';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
-      ['widget.edit']       (widget, action) => action.widget,
-      ['widget.edit.close'] (widget, action) => null
+      "widget.edit":       (widget, action) => action.widget,
+      "widget.edit.close": (widget, action) => null
     }),
 
     AstxReduxUtil.conditionalReducer(
