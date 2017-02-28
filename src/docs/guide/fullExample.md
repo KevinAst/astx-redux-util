@@ -28,16 +28,16 @@ to our reduceWidget function.
 ```JavaScript
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
-import x                  from './myAppReducer.x';
-import y                  from './myAppReducer.y';
-import Widget             from './myWidgetUtil';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
+import Widget             from '../appReducer/Widget';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
-      ['widget.edit']       (widget, action) => action.widget,
-      ['widget.edit.close'] (widget, action) => null
+      "widget.edit":       (widget, action) => action.widget,
+      "widget.edit.close": (widget, action) => null
     }),
 
     AstxReduxUtil.conditionalReducer(
@@ -57,8 +57,8 @@ const reduceWidget =
             widget.curHash = Widget.hash(widget); // OK to mutate (because of changed instance)
             return widget;
           })
-        )
       )
+    )
   );
 
 export default function widget(widget=null, action) {
