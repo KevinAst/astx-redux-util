@@ -32,6 +32,9 @@ import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 import Widget             from '../appReducer/Widget';
 
+// placeboReducer WITH state initialization ... see NOTE (below)
+const placeboReducer = (state=null, action) => state;
+
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
@@ -47,7 +50,8 @@ const reduceWidget =
       AstxReduxUtil.joinReducers(
         Redux.combineReducers({
           x,
-          y
+          y,
+          curHash: placeboReducer
         }),
         AstxReduxUtil.conditionalReducer(
           // LAST: maintain curHash
@@ -87,10 +91,27 @@ functional decomposition!
      multiple reducers are combined.  Please refer to the {@tutorial
      originalReducerState} discussion for more insight.
 
-3. Contrary to any **red flags** that may have been raised on your
+2. Contrary to any **red flags** that may have been raised on your
    initial glance of the code, **it is OK** to mutate the `widget`
    state in the last reducer, because we know one of the prior
    reducers has injected a new widget instance (via the
    `originalReducerState !== widget` condition).
+
+3. The placeboReducer is slightly different than lodash.identity
+   in that it defaults the state parameter to null.
+
+   This avoids following Redux.combineReducers() issues:
+
+   - with NO curHash entry ... 
+         WARNING:
+         Unexpected key "curHash" found in previous state received by the reducer.
+         Expected to find one of the known reducer keys instead: "x", "y".
+         Unexpected keys will be ignored.
+
+   - with curHash entry, using lodash.identity ...
+         ERROR:
+         Reducer "curHash" returned undefined during initialization.
+         If the state passed to the reducer is undefined, you must explicitly return the initial state.
+         The initial state may not be undefined.
 
 **Life is GOOD!**
