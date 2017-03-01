@@ -66,7 +66,7 @@ export default function widget(widget=null, action) {
   return reduceWidget(widget, action);
 }
 
-// placeboReducer WITH state initialization (see NOTE below)
+// placeboReducer WITH state initialization (required for Redux.combineReducers())
 function placeboReducer(state=null, action) {
   return state;
 }
@@ -102,14 +102,16 @@ functional decomposition!
 3. The placeboReducer is slightly different than lodash.identity in
    that it defaults the state parameter to null.  
 
-   This is required in conjunction Redux.combineReducers(), and is
-   related to our technique of maintaining curHash in the parent
-   widget reducer (which has visibility to all widget properties),
-   verses using an individual property reducer (which does NOT have
-   visibility to other widget properties).  
+   This is required in conjunction
+   [Redux.combineReducers()](http://redux.js.org/docs/api/combineReducers.html),
+   and is related to our technique of maintaining curHash in the
+   parent widget reducer (*which has visibility to all widget
+   properties*), verses using an individual property reducer (*which
+   does NOT have visibility to other widget properties*).
 
    The placeboReducer works around the following
-   Redux.combineReducers() issues:
+   [Redux.combineReducers()](http://redux.js.org/docs/api/combineReducers.html)
+   issues:
 
    - with NO curHash entry ... 
          WARNING:
