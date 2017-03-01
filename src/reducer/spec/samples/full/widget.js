@@ -6,9 +6,6 @@ import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 import Widget             from '../appReducer/Widget';
 
-// placeboReducer WITH state initialization (see NOTE below)
-const placeboReducer = (state=null, action) => state;
-
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
@@ -43,9 +40,22 @@ export default function widget(widget=null, action) {
   return reduceWidget(widget, action);
 }
 
-// NOTE: The placeboReducer is slightly different than lodash.identity
-//       in that it defaults the state parameter to null.
-//       This avoids the following Redux.combineReducers() issues:
+// placeboReducer WITH state initialization (required for Redux.combineReducers())
+function placeboReducer(state=null, action) {
+  return state;
+}
+
+// NOTE: The placeboReducer is slightly different than lodash.identity in
+//       that it defaults the state parameter to null.  
+//
+//       This is required in conjunction Redux.combineReducers(), and is
+//       related to our technique of maintaining curHash in the parent
+//       widget reducer (which has visibility to all widget properties),
+//       verses using an individual property reducer (which does NOT have
+//       visibility to other widget properties).  
+//
+//       The placeboReducer works around the following
+//       Redux.combineReducers() issues:
 //
 //       - with NO curHash entry ... 
 //             WARNING:
@@ -58,3 +68,6 @@ export default function widget(widget=null, action) {
 //             Reducer "curHash" returned undefined during initialization.
 //             If the state passed to the reducer is undefined, you must explicitly return the initial state.
 //             The initial state may not be undefined.
+//
+//       - with curHash entry, using placeboReducer ...
+//             Life is GOOD!
