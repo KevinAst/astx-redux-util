@@ -2,20 +2,20 @@ Reducers frequently reason about the action.type, very often using a
 switch statement to drive conditional logic:
 
 ```JavaScript
-  export default function widget(widget=null, action) {
+export default function widget(widget=null, action) {
 
-    switch (action.type) {
+  switch (action.type) {
 
-      case 'widget.edit':
-        return action.widget;
+    case 'widget.edit':
+      return action.widget;
 
-      case 'widget.edit.close':
-        return null;
+    case 'widget.edit.close':
+      return null;
 
-      default:
-        return widget;
-    }
+    default:
+      return widget;
   }
+}
 ```
 
 The {@link reducerHash} function *(the most common composition
@@ -26,16 +26,16 @@ action.type.
 
 *The following snippet, is equivalent to the one above:*
 ```
-  import { reducerHash } from 'astx-redux-util';
+import { reducerHash } from 'astx-redux-util';
 
-  const reduceWidget = reducerHash({
-    "widget.edit":       (widget, action) => action.widget,
-    "widget.edit.close": (widget, action) => null,
-  });
+const reduceWidget = reducerHash({
+  "widget.edit":       (widget, action) => action.widget,
+  "widget.edit.close": (widget, action) => null,
+});
 
-  export default function widget(widget=null, action) {
-    return reduceWidget(widget, action);
-  }
+export default function widget(widget=null, action) {
+  return reduceWidget(widget, action);
+}
 ```
 
 Not only is the conditional logic better encapsulated, but the default
