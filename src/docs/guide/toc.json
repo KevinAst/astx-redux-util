@@ -19,17 +19,17 @@
       "order": 5,
       "title": "A Most Excellent Example"
   },
-  "why": {
+  "originalReducerState": {
       "order": 6,
+      "title": "originalReducerState"
+  },
+  "why": {
+      "order": 7,
       "title": "Why astx-redux-util?"
   },
   "logExt": {
-      "order": 7,
-      "title": "Logging Extension"
-  },
-  "originalReducerState": {
       "order": 8,
-      "title": "originalReducerState"
+      "title": "Logging Extension"
   },
   "LICENSE": {
       "order": 9,

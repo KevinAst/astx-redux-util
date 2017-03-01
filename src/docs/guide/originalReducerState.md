@@ -1,7 +1,7 @@
 This sidebar discussion provides some insight into
 **originalReducerState** (*mostly an internal implementation detail*).
 
-A fundamental problem in sequentially joining reducers is that each
+A fundamental aspect of sequentially joining reducers is that each
 reducer should be able to build on what has been accomplished by a
 prior reducer.  In essence it is an accumulative process.
 

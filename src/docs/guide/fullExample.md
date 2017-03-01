@@ -32,7 +32,7 @@ import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 import Widget             from '../appReducer/Widget';
 
-// placeboReducer WITH state initialization ... see NOTE (below)
+// placeboReducer WITH state initialization (see NOTE below)
 const placeboReducer = (state=null, action) => state;
 
 const reduceWidget = 
@@ -84,11 +84,11 @@ functional decomposition!
      **nesting**.  In other words, the outer conditionalReducer insures
      the widget is non-null.
 
-   - The latter condition utilizes the {@tutorial
-     originalReducerState} parameter to determine when the widget has
-     changed from ANY of the prior sub-reducers.  This parameter
-     provides visibility to the {@tutorial originalReducerState} when
-     multiple reducers are combined.  Please refer to the {@tutorial
+   - The latter condition utilizes the `originalReducerState`
+     parameter to determine when the widget has changed from ANY of
+     the prior sub-reducers.  This parameter is useful when multiple
+     reducers are combined, because it represents the state prior to
+     the start of reduction process.  Please refer to the {@tutorial
      originalReducerState} discussion for more insight.
 
 2. Contrary to any **red flags** that may have been raised on your
@@ -99,8 +99,7 @@ functional decomposition!
 
 3. The placeboReducer is slightly different than lodash.identity
    in that it defaults the state parameter to null.
-
-   This avoids following Redux.combineReducers() issues:
+   This avoids the following Redux.combineReducers() issues:
 
    - with NO curHash entry ... 
          WARNING:

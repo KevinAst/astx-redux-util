@@ -6,7 +6,7 @@ import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 import Widget             from '../appReducer/Widget';
 
-// placeboReducer WITH state initialization ... see NOTE (below)
+// placeboReducer WITH state initialization (see NOTE below)
 const placeboReducer = (state=null, action) => state;
 
 const reduceWidget = 
@@ -45,8 +45,7 @@ export default function widget(widget=null, action) {
 
 // NOTE: The placeboReducer is slightly different than lodash.identity
 //       in that it defaults the state parameter to null.
-//
-//       This avoids following Redux.combineReducers() issues:
+//       This avoids the following Redux.combineReducers() issues:
 //
 //       - with NO curHash entry ... 
 //             WARNING:

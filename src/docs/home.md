@@ -38,11 +38,11 @@ can be used in conjunction with one another.
 - {@tutorial fullExample} ... a more complete example employing many
   of the astx-redux-util utility functions
 
+- {@tutorial originalReducerState} ... a sidebar discussion of
+  originalReducerState
+
 - {@tutorial why} ... why was astx-redux-util created, and how does it
   compare to other utilities
 
 - {@tutorial logExt} ... conceptual extension for reducer-based
   centralized logging
-
-- {@tutorial originalReducerState} ... a sidebar discussion of
-  originalReducerState
