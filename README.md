@@ -33,16 +33,16 @@ npm install --save astx-redux-util
 ## Usage
 
 ```JavaScript
-  import { reducerHash } from 'astx-redux-util';
+import { reducerHash } from 'astx-redux-util';
 
-  const reduceWidget = reducerHash({
-          ['widget.edit']       (widget, action) => action.widget,
-          ['widget.edit.close'] (widget, action) => null,
-        });
+const reduceWidget = reducerHash({
+  "widget.edit":       (widget, action) => action.widget,
+  "widget.edit.close": (widget, action) => null,
+});
 
-  export default function widget(widget=null, action) {
-    return reduceWidget(widget, action);
-  }
+export default function widget(widget=null, action) {
+  return reduceWidget(widget, action);
+}
 ```
 
 
