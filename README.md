@@ -41,7 +41,7 @@ sub-reducer functions (indexed by the standard action.type),
 eliminating the switch statement commonly used to delineate action
 type.
 
-*Don't miss the **[astx-redux-util] documentation**, which fully explores
+**Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
 ```JavaScript
@@ -71,7 +71,7 @@ through a functional decomposition (as opposed to procedural code).
 To accomplish this, we add to our repertoire by introducing
 **joinReducers()** and **conditionalReducer()**.
 
-*Don't miss the **[astx-redux-util] documentation**, which fully explores
+**Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
 ```JavaScript
@@ -118,7 +118,7 @@ We accomplish this by simply combining yet another reducer (using a
 functional approach).
 
 
-*Don't miss the **[astx-redux-util] documentation**, which fully explores
+**Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
 ```JavaScript
