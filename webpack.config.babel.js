@@ -20,7 +20,7 @@
  *     * <script> tag
  * 
  *   - Lint
- *     * ?? via ESLint
+ *     * via ESLint
  *
  * Process:
  *
@@ -29,7 +29,7 @@
  *         |
  *      WebPack 2
  *         |
- *         +--- Babel Transpiler / ESLint??
+ *         +--- Babel Transpiler / ESLint
  *         |
  *         v
  *  Consumable Library (UMD/ES5)
@@ -101,8 +101,11 @@ const config = {
   module: {
     rules: [
       // transpile (via babel) to ES5 least-common-denominator (master src utilizes ES6)
-      { test: /\.(js|jsx)$/,  use: 'babel-loader'  }
-      // ?? what about eslint-loader ... done here, or as a plugin?
+      { test: /\.(js|jsx)$/,  use: 'babel-loader'  },
+      // apply style check with eslint
+      // ... NOTE: This is production code only (i.e. what is being bundled).
+      //           To check test code, use the npm lint script.
+      { test: /\.(js|jsx)$/,  use: 'eslint-loader' }
     ]
   },
   plugins: plugins
