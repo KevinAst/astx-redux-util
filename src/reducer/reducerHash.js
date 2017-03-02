@@ -1,5 +1,3 @@
-'use strict';
-
 import identity from 'lodash.identity';
 
 /**
@@ -46,7 +44,7 @@ export default function reducerHash(actionHandlers) {
 
     // execute the handler indexed by the action.type (or the identity pass-through)
     return locateHandler(action)(state, action, originalReducerState);
-  }
+  };
 
 }
 

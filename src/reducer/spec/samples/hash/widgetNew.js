@@ -1,5 +1,3 @@
-'use strict';
-
 import { reducerHash } from '../../../../index'; // REALLY: 'astx-redux-util'
 
 const reduceWidget = reducerHash({

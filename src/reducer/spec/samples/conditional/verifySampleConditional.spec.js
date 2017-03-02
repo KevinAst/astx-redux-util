@@ -1,10 +1,9 @@
-'use strict';
-
 import expect  from 'expect';
 import widget  from './widget'; // sample reducer
 
 function performTestSeries(reducer) {
-  let state = undefined;
+  // eslint ISSUE: thinks assigned state is unused, but it is clearly passed as an argument :-(
+  let state = undefined; // eslint-disable-line no-unused-vars
           //   runningState, action,                                       reducer, expectedNextState
           //          =====  ============================================  =======  =================
   state = performTest(state, {type:'app.bootstrap.init'},                  reducer, {}); // NOTE: proves condidition reducer did NOT execute (because no x/y properties)

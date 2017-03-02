@@ -1,5 +1,3 @@
-'use strict';
-
 import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
 
 /**
@@ -48,5 +46,5 @@ export default function joinReducers(...reducerFns) {
                                },
                                state);
 
-  }
+  };
 }

@@ -1,5 +1,3 @@
-'use strict';
-
 import * as AstxReduxUtil from '../../../../index'; // REALLY: 'astx-redux-util'
 
 const reduceY = AstxReduxUtil.reducerHash({

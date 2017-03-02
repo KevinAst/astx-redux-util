@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from '../../../../index'; // REALLY: 'astx-redux-util'
 import x                  from '../appReducer/x';

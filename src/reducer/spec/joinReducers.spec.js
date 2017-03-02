@@ -1,5 +1,3 @@
-'use strict';
-
 import expect         from 'expect';
 import {joinReducers} from '../../index'; // module under test (NOTE: we purposely vary import techniques)
 

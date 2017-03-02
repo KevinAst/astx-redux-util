@@ -1,5 +1,3 @@
-'use strict';
-
 import expect         from 'expect';
 import AstxReduxUtil  from '../../index'; // module under test (NOTE: we purposely vary import techniques)
 

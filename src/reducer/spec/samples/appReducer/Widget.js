@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Widget provides a number of utilities in support of the widget
  * JSON structure.  In essance it is a pseudo class definition for
@@ -23,6 +21,6 @@ const Widget = {
     return 'x:' + widget.x + ',y:' + widget.y;
   },
 
-}
+};
 
 export default Widget;

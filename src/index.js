@@ -1,9 +1,6 @@
-'use strict'
-
 import conditionalReducer   from './reducer/conditionalReducer';
 import joinReducers         from './reducer/joinReducers';
 import reducerHash          from './reducer/reducerHash';
-
 
 //*** 
 //*** Promote all library utilities through a single module.

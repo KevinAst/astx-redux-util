@@ -1,7 +1,4 @@
-'use strict';
-
 export default function widget(widget=null, action) {
-
   switch (action.type) {
 
     case 'widget.edit':

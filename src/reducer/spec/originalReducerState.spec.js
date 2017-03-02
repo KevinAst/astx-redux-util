@@ -1,8 +1,5 @@
-'use strict';
-
 import expect         from 'expect';
 import AstxReduxUtil  from '../../index'; // module under test (NOTE: we purposely vary import techniques)
-
 
 describe('verify originalReducerState is correctly passed through nested reducers', () => {
 

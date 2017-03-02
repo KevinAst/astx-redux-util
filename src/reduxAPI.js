@@ -1,9 +1,5 @@
-//***
-//*** This file contains NO executable code, rather "JSDoc tags only", 
-//*** providing more concise API documentation for redux expectations.
-//***
-
-'use strict';
+// NOTE: This file contains NO executable code, rather "JSDoc tags only", 
+//       providing more concise API documentation for redux expectations.
 
 
 //***

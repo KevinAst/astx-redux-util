@@ -1,7 +1,4 @@
-'use strict';
-
 import identity from 'lodash.identity';
-
 
 /**
  * Create a higher-order reducer that conditionally executes one of

@@ -1,5 +1,3 @@
-'use strict';
-
 import * as Redux  from 'redux';
 import x           from '../appReducer/x';
 import y           from '../appReducer/y';
