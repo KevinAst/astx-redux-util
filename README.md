@@ -41,10 +41,9 @@ sub-reducer functions (indexed by the standard action.type),
 eliminating the switch statement commonly used to delineate action
 type.
 
-*Don't miss the [astx-redux-util] documentation, which fully explores
+*Don't miss the **[astx-redux-util] documentation**, which fully explores
 this example, and details the API.*
 
-widget.js
 ```JavaScript
 import { reducerHash } from 'astx-redux-util';
 
@@ -64,17 +63,17 @@ export default function widget(widget=null, action) {
 Building on the previous example, our widget now takes on more detail:
  - we manage x/y properties (through the standard
    [combineReducers](http://redux.js.org/docs/api/combineReducers.html))
- - the widget itself can take on a null value (when not being edited)
+ - the widget itself can take on a null value (an indication it is NOT
+   being edited)
 
 We manage these new requirements by combining multiple reducers
 through a functional decomposition (as opposed to procedural code).
-To accomplish this, we add to our repertoire by introducing the
+To accomplish this, we add to our repertoire by introducing
 **joinReducers()** and **conditionalReducer()**.
 
-*Don't miss the [astx-redux-util] documentation, which fully explores
+*Don't miss the **[astx-redux-util] documentation**, which fully explores
 this example, and details the API.*
 
-widget.js
 ```JavaScript
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
@@ -106,9 +105,9 @@ export default function widget(widget=null, action) {
 
 ### Full Example
 
-Building even more on the previous example, our widget now:
- - adds a curHash property (which is a determinate of whether
-   application content has changed)
+Building even more on the prior examples:
+ - our widget adds a curHash property (which is a determinate of
+   whether application content has changed)
 
 We manage this new property in the parent widget reducer, because it
 has a unique vantage point of knowing when the widget has changed
@@ -119,10 +118,9 @@ We accomplish this by simply combining yet another reducer (using a
 functional approach).
 
 
-*Don't miss the [astx-redux-util] documentation, which fully explores
+*Don't miss the **[astx-redux-util] documentation**, which fully explores
 this example, and details the API.*
 
-widget.js
 ```JavaScript
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
