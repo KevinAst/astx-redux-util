@@ -115,8 +115,8 @@ has a unique vantage point of knowing when the widget has changed
 involved).
 
 We accomplish this by simply combining yet another reducer (using a
-functional approach).
-
+functional approach).  This also demonstrates how **composition can be
+nested!**
 
 **Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
@@ -167,5 +167,11 @@ function placeboReducer(state=null, action) {
   return state;
 }
 ```
+
+This represents a very comprehensive example of how **Reducer
+Composition** can **simplify your life**!  We have combined multiple
+reducers into one, applying conditional logic as needed through
+functional decomposition!
+
 
 [astx-redux-util]: https://astx-redux-util.js.org/
