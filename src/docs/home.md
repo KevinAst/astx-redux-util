@@ -1,15 +1,17 @@
 # astx-redux-util
 
-The astx-redux-util library promotes several redux reducer
-composition utilities.  
+The astx-redux-util library promotes several redux reducer composition
+utilities, which blend multiple reducers together forming a richer
+abstraction through functional decomposition (i.e. higher-order
+functions).
 
 Reducer composition is not new.  Redux itself provides the innovative
 [combineReducers](http://redux.js.org/docs/api/combineReducers.html)
-utility which allows you to blend individual reducers together to build
+utility which allows you to fuse individual reducers together to build
 up the overall shape of your application state.
 
 The most prevalent astx-redux-util utility is {@link reducerHash},
-which allows you to combine sub-reducers in such a way as to eliminate
+which lets you combine sub-reducers in such a way as to eliminate
 the switch statement commonly used to delineate action type.  
 
 Additionally, astx-redux-util promotes other reducer compositions that
