@@ -57,9 +57,9 @@ describe('verify originalReducerState is correctly passed through nested reducer
               check('myReducer6 originalReducerState', originalReducerState, 'originalState');
               return 'myReducer6';
             }
-          }),
-        ),
-      ),
+          })
+        )
+      )
     )('originalState', {type: 'myAction'}); // execute reducer
 
   });
@@ -82,7 +82,7 @@ describe('verify originalReducerState is correctly passed through nested reducer
           check('myReducer2 state',                state,                'myReducer1');
           check('myReducer2 originalReducerState', originalReducerState, 'originalState');
           return 'myReducer2';
-        },
+        }
       )
     )('originalState', {type: 'myAction'}); // execute reducer
 
