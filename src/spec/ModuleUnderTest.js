@@ -47,16 +47,16 @@ let moduleUnderTest = moduleFromDevSrc;
 switch (MODULE_PLATFORM) {
   case 'src':
   case undefined:
-    console.log(`*** Testing Module Platform found in: src/*.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
+    console.log(`*** Testing Module Platform found in: src/*.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
     moduleUnderTest = moduleFromDevSrc;
     break;
   case 'bundle.min':  
-    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
+    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
     moduleUnderTest = moduleFromBundleMin;
     break;
   // TODO: add support for ALL platforms (once our build accomidates them)
   default:
-    throw new Error(`*** ERROR *** moduleUnderTest(): Unrecognized MODULE_PLATFORM environment variable value: ${MODULE_PLATFORM}`)
+    throw new Error(`*** ERROR *** moduleUnderTest(): Unrecognized MODULE_PLATFORM environment variable value: ${MODULE_PLATFORM}`);
 }
 
 export default moduleUnderTest;
