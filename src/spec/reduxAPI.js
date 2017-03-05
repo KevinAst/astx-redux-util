@@ -1,6 +1,9 @@
 // NOTE: This file contains NO executable code, rather "JSDoc tags only", 
 //       providing more concise API documentation for redux expectations.
 
+// NOTE: This file tucked away in a spec/ directory, so as to NOT be included
+//       in published npm source (it can be anywhere as long as it is seen by JSDoc).
+
 
 //***
 //*** Specification: reducerFn

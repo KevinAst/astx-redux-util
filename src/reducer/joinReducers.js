@@ -1,4 +1,5 @@
-import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
+// TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
+import identity from 'lodash.identity'; // eslint-disable-line no-unused-vars
 
 /**
  * Create a higher-order reducer by combining two or more reducers,
