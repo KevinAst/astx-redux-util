@@ -1,5 +1,5 @@
-import expect                from 'expect';
-import {conditionalReducer}  from '../../index'; // module under test (NOTE: we purposely vary import techniques)
+import expect        from 'expect';
+import AstxReduxUtil from '../../spec/ModuleUnderTest';
 
 const initialState  = 'initialState';
 const thenState     = 'thenState';
@@ -23,7 +23,7 @@ describe('conditionalReducer() tests', () => {
 
   describe('conditionalReducer with if only', () => {
 
-    const reducerUnderTest = conditionalReducer(
+    const reducerUnderTest = AstxReduxUtil.conditionalReducer(
       (state, action, originalReducerState) => action.type === thenAction,
       thenReducer
     );
@@ -36,7 +36,7 @@ describe('conditionalReducer() tests', () => {
 
   describe('conditionalReducer with if/then', () => {
 
-    const reducerUnderTest = conditionalReducer(
+    const reducerUnderTest = AstxReduxUtil.conditionalReducer(
       (state, action, originalReducerState) => action.type === thenAction,
       thenReducer,
       elseReducer

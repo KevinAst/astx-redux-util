@@ -1,4 +1,4 @@
-import * as AstxReduxUtil from '../../../../index'; // REALLY: 'astx-redux-util'
+import AstxReduxUtil from '../../../../spec/ModuleUnderTest'; // REALLY: 'astx-redux-util'
 
 const reduceX = AstxReduxUtil.reducerHash({
   "widget.edit.x.increment": (x, action) => x+1,

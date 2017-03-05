@@ -1,7 +1,7 @@
-import expect         from 'expect';
-import {joinReducers} from '../../index'; // module under test (NOTE: we purposely vary import techniques)
+import expect        from 'expect';
+import AstxReduxUtil from '../../spec/ModuleUnderTest';
 
-const initialState     = 1;
+const initialState = 1;
 
 const reducerIncrement = (state, action) => state + 1;
 const reducerDecrement = (state, action) => state - 1;
@@ -15,11 +15,11 @@ function performTest(desc, reducer, expectedState) {
 
 describe('joinReducers() tests', () => {
   // TODO: test parameter validation
-//performTest('increment, double (with array params)', joinReducers([reducerIncrement, reducerDouble]),                                4); // TODO: this errors, should be validated
-  performTest('NO REDUCERS',                           joinReducers(),                                                                 1); // TODO: should this be a validation error?
-  performTest('increment',                             joinReducers(reducerIncrement),                                                 2);
-  performTest('increment, increment',                  joinReducers(reducerIncrement, reducerIncrement),                               3);
-  performTest('increment, double',                     joinReducers(reducerIncrement, reducerDouble),                                  4);
-  performTest('increment, double, double',             joinReducers(reducerIncrement, reducerDouble, reducerDouble),                   8);
-  performTest('increment, double, double, decrement',  joinReducers(reducerIncrement, reducerDouble, reducerDouble, reducerDecrement), 7);
+//performTest('increment, double (with array params)', AstxReduxUtil.joinReducers([reducerIncrement, reducerDouble]),                                4); // TODO: this errors, should be validated
+  performTest('NO REDUCERS',                           AstxReduxUtil.joinReducers(),                                                                 1); // TODO: should this be a validation error?
+  performTest('increment',                             AstxReduxUtil.joinReducers(reducerIncrement),                                                 2);
+  performTest('increment, increment',                  AstxReduxUtil.joinReducers(reducerIncrement, reducerIncrement),                               3);
+  performTest('increment, double',                     AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble),                                  4);
+  performTest('increment, double, double',             AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble),                   8);
+  performTest('increment, double, double, decrement',  AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble, reducerDecrement), 7);
 });

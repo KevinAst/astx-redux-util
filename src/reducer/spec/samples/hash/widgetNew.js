@@ -1,4 +1,5 @@
-import { reducerHash } from '../../../../index'; // REALLY: 'astx-redux-util'
+import AstxReduxUtil from '../../../../spec/ModuleUnderTest'; // REALLY: 'astx-redux-util'
+const { reducerHash } = AstxReduxUtil; // TODO: figure out how to import { reducerHash } within ModuleUnderTest
 
 const reduceWidget = reducerHash({
   "widget.edit":       (widget, action) => action.widget,

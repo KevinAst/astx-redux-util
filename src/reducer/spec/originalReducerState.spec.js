@@ -1,5 +1,5 @@
-import expect         from 'expect';
-import AstxReduxUtil  from '../../index'; // module under test (NOTE: we purposely vary import techniques)
+import expect        from 'expect';
+import AstxReduxUtil from '../../spec/ModuleUnderTest';
 
 describe('verify originalReducerState is correctly passed through nested reducers', () => {
 

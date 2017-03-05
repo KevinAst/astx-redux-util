@@ -1,11 +1,11 @@
-/**
+/*
  * Widget provides a number of utilities in support of the widget
  * JSON structure.  In essance it is a pseudo class definition for
  * widget (as close as we can get for a JSON structure).
  */
 const Widget = {
 
-  /**
+  /*
    * Calculate the hash for the supplied widget object.
    *
    * @param {Widget} widget the widget object to hash.

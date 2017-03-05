@@ -1,7 +1,7 @@
-import * as Redux         from 'redux';
-import * as AstxReduxUtil from '../../../../index'; // REALLY: 'astx-redux-util'
-import x                  from '../appReducer/x';
-import y                  from '../appReducer/y';
+import * as Redux    from 'redux';
+import AstxReduxUtil from '../../../../spec/ModuleUnderTest'; // REALLY: 'astx-redux-util'
+import x             from '../appReducer/x';
+import y             from '../appReducer/y';
 
 const reduceWidget = 
   AstxReduxUtil.conditionalReducer(

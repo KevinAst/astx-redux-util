@@ -8,9 +8,9 @@ import reducerHash          from './reducer/reducerHash';
 
 // NOTE: This non-default export supports ES6 imports.
 //       Example:
-//         import { reducerHash } from 'astx-redux-util';
+//         import { reducerHash }    from 'astx-redux-util';
 //       -or-
-//         import * as AstxReduxUtil     from 'astx-redux-util';
+//         import * as AstxReduxUtil from 'astx-redux-util';
 export {
   conditionalReducer,
   joinReducers,
@@ -21,7 +21,7 @@ export {
 //       Example:
 //         const { reducerHash } = require('astx-redux-util');
 //       -or-
-//         const AstxReduxUtil          = require('astx-redux-util');
+//         const AstxReduxUtil   = require('astx-redux-util');
 export default {
   conditionalReducer,
   joinReducers,
