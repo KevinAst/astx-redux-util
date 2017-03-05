@@ -27,9 +27,16 @@
     "start": "npm run dev",
     "dev:COMMENT": "dev ... launch development processes in parallel (continous build/test)",
     "dev": "npm-run-all --parallel build:watch test:lib:watch",
-    "build:COMMENT": "build ... bundle JS modules in 'dist' dir (for development or publication)",
+
+    "build:COMMENT": "build ... bundle executable resources for publication",
     "build": "webpack --progress --colors",
     "build:watch": "npm run build -- --watch",
+
+    "build:for:COMMENT":    "build:for:{platform} ... bundle executable resources on specified module platorm (documented above)",
+    "build:for:bundle":     "cross-env NODE_ENV=development          npm run build",
+    "build:for:bundle.min": "cross-env NODE_ENV=production           npm run build",
+    "build:for:all":        "npm-run-all build:for:bundle build:for:bundle.min",
+
     "build:clean": "rimraf dist",
 
     "test:COMMENT": "test ... run unit tests ... lib: published library tests, samples: sample code tests, all: all tests (DEFAULT)",
@@ -41,17 +48,19 @@
     "test:all": "npm run test --",
     "test:all:watch": "npm run test:all -- --watch",
 
-    "test:on:COMMENT":    "test:on:{platform}: run ALL tests on specified module platorm (documented above)",
+    "test:on:COMMENT":    "test:on:{platform} ... run ALL tests on specified module platorm (documented above)",
     "test:on:src":        "cross-env MODULE_PLATFORM=src        npm run test:all",
-    "test:on:bundle.min": "cross-env MODULE_PLATFORM=bundle.min npm run test:all",
-    "test:on:all":        "npm-run-all test:on:src test:on:bundle.min",
 
-    "docs:COMMENT": "docs: documentation builder",
+    "test:on:bundle":     "cross-env MODULE_PLATFORM=bundle     npm run test:all",
+    "test:on:bundle.min": "cross-env MODULE_PLATFORM=bundle.min npm run test:all",
+    "test:on:all":        "npm-run-all test:on:src test:on:bundle test:on:bundle.min",
+
+    "docs:COMMENT": "docs ... documentation builder",
     "docs": "./node_modules/.bin/jsdoc --configure ./src/docs/jsdoc.conf.json --verbose",
     "docs:clean": "rimraf docs",
-    "lint:COMMENT": "lint: verify code quality NOTE: This lints both production and test code; real-time linting is also accomplished through our webpack bundler!",
+    "lint:COMMENT": "lint ... verify code quality NOTE: This lints both production and test code; real-time linting is also accomplished through our webpack bundler!",
     "lint": "eslint src",
-    "clean:COMMENT": "clean: orchestrate ALL clean processes",
+    "clean:COMMENT": "clean ... orchestrate various clean processes",
     "clean": "npm run build:clean && npm run docs:clean"
   },
   "repository": {

@@ -1,5 +1,7 @@
 import moduleFromDevSrc    from '../index';
+import moduleFromBundle    from '../../dist/astx-redux-util';
 import moduleFromBundleMin from '../../dist/astx-redux-util.min';
+
 
 /*
  * This export module allows our unit tests to dynamically reference
@@ -42,6 +44,7 @@ import moduleFromBundleMin from '../../dist/astx-redux-util.min';
 //***
 
 const { MODULE_PLATFORM } = process.env;
+
 let moduleUnderTest = moduleFromDevSrc;
 
 switch (MODULE_PLATFORM) {
@@ -49,6 +52,10 @@ switch (MODULE_PLATFORM) {
   case undefined:
     console.log(`*** Testing Module Platform found in: src/*.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
     moduleUnderTest = moduleFromDevSrc;
+    break;
+  case 'bundle':  
+    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    moduleUnderTest = moduleFromBundle;
     break;
   case 'bundle.min':  
     console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
