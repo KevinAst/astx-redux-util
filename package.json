@@ -2,7 +2,7 @@
   "name": "astx-redux-util",
   "version": "0.1.0",
   "description": "Several redux reducer composition utilities.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "COMMENT01": "Some npm scripts target a platform (i.e. the JS module ecosystem),                                          ",
     "COMMENT02": "using on/for nomenclature ... specifically:                                                                 ",
