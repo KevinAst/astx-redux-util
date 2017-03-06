@@ -4,6 +4,7 @@ The following npm scripts are available for this project.
 
 ??? IF THIS WORKS, remove ALL comments in package.json
 
+```
 start ... convenience alias to 'dev' (that launches development process)
 
 dev ... launch development process in parallel (continuous build/test)
@@ -46,7 +47,7 @@ lint ..... verify code quality
                  real-time linting is also accomplished through our WebPack bundler (via 'build:watch')!
 
 clean ... cleans ALL machine-generated directories (build, and docs)
-
+```
 
 
 
