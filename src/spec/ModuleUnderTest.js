@@ -1,7 +1,8 @@
 import moduleFromDevSrc    from '../index';
 import moduleFromBundle    from '../../dist/astx-redux-util';
 import moduleFromBundleMin from '../../dist/astx-redux-util.min';
-
+import moduleFromLib       from '../../lib/index';
+import moduleFromEs        from '../../es/index';
 
 /*
  * This export module allows our unit tests to dynamically reference
@@ -13,15 +14,15 @@ import moduleFromBundleMin from '../../dist/astx-redux-util.min';
  * 
  * It exports the module under test, as controlled by the MODULE_PLATFORM
  * environment variable. Supported platforms (JS module ecosystems) are:
- * 
- *   MODULE_PLATFORM (env var):
- *                                                          DEFAULT (when platform is omitted):
- *     src .......... the development ES6 source .......... found in src/*.js
- *     bundle ....... the bundled ES5 resource ............ found in dist/{project}.js
- *     bundle.min ... the bundled/minified ES5 resource ... found in dist/{project}.min.js
- *     es ........... the transpiled ES5 source with ES bindings ......... found in es/*.js
- *     lib .......... the transpiled ES5 source with CommonJS bindings ... found in lib/*.js
- *     all .......... all of the above (ONLY DEFINED IN npm scripts)
+ *                                                                      
+ *   MODULE_PLATFORM  What                 Bindings  Found In               NOTES
+ *   ===============  ===================  ========  =====================  ==================================
+ *   src              master ES6 source    ES        src/*.js               DEFAULT (when platform is omitted)
+ *   bundle           bundled ES5          CommonJS  dist/{project}.js
+ *   bundle.min       bundled/minified ES5 CommonJS  dist/{project}.min.js
+ *   lib              ES5 source           CommonJS  lib/*.js
+ *   es               ES5 source           ES        es/*.js
+ *   all              all of the above                                      APPLICABLE to npm scripts ONLY
  * 
  * NOTE: Due to the static nature of ES6 imports, this is the closest
  *       thing we can get to dynamic imports!
@@ -61,7 +62,14 @@ switch (MODULE_PLATFORM) {
     console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
     moduleUnderTest = moduleFromBundleMin;
     break;
-  // TODO: add support for ALL platforms (once our build accomidates them)
+  case 'lib':  
+    console.log(`*** Testing Module Platform found in: lib/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    moduleUnderTest = moduleFromLib;
+    break;
+  case 'es':  
+    console.log(`*** Testing Module Platform found in: es/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    moduleUnderTest = moduleFromEs;
+    break;
   default:
     throw new Error(`*** ERROR *** moduleUnderTest(): Unrecognized MODULE_PLATFORM environment variable value: ${MODULE_PLATFORM}`);
 }
