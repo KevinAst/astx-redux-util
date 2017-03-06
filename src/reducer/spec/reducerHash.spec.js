@@ -1,5 +1,5 @@
 import expect        from 'expect';
-import AstxReduxUtil from '../../spec/ModuleUnderTest';
+import AstxReduxUtil from '../../tooling/ModuleUnderTest';
 
 const reducerUnderTest = AstxReduxUtil.reducerHash({
   'edit':       (state, action) => action.payload,

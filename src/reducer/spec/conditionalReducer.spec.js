@@ -1,5 +1,5 @@
 import expect        from 'expect';
-import AstxReduxUtil from '../../spec/ModuleUnderTest';
+import AstxReduxUtil from '../../tooling/ModuleUnderTest';
 
 const initialState  = 'initialState';
 const thenState     = 'thenState';

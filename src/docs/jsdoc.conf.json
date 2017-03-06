@@ -8,8 +8,8 @@
     "include": [
       "./src"
     ],
-    "includePattern": ".js$"
-//  "excludePattern": "index.js" // for future reference :-)
+    "includePattern": ".js$",
+    "excludePattern": ".*spec\\..*" // not interested in any of my tests :-)
   },
   "plugins": [
     "plugins/markdown",
