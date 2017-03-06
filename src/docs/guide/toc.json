@@ -31,8 +31,12 @@
       "order": 8,
       "title": "Logging Extension"
   },
-  "LICENSE": {
+  "history": {
       "order": 9,
+      "title": "Revision History"
+  },
+  "LICENSE": {
+      "order": 10,
       "title": "MIT License"
   }
 }

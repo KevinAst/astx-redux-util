@@ -48,3 +48,5 @@ can be used in conjunction with one another.
 
 - {@tutorial logExt} ... conceptual extension for reducer-based
   centralized logging
+
+- {@tutorial history} ... peruse various revisions
