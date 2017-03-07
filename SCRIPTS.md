@@ -95,23 +95,22 @@ published platforms, through the `test:tar:{platform}` script (see the
   `test:tar:all` script).
 
 Testing dynamics is accomplished by our unit tests importing
-ModuleUnderTest, which in turn dynamically exports the desired test
-module, as controlled by the MODULE_PLATFORM environment variable.
+[ModuleUnderTest](src/tooling/ModuleUnderTest.js), which in turn
+dynamically exports the desired test module, as controlled by the
+MODULE_PLATFORM environment variable.
 
 **There is one slight QUIRK in this process** ... that is: *ALL
-supported platforms MUST exist before you can test one of them*.
-
-The reason for this is that ModuleUnderTest.js must import all the
-platforms and then decide which one to export *(this is due to the
+supported platforms MUST exist before you can test one of them*.  The
+reason for this is that
+[ModuleUnderTest.js](src/tooling/ModuleUnderTest.js) must import all
+the platforms and then decide which one to export *(this is due to the
 static nature of ES6 imports)*.
 
 **As it turns out, this is not a big deal**, it's just a bit of
-un-expected behavior.
-
-During development, our tests typically continuously targets the
-master src (which doesn't require any re-building).  So the
-`build:tar:all` script does NOT have to be run continuously ... just
-once, after a clean (to prime the pump).
+un-expected behavior.  During development, our tests typically
+continuously target the master src (which doesn't require any
+re-building).  So the `build:tar:all` script **does NOT have to be run
+continuously ... just once, after a clean** (to prime the pump).
 
 
 
