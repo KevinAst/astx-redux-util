@@ -3,6 +3,8 @@
 
 # bundled distribution (generated via "npm run build")
 /dist/
+/lib/
+/es/
 
 # documentation (generated via "npm run docs")
 /docs/
