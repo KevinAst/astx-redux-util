@@ -1,24 +1,28 @@
-The [astx-redux-util](https://astx-redux-util.js.org) project adheres
-to [Semantic Versioning](http://semver.org/).
-
-Each release, along with migration instructions, is documented here
-and on the [Github
+This project adheres to [Semantic Versioning](http://semver.org/).
+Each release, along with migration instructions, is documented on this
+page, as well as the [Github
 Releases](https://github.com/KevinAst/astx-redux-util/releases) page.
+
+This [astx-redux-util](https://astx-redux-util.js.org) link always
+documents the latest release.
+
+<!--- Badges for CI Builds ---> 
+<!--- TODO: ?? point to master branch ---> 
+[![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=feature-initial)](https://travis-ci.org/KevinAst/astx-redux-util)
+[![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
 
 
 <!-- activate the summary only when there is MORE than one version -->
-## Summary ...
+## Summary:
 
-Release | Description
-------- | -----------
-&bull; [v1.0.0](#v1.0.0)         | ?Summary
-&bull; [v0.2.0-alpha.1](#v0.2.0) | ?Summary
-&bull; [v0.1.0](#v0.1.0)         | ?Summary
+Release | When | Description
+------- | ---- | -----------
+&bull; [v1.0.0](#v1.0.0) | Aug 6, 2016 | ?Summary
+&bull; [v0.2.0](#v0.2.0) | Aug 6, 2016 | ?Summary
+&bull; [v0.1.0](#v0.1.0) | Aug 6, 2016 | ?Summary
 
 
 ## Details ...
-
-
 
 <!-- ************************************************************* -->
 <h4 class="name" id="v1.0.0">v1.0.0 - ?Summary</h4>
