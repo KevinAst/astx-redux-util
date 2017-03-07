@@ -9,7 +9,7 @@
       "./src"
     ],
     "includePattern": ".js$",
-    "excludePattern": ".*spec\\..*" // not interested in any of my tests :-)
+    "excludePattern": ".*spec.*" // not interested in any of my tests :-)
   },
   "plugins": [
     "plugins/markdown",
