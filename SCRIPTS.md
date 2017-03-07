@@ -21,49 +21,48 @@ dev ...... launch development process (continuous build/test)
 BUILDING
 ========
 
-build .................. bundle library for publication (same as 'build:tar:bundle')
-build:watch  ........... ditto (continuously)
+build ................... bundle library for publication (same as 'build:plat:bundle')
+build:watch  ............ ditto (continuously)
 
-build:tar:{platform} ... bundle library for specified Target Platform (see below)
-build:tar:bundle
-build:tar:bundle.min
-build:tar:lib
-build:tar:es
-build:tar:all
-build:clean ............ clean all machine-generated build directories
+build:plat:{platform} ... bundle library for specified Target Platform (see below)
+build:plat:bundle
+build:plat:bundle.min
+build:plat:lib
+build:plat:es
+build:plat:all
+build:clean ............. clean all machine-generated build directories
 
-prepublish ............. cleanly build/test all machine generated resources
-                         (a pre-publication utility)
-                           - check code quality (lint)
-                           - clean (delete) ALL machine generated resources
-                           - build all bundled libraries (for publication)
-                           - test all bundled libraries (for publication)
-                           - build documentation
+prepublish .............. cleanly build/test all machine generated resources,
+                          a pre-publication utility:
+                            - check code quality (lint)
+                            - clean (delete) ALL machine generated resources
+                            - build/test all bundled libraries (for publication)
+                            - build documentation
 
 
 TESTING
 =======
 
-test .................. run ALL unit tests on master src (same as 'test:all' or 'test:tar:src')
+test ................... run ALL unit tests on master src (same as 'test:all' or 'test:plat:src')
 
-                        Following runs SELECTED tests ON master src
-                        ===========================================
-test:lib .............. run unit tests that are part of our published library
-test:lib:watch ........ ditto (continuously)
-test:samples .......... run unit tests from our sample code (in the User Guide)
-test:samples:watch .... ditto (continuously)
-test:all .............. run ALL our unit tests
-test:all:watch ........ ditto (continuously)
+                         Following runs SELECTED tests ON master src
+                         ===========================================
+test:lib ............... run unit tests that are part of our published library
+test:lib:watch ......... ditto (continuously)
+test:samples ........... run unit tests from our sample code (in the User Guide)
+test:samples:watch ..... ditto (continuously)
+test:all ............... run ALL our unit tests
+test:all:watch ......... ditto (continuously)
 
-                        Following runs ALL tests ON specified target
-                        ============================================
-test:tar:{platform} ... run ALL unit tests on specified Target Platform (see below)
-test:tar:src
-test:tar:bundle
-test:tar:bundle.min
-test:tar:lib
-test:tar:es
-test:tar:all
+                         Following runs ALL tests ON specified target
+                         ============================================
+test:plat:{platform} ... run ALL unit tests on specified Target Platform (see below)
+test:plat:src
+test:plat:bundle
+test:plat:bundle.min
+test:plat:lib
+test:plat:es
+test:plat:all
 
 
 DOCUMENTATION
@@ -96,7 +95,7 @@ clean ... cleans ALL machine-generated directories (build, and docs)
 ## Testing Dynamics
 
 Our unit tests have the ability to dynamically target each of our
-published platforms, through the `test:tar:{platform}` script (see the
+published platforms, through the `test:plat:{platform}` script (see the
 [Target Platform](#target-platform) discussion below).
 
 - During development, our tests typically target the master src
@@ -104,7 +103,7 @@ published platforms, through the `test:tar:{platform}` script (see the
   
 - However, before any bundle is published, it is a good practice to run
   our test suite against each of the published bundles (through the
-  `test:tar:all` script).
+  `test:plat:all` script).
 
 Testing dynamics is accomplished by our unit tests importing
 [ModuleUnderTest](src/tooling/ModuleUnderTest.js), which in turn
@@ -121,7 +120,7 @@ static nature of ES6 imports)*.
 **As it turns out, this is not a big deal**, it's just a bit of
 un-expected behavior.  During development, our tests typically
 continuously target the master src (which doesn't require any
-re-building).  So the `build:tar:all` script **does NOT have to be run
+re-building).  So the `build:plat:all` script **does NOT have to be run
 continuously ... just once, after a clean** (to prime the pump).
 
 
@@ -130,26 +129,26 @@ continuously ... just once, after a clean** (to prime the pump).
 ## Target Platform
 
 Some npm scripts target a platform (i.e. the JS module ecosystem),
-using 'tar' nomenclature (i.e. target).
+using 'plat nomenclature (i.e. platform).
 
 Specifically:
 
- - `build:tar:{platform}`
- - `test:tar:{platform}`
+ - `build:plat:{platform}`
+ - `test:plat:{platform}`
 
 Supported platforms are:
 
 ```
-MODULE_PLATFORM  What                 Bindings  Found In               NOTES                             
-===============  ===================  ========  =====================  =======================
-src              master ES6 source    ES        src/*.js               DEFAULT
-bundle           bundled ES5          CommonJS  dist/{project}.js                                        
-bundle.min       bundled/minified ES5 CommonJS  dist/{project}.min.js                                    
-lib              ES5 source           CommonJS  lib/*.js                                                 
-es               ES5 source           ES        es/*.js                                                  
+MODULE_PLATFORM  What                 Bindings  Found In               NOTES                   
+===============  ===================  ========  =====================  ========================
+src              master ES6 source    ES        src/*.js               DEFAULT                 
+bundle           bundled ES5          CommonJS  dist/{project}.js                              
+bundle.min       bundled/minified ES5 CommonJS  dist/{project}.min.js                          
+lib              ES5 source           CommonJS  lib/*.js                                       
+es               ES5 source           ES        es/*.js                                        
 all              all of the above                                      Used in npm scripts ONLY
 ```
 
-The 'tar' nomenclature helps disambiguate the difference between (for example):
- - `test:all:    ` identifies WHICH tests to run (i.e. all tests)
- - `test:tar:all:` identifies WHICH platform to run tests on (i.e. all platforms)
+The 'plat' nomenclature helps disambiguate the difference between (for example):
+ - `test:all:     ` identifies WHICH tests to run (i.e. all tests)
+ - `test:plat:all:` identifies WHICH platform to run tests on (i.e. all platforms)
