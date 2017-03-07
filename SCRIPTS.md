@@ -5,16 +5,28 @@ The following npm scripts are available for this project.
 ??? IF THIS WORKS, remove ALL comments in package.json
 
 ```
+DEVELOPMENT
+===========
+
 start ... convenience alias to 'dev' (that launches development process)
 
-dev ... launch development process in parallel (continuous build/test)
-        NOTE: development process REALLY only needs 'continuous testing',
-              HOWEVER an advantage of the continuous build is that auto-linting is performed!
+dev ...... launch development process (continuous build/test)
 
-build .......... bundle executable resources for publication (same as 'build:for:bundle')
-build:watch  ... ditto (continuously)
+           NOTE: This REALLY only needs continuous testing ('test:lib:watch'),
+                 because that script targets the master src (i.e. no building
+                 required).
 
-build:for:{platform} ... bundle executable resources on specified module platform (see [Target Platform](#target-platform))
+                 HOWEVER an advantage of the continuous build is that
+                 auto-linting is performed!
+
+
+BUILDING
+========
+
+build .................. bundle library for publication (same as 'build:for:bundle')
+build:watch  ........... ditto (continuously)
+
+build:for:{platform} ... bundle library for specified Target Platform (see below)
 build:for:bundle
 build:for:bundle.min
 build:for:lib
@@ -22,8 +34,14 @@ build:for:es
 build:for:all
 build:clean ............ clean all machine-generated build directories
 
-test ... run unit tests (same as 'build:on:src')
 
+TESTING
+=======
+
+test ................. run ALL unit tests on master src (same as 'test:all' or 'test:on:src')
+
+                       Following runs SELECTED tests ON master src
+                       ===========================================
 test:lib ............. run unit tests that are part of our published library
 test:lib:watch ....... ditto (continuously)
 test:samples ......... run unit tests that are from our sample code (seen in User Guide)
@@ -31,7 +49,9 @@ test:samples:watch ... ditto (continuously)
 test:all ............. run ALL our unit tests
 test:all:watch ....... ditto (continuously)
 
-test:on:{platform} ... run ALL unit tests on specified module platform (see [Target Platform](#target-platform))
+                       Following runs ALL tests ON specified target
+                       ============================================
+test:on:{platform} ... run ALL unit tests on specified Target Platform (see below)
 test:on:src
 test:on:bundle
 test:on:bundle.min
@@ -39,12 +59,24 @@ test:on:lib
 test:on:es
 test:on:all
 
-docs ....    build documentation (from JavaDoc comments (src/*.js), and User Guide (src/docs)
-docs:clean ..... clean the machine-generated docs directory
+
+DOCUMENTATION
+=============
+
+docs ......... build docs from JavaDoc comments (src/*.js), and User Guide (src/docs)
+docs:clean ... clean the machine-generated docs directory
+
+
+CODE QUALITY
+============
 
 lint ..... verify code quality
            NOTE: This lints both production and test code
                  real-time linting is also accomplished through our WebPack bundler (via 'build:watch')!
+
+
+MISC
+====
 
 clean ... cleans ALL machine-generated directories (build, and docs)
 ```
