@@ -108,10 +108,10 @@ static nature of ES6 imports)*.
 **As it turns out, this is not a big deal**, it's just a bit of
 un-expected behavior.
 
-During development, our tests typically target the master src (which
-doesn't require any re-building).  So the `build:tar:all` script does
-NOT have to be run continuously ... just once, after a clean (to prime
-the pump).
+During development, our tests typically continuously targets the
+master src (which doesn't require any re-building).  So the
+`build:tar:all` script does NOT have to be run continuously ... just
+once, after a clean (to prime the pump).
 
 
 
