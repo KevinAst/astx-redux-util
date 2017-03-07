@@ -68,9 +68,13 @@ docs:clean ... clean the machine-generated docs directory
 CODE QUALITY
 ============
 
-lint ... verify code quality, linting BOTH production and test code.
-         NOTE: Real-time linting is ALSO applied on production code
-               through our WebPack bundler (via 'build:watch')!
+lint .... verify code quality, linting BOTH production and test code.
+          NOTE: Real-time linting is ALSO applied on production code
+                through our WebPack bundler (via 'build:watch')!
+
+check ... convenience script to:
+           - verify code quality (lint) and
+           - run tests (against our master src)
 
 
 MISC

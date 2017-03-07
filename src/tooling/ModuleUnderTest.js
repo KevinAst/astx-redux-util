@@ -40,6 +40,9 @@ import moduleFromEs        from '../../es/index';
  */
 
 
+/* eslint-disable no-console */
+
+
 //***
 //*** dynamically define our moduleUnderTest (dynamically driven from the MODULE_PLATFORM env var)
 //***
@@ -51,23 +54,23 @@ let moduleUnderTest = moduleFromDevSrc;
 switch (MODULE_PLATFORM) {
   case 'src':
   case undefined:
-    console.log(`*** Testing Module Platform found in: src/*.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    console.log(`*** Testing Module Platform found in: src/*.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
     moduleUnderTest = moduleFromDevSrc;
     break;
   case 'bundle':  
-    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
     moduleUnderTest = moduleFromBundle;
     break;
   case 'bundle.min':  
-    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    console.log(`*** Testing Module Platform found in: dist/astx-redux-util.min.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
     moduleUnderTest = moduleFromBundleMin;
     break;
   case 'lib':  
-    console.log(`*** Testing Module Platform found in: lib/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    console.log(`*** Testing Module Platform found in: lib/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
     moduleUnderTest = moduleFromLib;
     break;
   case 'es':  
-    console.log(`*** Testing Module Platform found in: es/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`); // eslint-disable-line no-console
+    console.log(`*** Testing Module Platform found in: es/index.js (MODULE_PLATFORM: ${MODULE_PLATFORM})`);
     moduleUnderTest = moduleFromEs;
     break;
   default:
