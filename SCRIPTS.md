@@ -2,8 +2,6 @@
 
 The following npm scripts are available for this project.
 
-??? IF THIS WORKS, remove ALL comments in package.json
-
 ```
 DEVELOPMENT
 ===========
@@ -105,5 +103,5 @@ all              all of the above                                      APPLICABL
 ```
 
 The on/for nomenclature helps disambiguate the difference between (for example):
- - test:all:    which identifies WHICH tests to run (i.e. all tests)
- - test:on:all: which identifies WHICH platform to run tests on (i.e. all platforms)
+ - `test:all:   ` which identifies WHICH tests to run (i.e. all tests)
+ - `test:on:all:` which identifies WHICH platform to run tests on (i.e. all platforms)
