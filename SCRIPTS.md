@@ -42,7 +42,7 @@ test .................. run ALL unit tests on master src (same as 'test:all' or 
                         ===========================================
 test:lib .............. run unit tests that are part of our published library
 test:lib:watch ........ ditto (continuously)
-test:samples .......... run unit tests that are from our sample code (seen in User Guide)
+test:samples .......... run unit tests from our sample code (in the User Guide)
 test:samples:watch .... ditto (continuously)
 test:all .............. run ALL our unit tests
 test:all:watch ........ ditto (continuously)
@@ -78,6 +78,41 @@ MISC
 
 clean ... cleans ALL machine-generated directories (build, and docs)
 ```
+
+
+
+## Testing Dynamics
+
+Our unit tests have the ability to dynamically target each of our
+published platforms, through the `test:tar:{platform}` script (see the
+Target Platform discussion below).
+
+- During development, our tests typically target the master src
+  directly, and continuously (through the `test:lib:watch` script).
+  
+- However, before any bundle is published, it is a good practice to run
+  our test suite against each of the published bundles (through the
+  `test:tar:all` script).
+
+Testing dynamics is accomplished by our unit tests importing
+ModuleUnderTest, which in turn dynamically exports the desired test
+module, as controlled by the MODULE_PLATFORM environment variable.
+
+**There is one slight QUIRK in this process** ... that is: *you must
+build ALL supported platforms before you can test one of them*.
+
+The reason for this is that ModuleUnderTest.js must import all the
+platforms and then decide which one to export (due to the static
+nature of ES6 imports).
+
+As it turns out, **this is not a big deal**, it's just a bit of
+un-expected behavior.
+
+During development, our tests typically target the master src (which
+doesn't require any re-building).  So the `build:tar:all` script does
+NOT have to be run continuously ... just once, after a clean (to prime
+the pump).
+
 
 
 
