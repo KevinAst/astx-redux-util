@@ -22,6 +22,7 @@
     "docs":                 "./node_modules/.bin/jsdoc --configure ./src/docs/jsdoc.conf.json --verbose",
     "docs:clean":           "rimraf docs",
     "lint":                 "eslint src",
+    "prepublish":           "npm-run-all lint clean build:tar:all test:tar:all docs",
     "start":                "npm run dev",
     "test":                 "mocha --compilers js:babel-core/register --colors \"src/**/*.spec.js\"",
     "test:all":             "npm run test         --",

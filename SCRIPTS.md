@@ -32,6 +32,14 @@ build:tar:es
 build:tar:all
 build:clean ............ clean all machine-generated build directories
 
+prepublish ............. cleanly build/test all machine generated resources
+                         (a pre-publication utility)
+                           - check code quality (lint)
+                           - clean (delete) ALL machine generated resources
+                           - build all bundled libraries (for publication)
+                           - test all bundled libraries (for publication)
+                           - build documentation
+
 
 TESTING
 =======
