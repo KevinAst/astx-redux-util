@@ -85,7 +85,7 @@ clean ... cleans ALL machine-generated directories (build, and docs)
 
 Our unit tests have the ability to dynamically target each of our
 published platforms, through the `test:tar:{platform}` script (see the
-Target Platform discussion below).
+[Target Platform](#target-platform) discussion below).
 
 - During development, our tests typically target the master src
   directly, and continuously (through the `test:lib:watch` script).
@@ -98,14 +98,14 @@ Testing dynamics is accomplished by our unit tests importing
 ModuleUnderTest, which in turn dynamically exports the desired test
 module, as controlled by the MODULE_PLATFORM environment variable.
 
-**There is one slight QUIRK in this process** ... that is: *you must
-build ALL supported platforms before you can test one of them*.
+**There is one slight QUIRK in this process** ... that is: *ALL
+supported platforms MUST exist before you can test one of them*.
 
 The reason for this is that ModuleUnderTest.js must import all the
-platforms and then decide which one to export (due to the static
-nature of ES6 imports).
+platforms and then decide which one to export *(this is due to the
+static nature of ES6 imports)*.
 
-As it turns out, **this is not a big deal**, it's just a bit of
+**As it turns out, this is not a big deal**, it's just a bit of
 un-expected behavior.
 
 During development, our tests typically target the master src (which
