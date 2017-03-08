@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -54,8 +54,8 @@ represent fundamentally different operational types.</p>
 }</code></pre><p>The individual x/y properties are nicely managed by the standard
 <a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers</a> function:</p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
-import x           from './myAppReducer.x';
-import y           from './myAppReducer.y';
+import x           from '../appReducer/x';
+import y           from '../appReducer/y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -75,8 +75,8 @@ example, it only exists when it is being edited)?</p>
 </ol>
 <p>One way to accomplish this is through the following procedural logic:</p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux  from 'redux';
-import x           from './myAppReducer.x';
-import y           from './myAppReducer.y';
+import x           from '../appReducer/x';
+import y           from '../appReducer/y';
 
 const contentReducer = 
   Redux.combineReducers({
@@ -105,7 +105,7 @@ export default function widget(widget=null, action) {
   // SECOND: maintain individual x/y fields
   //         ONLY when widget has content (i.e. is being edited)
   if (nextState !== null) {
-    nextState = contentReducer.reduce(nextState, action);
+    nextState = contentReducer(nextState, action);
   }
 
   // are we done yet? ... that was painful!!
@@ -118,15 +118,15 @@ more reducers logically executing each in sequence.</p>
 <p><em>The following snippet, is equivalent to the one above:</em></p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
-import x                  from './myAppReducer.x';
-import y                  from './myAppReducer.y';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
 
 const reduceWidget = 
   AstxReduxUtil.joinReducers(
     // FIRST: determine content shape (i.e. {} or null)
     AstxReduxUtil.reducerHash({
-      ['widget.edit']       (widget, action) => action.widget,
-      ['widget.edit.close'] (widget, action) => null
+      &quot;widget.edit&quot;:       (widget, action) => action.widget,
+      &quot;widget.edit.close&quot;: (widget, action) => null
     }),
 
     AstxReduxUtil.conditionalReducer(

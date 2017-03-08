@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -37,9 +37,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-
-import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
+            <pre class="prettyprint source linenums"><code>// TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
+import identity from 'lodash.identity'; // eslint-disable-line no-unused-vars
 
 /**
  * Create a higher-order reducer by combining two or more reducers,
@@ -68,14 +67,15 @@ import {} from '../reduxAPI'; // TODO: placebo import required for JSDoc (ISSUE:
  */
 export default function joinReducers(...reducerFns) {
 
-  // TODO: consider validation of joinReducers() params ... two or more reducerFns
+  // TODO: consider validation of joinReducers() params ... an array WITH 0,1,2? or more reducerFns
 
   // expose our new higher-order reducer
   return (state, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
-    // at the time of the start of the reduction process.
-    // ... please refer to the User Guide {@tutorial originalReducerState}
+    // at the time of the start of the reduction process
+    // ... in support of joinReducers()
+    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
@@ -86,7 +86,7 @@ export default function joinReducers(...reducerFns) {
                                },
                                state);
 
-  }
+  };
 }
 </code></pre>
         </article>

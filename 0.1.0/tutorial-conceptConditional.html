@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -49,8 +49,8 @@ the conditional aspect is purely an optimization.</p>
 <p>This can be accomplished through the <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> utility. </p>
 <pre class="prettyprint source lang-JavaScript"><code>import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
-import x                  from './myAppReducer.x';
-import y                  from './myAppReducer.y';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
 
 const reduceWidget = 
   AstxReduxUtil.conditionalReducer(
@@ -69,17 +69,16 @@ when the action.type begins with 'widget.edit'.  In our contrived
 example, our action types are organized with a federated namespace, so
 it is easy to isolate which actions will impact various parts of our
 state.</p>
-<p><strong>Please Note</strong> that because we did not supply an &quot;elseReducerFn&quot; (the
-third parameter to <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>), the default <a href="https://lodash.com/docs#identity">identity
+<p><strong>Note:</strong> Because we did not supply &quot;elseReducerFn&quot; to <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> (the third parameter), the default <a href="https://lodash.com/docs#identity">identity
 function</a> is used for the else
 condition, in essence retaining the same state for a falsy directive.</p>
-<p><strong>Also Note</strong> that this example is merely intended to introduce you to
+<p><strong>More to Come:</strong> This example is merely intended to introduce you to
 the concept of conditional reduction.  It is somewhat &quot;contrived&quot;,
 allowing us to discuss the topic in isolation.  In reality, this
 example may be inappropriate because the optimization is minimal, and
-it tends to make the code more brittle.  With that said, however, keep
-in mind that there are &quot;more legitimate&quot; reasons to apply conditional
-reduction ... we will see this in subsequent discussions.</p>
+it tends to make the code more brittle.  Keep in mind, however,
+<strong>there are more legitimate reasons to apply conditional reduction</strong>
+... we will see this in subsequent discussions.</p>
 </article>
 
 </section>

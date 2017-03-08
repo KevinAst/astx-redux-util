@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -43,35 +43,35 @@
 <article>
     <p>Reducers frequently reason about the action.type, very often using a
 switch statement to drive conditional logic:</p>
-<pre class="prettyprint source lang-JavaScript"><code>  export default function widget(widget=null, action) {
+<pre class="prettyprint source lang-JavaScript"><code>export default function widget(widget=null, action) {
 
-    switch (action.type) {
+  switch (action.type) {
 
-      case 'widget.edit':
-        return action.widget;
+    case 'widget.edit':
+      return action.widget;
 
-      case 'widget.edit.close':
-        return null;
+    case 'widget.edit.close':
+      return null;
 
-      default:
-        return widget;
-    }
-  }</code></pre><p>The <a href="global.html#reducerHash"><code>reducerHash</code></a> function <em>(the most common composition
+    default:
+      return widget;
+  }
+}</code></pre><p>The <a href="global.html#reducerHash"><code>reducerHash</code></a> function <em>(the most common composition
 reducer)</em> provides a more elegant solution, eliminating the switch
 statement altogether.  It creates a higher-order reducer, by combining
 a set of sub-reducer functions that are indexed by the standard
 action.type.</p>
 <p><em>The following snippet, is equivalent to the one above:</em></p>
-<pre class="prettyprint source"><code>  import { reducerHash } from 'astx-redux-util';
+<pre class="prettyprint source"><code>import { reducerHash } from 'astx-redux-util';
 
-  const reduceWidget = reducerHash({
-          ['widget.edit']       (widget, action) => action.widget,
-          ['widget.edit.close'] (widget, action) => null,
-        });
+const reduceWidget = reducerHash({
+  &quot;widget.edit&quot;:       (widget, action) => action.widget,
+  &quot;widget.edit.close&quot;: (widget, action) => null,
+});
 
-  export default function widget(widget=null, action) {
-    return reduceWidget(widget, action);
-  }</code></pre><p>Not only is the conditional logic better encapsulated, but the default
+export default function widget(widget=null, action) {
+  return reduceWidget(widget, action);
+}</code></pre><p>Not only is the conditional logic better encapsulated, but the default
 pass-through logic is automatically applied (using the <a href="https://lodash.com/docs#identity">identity
 function</a>), passing through the
 original state when no action.type is acted on.</p>

@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
 </nav>
 
 <div id="main">
@@ -46,17 +46,23 @@
 
 
     <section class="readme">
-        <article><h1>astx-redux-util</h1><p>The astx-redux-util library promotes several redux reducer
-composition utilities.  </p>
+        <article><h1>astx-redux-util</h1><p>The astx-redux-util library promotes several redux reducer composition
+utilities, which blend multiple reducers together forming a richer
+abstraction through functional decomposition (i.e. higher-order
+functions).</p>
 <p>Reducer composition is not new.  Redux itself provides the innovative
 <a href="http://redux.js.org/docs/api/combineReducers.html">combineReducers</a>
-utility which allows you to blend individual reducers together to build
+utility which allows you to fuse individual reducers together to build
 up the overall shape of your application state.</p>
 <p>The most prevalent astx-redux-util utility is <a href="global.html#reducerHash"><code>reducerHash</code></a>,
-which allows you to combine sub-reducers in such a way as to eliminate
+which lets you combine sub-reducers in such a way as to eliminate
 the switch statement commonly used to delineate action type.  </p>
 <p>Additionally, astx-redux-util promotes other reducer compositions that
 can be used in conjunction with one another.</p>
+<!--- Badges for CI Builds ---> 
+<!--- TODO: ?? point to master branch ---> 
+<p><a href="https://travis-ci.org/KevinAst/astx-redux-util"><img src="https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master" alt="Build Status"></a>
+<a href="https://www.npmjs.com/package/astx-redux-util"><img src="https://img.shields.io/npm/v/astx-redux-util.svg" alt="NPM Version Badge"></a></p>
 <h2>At a Glance</h2><ul>
 <li><p><a href="tutorial-start.html">Getting Started</a> ... installation and access</p>
 </li>
@@ -79,14 +85,16 @@ together is success&quot; - Henry Ford)</em></p>
 <li><p><a href="tutorial-fullExample.html">A Most Excellent Example</a> ... a more complete example employing many
 of the astx-redux-util utility functions</p>
 </li>
+<li><p><a href="tutorial-originalReducerState.html">originalReducerState</a> ... a sidebar discussion of
+originalReducerState</p>
+</li>
 <li><p><a href="tutorial-why.html">Why astx-redux-util?</a> ... why was astx-redux-util created, and how does it
 compare to other utilities</p>
 </li>
 <li><p><a href="tutorial-logExt.html">Logging Extension</a> ... conceptual extension for reducer-based
 centralized logging</p>
 </li>
-<li><p><a href="tutorial-originalReducerState.html">originalReducerState</a> ... a sidebar discussion of
-originalReducerState</p>
+<li><p><a href="tutorial-history.html">Revision History</a> ... peruse various revisions</p>
 </li>
 </ul></article>
     </section>
