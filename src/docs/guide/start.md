@@ -59,8 +59,6 @@ define(['astx-redux-util', 'otherModule'], function(AstxReduxUtil, otherModule) 
 <script src="astx-redux-util.js"></script>
 
 <script>
-  var AstxReduxUtil = window['astx-redux-util'];
-
   AstxReduxUtil.reducerHash(...)
   AstxReduxUtil.joinReducers(...)
 </script>

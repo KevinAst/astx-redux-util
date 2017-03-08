@@ -1,49 +1,50 @@
-The {@link conditionalReducer} function exposes an
-"originalReducerState" parameter to it's ({@link conditionalReducerCB}).
+This sidebar discussion provides some insight into
+**originalReducerState** (*mostly an internal implementation detail*).
 
-The originalReducerState represents the immutable state at the time of
-the start of the reduction process.  This is useful in determining
-that state has changed within a series of reductions (see {@link joinReducers}), 
+A fundamental aspect of sequentially joining reducers is that each
+reducer should be able to build on what has been accomplished by a
+prior reducer.  In essence it is an accumulative process.
+
+The {@link joinReducers} utility handles this by cumulatively passing the
+state parameter that was returned from any prior reducer (in the chain
+of reducers to execute).
+
+While this does NOT relax the immutable constraint of the reducer's
+state parameter, it is possible for a down-stream reducer to receive a
+state parameter that is a different instance from the start of the
+reduction process (because an up-stream reducer needed to alter it in
+some way).
+
+As it turns out, this is typically NOT a concern to a client, rather
+merely an implementation detail.
+
+There are edge cases, however, where a client needs visibility to the
+**originalReducerState**: *the immutable state at the start of the
+reduction process*.  One case in particular is determining that state
+has changed within a series of reductions (i.e. {@link joinReducers}),
 because each individual reducer only has visibility of the state
-within it's own reduction process.
+within it's own reduction process.  This case is higlighted in
+{@tutorial fullExample}.
 
-There is an example of this in the {@tutorial fullExample}.
+As a result, the **originalReducerState** is **publicly exposed** as
+the 3rd parameter to the {@link conditionalReducerCB} function (the
+{@link conditionalReducer} callback parameter that makes this
+determination).
 
-Because this deals with how state changes over a series of reducers
-(run in sequence), it is natural that the {@link joinReducers} utility
-automatically maintains the originalReducerState.
+Internally, the way in which astx-redux-util manages the
+originalReducerState is by passing it as a 3rd parameter to any
+reducer it is in control of (i.e. invokes).  While from a redux
+perspective, this is non-standard, it doesn't really hurt, because
+reducer functions are NOT reasoning about a 3rd parameter.  The only
+risk is if redux should (at some future point) start to employ
+additional reducer parameters.
 
-By an overwhelming majority (99.9% of the time), you should never have
-to worry about how this state is maintained, because {@link joinReducers} does
-this for you.
+By an overwhelming majority of the time (99.9%), **you should seldom have
+to worry about how originalReducerState is maintained**, because
+astx-redux-util does this for you.
 
-With that said, the way in which originalReducerState is communicated
-(internally), is by passing it as a 3rd parameter through the reducer
-chain.  While from a redux perspective, this is non-standard, it
-doesn't really hurt, because reducer functions are NOT reasoning about
-a 3rd parameter.  The only risk is if redux should (at some
-future point) start to employ additional reducer parameters.
-
-Here are the significant take-away points of interest:
-
-- If your {@link conditionalReducer} conditionalFn never reasons about
-  originalReducerState:
-  * Then you have NO worries whatsoever!
-
-- If your {@link conditionalReducer} conditionalFn DOES reason about
-  originalReducerState:
-
-  * In the normal use case (where your {@link conditionalReducer} is
-    orchestrated by a {@link joinReducers} - in the first order), then you
-    STILL have NOTHING to worry about!
-
-    **Please Note:** These points cover 99.9% of all use cases!
-
-  * If however, your {@link conditionalReducer} is invoked in a less
-    conventional way, then you must manually supply the appropriate
-    originalReducerState 3rd parameter when invoking the reducer.
-
-    - This could be when you are invoking the {@link conditionalReducer}
-      directly (outside of a {@link joinReducers} utility).
-
-    - Or if you have a nested {@link joinReducers} combination.
+**The only time any of this concerns you** is if your application
+reducer invokes one of the astx-redux-util reducers.  In this case
+(which is rare), your code is responsible for passing
+originalReducerState (the 3rd reducer parameter) to the downstream
+reducer.
