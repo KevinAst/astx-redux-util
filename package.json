@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Several redux reducer composition utilities.",
   "main": "lib/index.js",
+  "browser": {
+    "main": "dist/astx-redux-util.js"
+  },
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
   "files": [
     "package.json",
     "CHANGELOG.md",
