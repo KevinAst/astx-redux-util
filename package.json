@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "description": "Several redux reducer composition utilities.",
   "main": "lib/index.js",
+  "files": [
+    "package.json",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md",
+    "dist",
+    "es",
+    "lib",
+    "src"
+  ],
   "scripts": {
     "COMMENT1": "***--------------------------------------------------------------------------***",
     "COMMENT2": "*** Please refer to SCRIPTS.md for an overview of the project's npm scripts. ***",
