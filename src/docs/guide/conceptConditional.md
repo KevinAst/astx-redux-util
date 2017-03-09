@@ -9,22 +9,18 @@ This can be accomplished through the {@link conditionalReducer} utility.
 
 ```JavaScript
 import * as Redux         from 'redux';
+import identity           from 'lodash.identity';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 
-const reduceWidget = 
-  AstxReduxUtil.conditionalReducer(
-    // conditionally apply when action.type begins with 'widget.edit'
-    (curState, action, originalReducerState) => action.type.startsWith('widget.edit'),
-    Redux.combineReducers({
-      x,
-      y
-    }));
-
-export default function widget(widget={}, action) {
-  return reduceWidget(widget, action);
-}
+export default AstxReduxUtil.conditionalReducer(
+  // conditionally apply when action.type begins with 'widget.edit'
+  (curState, action, originalReducerState) => action.type.startsWith('widget.edit'),
+  Redux.combineReducers({
+    x,
+    y
+  }), identity, {});
 ```
 
 Here we only invoke the supplied reducer
@@ -34,10 +30,17 @@ example, our action types are organized with a federated namespace, so
 it is easy to isolate which actions will impact various parts of our
 state.
 
-**Note:** Because we did not supply "elseReducerFn" to {@link
-conditionalReducer} (the third parameter), the default [identity
-function](https://lodash.com/docs#identity) is used for the else
-condition, in essence retaining the same state for a falsy directive.
+**Please Note** that a `{}` {@link InitialState} value is applied in
+this reduction, which provides the fall-back state value during the
+state initialization boot-strap process.
+
+**Also Note:** that normally it is not necessary to supply the
+`elseReducerFn` {@link conditionalReducer} parameter (the third),
+because it defaults to the [identity
+function](https://lodash.com/docs#identity) function, which retains
+the state for a falsy directive.  In this case however, we had to
+manually pass the identity function, in order to supply the subsequent
+{@link InitialState} parameter.
 
 **More to Come:** This example is merely intended to introduce you to
 the concept of conditional reduction.  It is somewhat "contrived",

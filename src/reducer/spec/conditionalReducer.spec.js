@@ -1,20 +1,21 @@
 import expect        from 'expect';
 import AstxReduxUtil from '../../tooling/ModuleUnderTest';
+import identity      from 'lodash.identity';
 
-const initialState  = 'initialState';
-const thenState     = 'thenState';
-const elseState     = 'elseState';
+const beginningState = 'beginningState';
+const thenState      = 'thenState';
+const elseState      = 'elseState';
 
-const thenAction    = 'thenAction';
+const thenAction     = 'thenAction';
 
-const elseCondition = 'elseContidion';
+const elseCondition  = 'elseContidion';
 
-const thenReducer   = (state, action) => thenState;
-const elseReducer   = (state, action) => elseState;
+const thenReducer    = (state, action) => thenState;
+const elseReducer    = (state, action) => elseState;
 
 function performTest(reducer, actionType, expectedState) {
   it(`process: '${actionType}'`, () => {
-    expect(reducer(initialState, {type: actionType})).toBe(expectedState);
+    expect(reducer(beginningState, {type: actionType})).toBe(expectedState);
   });
 }
 
@@ -29,7 +30,7 @@ describe('conditionalReducer() tests', () => {
     );
 
     performTest(reducerUnderTest, thenAction,    thenState);
-    performTest(reducerUnderTest, elseCondition, initialState);
+    performTest(reducerUnderTest, elseCondition, beginningState);
 
   });
 
@@ -48,4 +49,21 @@ describe('conditionalReducer() tests', () => {
   });
 
   // TODO: test edge case: validating parameters
+
+  describe('initialState tests', () => {
+
+    const initialState = 'initialState';
+
+    it('initialState NOT defined', () => {
+      const reducerWithoutInitialState = AstxReduxUtil.conditionalReducer(()=>true, identity, identity);
+      expect(reducerWithoutInitialState(undefined, {type: 'SOME_OTHER_TYPE'})).toBe(undefined);
+    });
+
+    it('initialState IS defined', () => {
+      const reducerWithInitialState = AstxReduxUtil.conditionalReducer(()=>true, identity, identity, initialState);
+      expect(reducerWithInitialState(undefined, {type: 'SOME_OTHER_TYPE'})).toBe(initialState);
+    });
+
+  });
+
 });

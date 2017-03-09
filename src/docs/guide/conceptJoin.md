@@ -97,27 +97,23 @@ import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
 import y                  from '../appReducer/y';
 
-const reduceWidget = 
-  AstxReduxUtil.joinReducers(
-    // FIRST: determine content shape (i.e. {} or null)
-    AstxReduxUtil.reducerHash({
-      "widget.edit":       (widget, action) => action.widget,
-      "widget.edit.close": (widget, action) => null
-    }),
+export default AstxReduxUtil.joinReducers(
+  // FIRST: determine content shape (i.e. {} or null)
+  AstxReduxUtil.reducerHash({
+    "widget.edit":       (widget, action) => action.widget,
+    "widget.edit.close": (widget, action) => null
+  }),
 
-    AstxReduxUtil.conditionalReducer(
-      // SECOND: maintain individual x/y fields
-      //         ONLY when widget has content (i.e. is being edited)
-      (widget, action, originalReducerState) => widget !== null,
-      Redux.combineReducers({
-        x,
-        y
-      }))
-  );
+  AstxReduxUtil.conditionalReducer(
+    // SECOND: maintain individual x/y fields
+    //         ONLY when widget has content (i.e. is being edited)
+    (widget, action, originalReducerState) => widget !== null,
+    Redux.combineReducers({
+      x,
+      y
+    })),
 
-export default function widget(widget=null, action) {
-  return reduceWidget(widget, action);
-}
+  null); // initialState
 ```
 
 Here the joinReducers combines multiple reducers together as one.
@@ -132,11 +128,6 @@ Here the joinReducers combines multiple reducers together as one.
 
 **Reducer composition provides a more elegant solution that is
 purely functional in nature.**
-
-**Please Note** that the higher-order reducer functions are invoked
-outside the scope of the widget() reducer, as an optimization, so as
-to not incur the creation overhead on each reducer invocation.
-
 
 
 [Redux.combineReducers]: http://redux.js.org/docs/api/combineReducers.html

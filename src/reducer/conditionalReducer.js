@@ -19,16 +19,19 @@ import identity from 'lodash.identity';
  * @param {reducerFn} [elseReducerFn=identity] - the
  * optional "wrapped" reducer invoked when conditionalFn returns
  * falsy.  DEFAULT: [identity function](https://lodash.com/docs#identity)
+ *
+ * @param {InitialState} [initialState] - the optional fall-back state
+ * value used during the state initialization boot-strap process.
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=identity) {
+export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=identity, initialState) {
 
   // TODO: consider validation of conditionalReducer() params
 
   // expose our new higher-order reducer
   // NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}
-  return (state, action, originalReducerState) => {
+  return (state=initialState, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process

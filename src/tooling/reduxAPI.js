@@ -36,3 +36,25 @@
  * @property {string|Symbol} type - The action type.
  * @property {*} whatever - Additional app-specific payload (as needed).
  */
+
+
+
+//***
+//*** Specification: InitialState
+//***
+
+/**
+ * @typedef {*} InitialState
+ *
+ * All astx-redux-util reducer creators, expose an `initialState`
+ * parameter which optionally provides a fall-back state value to use
+ * during the state initialization boot-strap process.
+ * 
+ * In general, redux expects your state to have concrete values
+ * (i.e. something other than `undefined`).  This means that the
+ * reduction entry point to each state element should define a
+ * default.  Keeping this in mind, the `initialState` parameter is
+ * optional, because some reducers are "by design" (when combined in a
+ * composition) intended to be mid-stream processors (i.e. NOT the
+ * reduction entry point).
+ */

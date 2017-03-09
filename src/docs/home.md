@@ -18,7 +18,6 @@ Additionally, astx-redux-util promotes other reducer compositions that
 can be used in conjunction with one another.
 
 <!--- Badges for CI Builds ---> 
-<!--- TODO: ?? point to master branch ---> 
 [![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master)](https://travis-ci.org/KevinAst/astx-redux-util)
 [![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
 
