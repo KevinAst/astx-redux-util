@@ -1,5 +1,6 @@
 import expect        from 'expect';
 import AstxReduxUtil from '../../tooling/ModuleUnderTest';
+import identity      from 'lodash.identity';
 
 const initialState = 1;
 
@@ -22,4 +23,22 @@ describe('joinReducers() tests', () => {
   performTest('increment, double',                     AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble),                                  4);
   performTest('increment, double, double',             AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble),                   8);
   performTest('increment, double, double, decrement',  AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble, reducerDecrement), 7);
+
+  describe('initialState tests', () => {
+
+    const initialState = 'initialState';
+
+    it('initialState NOT defined', () => {
+      const reducerWithoutInitialState = AstxReduxUtil.joinReducers(identity, identity);
+      expect(reducerWithoutInitialState(undefined, {type: 'UNUSED_TYPE'})).toBe(undefined);
+    });
+
+    it('initialState IS defined', () => {
+      const reducerWithInitialState = AstxReduxUtil.joinReducers(identity, identity, initialState);
+      expect(reducerWithInitialState(undefined, {type: 'UNUSED_TYPE'})).toBe(initialState);
+    });
+
+  });
+
+
 });

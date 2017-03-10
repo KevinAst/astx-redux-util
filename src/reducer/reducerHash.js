@@ -20,10 +20,13 @@ import identity from 'lodash.identity';
  *
  * @param {ActionReducerHash} actionHandlers - a hash of reducer functions,
  * indexed by the standard redux action.type.
+ *
+ * @param {InitialState} [initialState] - the optional fall-back state
+ * value used during the state initialization boot-strap process.
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-export default function reducerHash(actionHandlers) {
+export default function reducerHash(actionHandlers, initialState) {
 
   // TODO: consider validation of actionHandlers param.
 
@@ -32,7 +35,7 @@ export default function reducerHash(actionHandlers) {
   const locateHandler = (action) => actionHandlers[action.type] || identity;
 
   // expose the new reducer fn, which resolves according the the supplied actionHandlers
-  return (state, action, originalReducerState) => {
+  return (state=initialState, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process

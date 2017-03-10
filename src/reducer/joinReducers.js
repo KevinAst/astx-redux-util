@@ -1,5 +1,5 @@
-// TODO: placebo import required for JSDoc (ISSUE: JSDoc seems to require at least one import to expose these items)
-import identity from 'lodash.identity'; // eslint-disable-line no-unused-vars
+import isFunction from 'lodash.isfunction';
+import last       from 'lodash.last';
 
 /**
  * Create a higher-order reducer by combining two or more reducers,
@@ -23,6 +23,9 @@ import identity from 'lodash.identity'; // eslint-disable-line no-unused-vars
  *
  * @param {...reducerFn} reducerFns two or more reducer functions to join
  * together.
+ *
+ * @param {InitialState} [initialState] - the optional fall-back state
+ * value used during the state initialization boot-strap process.
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
@@ -30,8 +33,13 @@ export default function joinReducers(...reducerFns) {
 
   // TODO: consider validation of joinReducers() params ... an array WITH 0,1,2? or more reducerFns
 
+  // define our initialState parameter (optionally, the last parameter)
+  // NOTE: We have to do this programatically because of our function 
+  //       signature's utilization of the "ES6 rest parameter" syntax
+  const initialState = isFunction(last(reducerFns)) ? undefined : reducerFns.pop();
+
   // expose our new higher-order reducer
-  return (state, action, originalReducerState) => {
+  return (state=initialState, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
