@@ -49,19 +49,52 @@ History</strong>, please refer to the <a href="https://astx-redux-util.js.org">l
 release</a>, or the <a href="https://github.com/KevinAst/astx-redux-util/releases">Github Release
 Notes</a>.</p>
 <!--- Badges for CI Builds ---> 
-<!--- TODO: ?? point to master branch ---> 
 <p><a href="https://travis-ci.org/KevinAst/astx-redux-util"><img src="https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/astx-redux-util"><img src="https://img.shields.io/npm/v/astx-redux-util.svg" alt="NPM Version Badge"></a></p>
-<!-- TODO: activate the summary only when there is MULTIPLE versions
-## Summary:
+<!-- ONLY activated when there are MULTIPLE versions -->
+<h2>Summary:</h2><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&bull; <a href="#v0.2.0">v0.2.0</a></td>
+<td>Added support for initialState <em>(Mar 9, 2017)</em></td>
+</tr>
+<tr>
+<td>&bull; <a href="#v0.1.0">v0.1.0</a></td>
+<td>Initial Release <em>(Mar 8, 2017)</em></td>
+</tr>
+</tbody>
+</table>
+<h2>Details ...</h2><!-- ************************************************************* -->
+<h4 class="name" id="v0.2.0">v0.2.0 - Added support for initialState <em>(Mar 9, 2017)</em></h4>
 
-Release | Description
-------- | -----------
-&bull; [v0.1.0](#v0.1.0) | Initial Release *(Mar 8, 2017)*
-
-
-## Details ...
--->
+<p><a href="https://astx-redux-util.js.org/0.2.0">Full Docs</a>
+&bull;
+<a href="https://github.com/KevinAst/astx-redux-util/releases/tag/v0.2.0">GitHub Release</a>
+&bull;
+<a href="https://github.com/KevinAst/astx-redux-util/tree/v0.2.0">GitHub Content</a></p>
+<p>This release adds support for the <a href="global.html#InitialState"><code>InitialState</code></a> parameter in each of
+the reducer composition utilities.</p>
+<p>This parameter optionally defines the fall-back state value used
+during the state initialization boot-strap process.</p>
+<p>In general, redux expects your state to have concrete values
+(i.e. something other than <code>undefined</code>).  This means that the
+reduction entry point to each state element should define a default.
+Keeping this in mind, the <a href="global.html#InitialState"><code>InitialState</code></a> parameter is optional,
+because some reducers are &quot;by design&quot; (when combined in a composition)
+intended to be mid-stream processors (i.e. NOT the reduction entry
+point).</p>
+<p>As is turns out, <strong>this simplifies the examples</strong> found in the
+<a href="https://astx-redux-util.js.org/0.1.0">astx-redux-util v0.1.0</a>
+release, in that NO app-supplied wrapper function is needed for the
+sole purpose of providing this initial value ... rather: the
+<a href="global.html#InitialState"><code>InitialState</code></a> can be specified directly as a parameter to the
+astx-redux-util function.</p>
 <!-- ************************************************************* -->
 <h4 class="name" id="v0.1.0">v0.1.0 - Initial Release <em>(Mar 8, 2017)</em></h4>
 
@@ -84,7 +117,7 @@ Release | Description
     
     <b>
       astx-redux-util 
-     (0.1.0)
+     (0.2.0)
     </b>
     &hellip;
 <a href="./tutorial-LICENSE.html">MIT License</a>

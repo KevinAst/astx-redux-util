@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Revision History - Documentation</title>
+    <title>Home - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,53 +27,81 @@
 
 <div id="main">
     
-    <h1 class="page-title">Revision History</h1>
+
     
 
-    <section>
 
-<header>
+
     
 
-    <!-- KJB: removed level 2 header
-    <h2>Revision History</h2>
-    -->
-</header>
 
-<article>
-    <p>This project adheres to <a href="http://semver.org/">Semantic Versioning</a>.
-Each release, along with migration instructions, is documented on this
-page. <strong>Please Note:</strong> The Revision History found here <strong>ONLY</strong> covers
-the history up to this release.  In order to view <strong>ALL Revision
-History</strong>, please refer to the <a href="https://astx-redux-util.js.org">latest astx-redux-util
-release</a>, or the <a href="https://github.com/KevinAst/astx-redux-util/releases">Github Release
-Notes</a>.</p>
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>astx-redux-util</h1><p>The astx-redux-util library promotes several redux reducer composition
+utilities, which blend multiple reducers together forming a richer
+abstraction through functional decomposition (i.e. higher-order
+functions).</p>
+<p>Reducer composition is not new.  Redux itself provides the innovative
+<a href="http://redux.js.org/docs/api/combineReducers.html">combineReducers</a>
+utility which allows you to fuse individual reducers together to build
+up the overall shape of your application state.</p>
+<p>The most prevalent astx-redux-util utility is <a href="global.html#reducerHash"><code>reducerHash</code></a>,
+which lets you combine sub-reducers in such a way as to eliminate
+the switch statement commonly used to delineate action type.  </p>
+<p>Additionally, astx-redux-util promotes other reducer compositions that
+can be used in conjunction with one another.</p>
 <!--- Badges for CI Builds ---> 
-<!--- TODO: ?? point to master branch ---> 
 <p><a href="https://travis-ci.org/KevinAst/astx-redux-util"><img src="https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/astx-redux-util"><img src="https://img.shields.io/npm/v/astx-redux-util.svg" alt="NPM Version Badge"></a></p>
-<!-- TODO: activate the summary only when there is MULTIPLE versions
-## Summary:
+<h2>At a Glance</h2><ul>
+<li><p><a href="tutorial-start.html">Getting Started</a> ... installation and access</p>
+</li>
+<li><p>Concepts:</p>
+<ul>
+<li><p><a href="tutorial-conceptHash.html">Basics</a> ... using <a href="global.html#reducerHash"><code>reducerHash</code></a>, eliminate
+the switch statement commonly found in reducers <em>(&quot;look ma, no
+switch&quot;)</em></p>
+</li>
+<li><p><a href="tutorial-conceptConditional.html">Conditional Reduction</a> ... using <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a>, invoke a reducer only when certain
+constraints are met <em>(&quot;to reduce or NOT to reduce; that is the
+question&quot;)</em></p>
+</li>
+<li><p><a href="tutorial-conceptJoin.html">Joining Reducers</a> ... using <a href="global.html#joinReducers"><code>joinReducers</code></a>, team up
+multiple reducers to promote higher order functionality <em>(&quot;working
+together is success&quot; - Henry Ford)</em></p>
+</li>
+</ul>
+</li>
+<li><p><a href="tutorial-fullExample.html">A Most Excellent Example</a> ... a more complete example employing many
+of the astx-redux-util utility functions</p>
+</li>
+<li><p><a href="tutorial-originalReducerState.html">originalReducerState</a> ... a sidebar discussion of
+originalReducerState</p>
+</li>
+<li><p><a href="tutorial-why.html">Why astx-redux-util?</a> ... why was astx-redux-util created, and how does it
+compare to other utilities</p>
+</li>
+<li><p><a href="tutorial-logExt.html">Logging Extension</a> ... conceptual extension for reducer-based
+centralized logging</p>
+</li>
+<li><p><a href="tutorial-history.html">Revision History</a> ... peruse various revisions</p>
+</li>
+</ul></article>
+    </section>
 
-Release | Description
-------- | -----------
-&bull; [v0.1.0](#v0.1.0) | Initial Release *(Mar 8, 2017)*
 
 
-## Details ...
--->
-<!-- ************************************************************* -->
-<h4 class="name" id="v0.1.0">v0.1.0 - Initial Release <em>(Mar 8, 2017)</em></h4>
 
-<p><a href="https://astx-redux-util.js.org/0.1.0">Full Docs</a>
-&bull;
-<a href="https://github.com/KevinAst/astx-redux-util/releases/tag/v0.1.0">GitHub Release</a>
-&bull;
-<a href="https://github.com/KevinAst/astx-redux-util/tree/v0.1.0">GitHub Content</a></p>
-<p><strong>Holy Guacamole Batman!</strong> ... <em>This commit has no parents!!</em></p>
-</article>
 
-</section>
 
 </div>
 
@@ -84,7 +112,7 @@ Release | Description
     
     <b>
       astx-redux-util 
-     (0.1.0)
+     (0.2.0)
     </b>
     &hellip;
 <a href="./tutorial-LICENSE.html">MIT License</a>
