@@ -49,7 +49,7 @@ type.
 **Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
-```JavaScript
+```js
 import { reducerHash } from 'astx-redux-util';
 
 export default reducerHash({
@@ -75,7 +75,7 @@ To accomplish this, we add to our repertoire by introducing
 **Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
@@ -118,7 +118,7 @@ nested!**
 **Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
