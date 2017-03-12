@@ -16,6 +16,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release | Description
 ------- | -----------
+&bull; [v0.3.0](#v0.3.0) | Parameter Validation *(Mar ??, 2017)*
 &bull; [v0.2.0](#v0.2.0) | Added support for initialState *(Mar 9, 2017)*
 &bull; [v0.1.0](#v0.1.0) | Initial Release *(Mar 8, 2017)*
 
@@ -23,6 +24,22 @@ Release | Description
 
 
 ## Details ...
+
+
+
+<!-- ************************************************************* -->
+<h4 class="name" id="v0.3.0">v0.3.0 - Parameter Validation *(Mar ??, 2017)*</h4>
+
+[Full Docs](https://astx-redux-util.js.org/0.3.0)
+&bull;
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.3.0)
+&bull;
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.0)
+
+Parameter validation is now performed on all function calls.  Invalid
+usage results in exceptions being thrown.  API is **NOT impacted** in any way.
+
+??? running notes to finalize
 
 
 
