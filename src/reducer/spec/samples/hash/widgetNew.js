@@ -1,5 +1,4 @@
-import AstxReduxUtil from '../../../../tooling/ModuleUnderTest'; // REALLY: 'astx-redux-util'
-const { reducerHash } = AstxReduxUtil; // TODO: figure out how to import { reducerHash } within ModuleUnderTest
+import { reducerHash } from '../../../../tooling/ModuleUnderTest'; // REALLY: 'astx-redux-util'
 
 export default reducerHash({
   "widget.edit":       (widget, action) => action.widget,
