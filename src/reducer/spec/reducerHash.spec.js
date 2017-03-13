@@ -20,7 +20,25 @@ describe('reducerHash() tests', () => {
   performTest('edit.close',   null);
   performTest('other.action', beginningState);
 
-  // TODO: test edge case: a) validating hash, and b) hash containing an undefined key
+  describe('parameter validation', () => {
+
+    it('required', () => {
+      // Error: AstxReduxUtil.reducerHash() parameter violation: actionHandlers is required
+      expect(()=>AstxReduxUtil.reducerHash()).toThrow('actionHandlers is required');
+    });
+
+    it('non-function entry', () => {
+      // Error: AstxReduxUtil.reducerHash() parameter violation: actionHandlers['bad'] is NOT a function ... expecting reducer function indexed by action type
+      expect(()=>AstxReduxUtil.reducerHash({bad:123})).toThrow("actionHandlers['bad'] is NOT a function");
+    });
+
+    it('undefined entry', () => {
+      const definedConstant = {};
+      // Error: AstxReduxUtil.reducerHash() parameter violation: actionHandlers contains an 'undefined' entry ... suspect a misspelled constant
+      expect(()=>AstxReduxUtil.reducerHash({[definedConstant.misspelledEntry]: (t)=>t})).toThrow("actionHandlers contains an 'undefined' entry");
+    });
+
+  });
 
   describe('initialState tests', () => {
 

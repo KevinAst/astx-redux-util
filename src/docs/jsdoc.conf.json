@@ -28,7 +28,7 @@
     "package":     "./package.json",     // allows JSDoc to have access to packageInfo (enhancing footer, and packaged in project/version directory)
     "readme":      "./src/docs/home.md", // used in root home page (index.html)
     "encoding":    "utf8",
-    "private":     true,
+    "private":     false,
     "recurse":     true,
     "template":    "./node_modules/docdash",
     "tutorials":   "./src/docs/guide"

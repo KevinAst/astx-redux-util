@@ -1,4 +1,6 @@
-import identity from 'lodash.identity';
+import identity   from 'lodash.identity';
+import isFunction from 'lodash.isfunction';
+import verify     from '../util/verify';
 
 /**
  * Create a higher-order reducer by combining a set of sub-reducer
@@ -28,7 +30,22 @@ import identity from 'lodash.identity';
  */
 export default function reducerHash(actionHandlers, initialState) {
 
-  // TODO: consider validation of actionHandlers param.
+  // validate params
+  const check = verify.prefix('AstxReduxUtil.reducerHash() parameter violation: ');
+
+  check(actionHandlers,
+        'actionHandlers is required');
+
+  // ... AI: this check may be too intrusive if the client's actionHandlers object is used for OTHER things?
+  const invalidHashEntry = Object.getOwnPropertyNames(actionHandlers).reduce( (firstBadEntry, type) => {
+    return firstBadEntry || isFunction(actionHandlers[type]) ? null : type;
+  }, null);
+  check(!invalidHashEntry,
+        `actionHandlers['${invalidHashEntry}'] is NOT a function ... expecting reducer function indexed by action type`);
+
+  check(!actionHandlers['undefined'],
+        "actionHandlers contains an 'undefined' entry ... suspect a misspelled constant");
+
 
   // internal function: locate handler from actionHandlers action.type hash lookup
   //                    ... default: identity pass-through
