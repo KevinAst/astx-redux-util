@@ -18,7 +18,6 @@ the switch statement commonly used to delineate action type.
 can be used in conjunction with one another.
 
 <!--- Badges for CI Builds ---> 
-<!--- TODO: ?? point to master branch ---> 
 [![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master)](https://travis-ci.org/KevinAst/astx-redux-util)
 [![Known Vulnerabilities](https://snyk.io/test/github/kevinast/astx-redux-util/badge.svg)](https://snyk.io/test/github/kevinast/astx-redux-util)
 [![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
@@ -37,7 +36,7 @@ npm install --save astx-redux-util
 ```
 
 
-## Usage
+## Examples
 
 ### Basics
 
@@ -49,7 +48,7 @@ type.
 **Don't miss the [astx-redux-util] documentation**, *which fully explores
 this example, and details the API.*
 
-```JavaScript
+```js
 import { reducerHash } from 'astx-redux-util';
 
 export default reducerHash({
@@ -72,10 +71,10 @@ through a functional decomposition (as opposed to procedural code).
 To accomplish this, we add to our repertoire by introducing
 **joinReducers()** and **conditionalReducer()**.
 
-**Don't miss the [astx-redux-util] documentation**, *which fully explores
-this example, and details the API.*
+**Did I mention that the [astx-redux-util] documentation**, *fully explores
+this example, and details the API?*
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
@@ -115,10 +114,10 @@ We accomplish this by simply combining yet another reducer (using a
 functional approach).  This also demonstrates how **composition can be
 nested!**
 
-**Don't miss the [astx-redux-util] documentation**, *which fully explores
+**Read all about it!  The [astx-redux-util] documentation** *fully explores
 this example, and details the API.*
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';

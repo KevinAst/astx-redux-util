@@ -15,14 +15,36 @@ function performTest(desc, reducer, expectedState) {
 }
 
 describe('joinReducers() tests', () => {
-  // TODO: test parameter validation
-//performTest('increment, double (with array params)', AstxReduxUtil.joinReducers([reducerIncrement, reducerDouble]),                                4); // TODO: this errors, should be validated
-  performTest('NO REDUCERS',                           AstxReduxUtil.joinReducers(),                                                                 1); // TODO: should this be a validation error?
-  performTest('increment',                             AstxReduxUtil.joinReducers(reducerIncrement),                                                 2);
+
   performTest('increment, increment',                  AstxReduxUtil.joinReducers(reducerIncrement, reducerIncrement),                               3);
   performTest('increment, double',                     AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble),                                  4);
   performTest('increment, double, double',             AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble),                   8);
   performTest('increment, double, double, decrement',  AstxReduxUtil.joinReducers(reducerIncrement, reducerDouble, reducerDouble, reducerDecrement), 7);
+
+
+  describe('parameter validation', () => {
+
+    it('NO REDUCERS', () => {
+      // Error: AstxReduxUtil.joinReducers() parameter violation: two or more reducerFn arguments are required
+      expect(()=>AstxReduxUtil.joinReducers()).toThrow('two or more reducerFn arguments are required');
+    });
+
+    it('ONE REDUCER', () => {
+      // Error: AstxReduxUtil.joinReducers() parameter violation: two or more reducerFn arguments are required
+      expect(()=>AstxReduxUtil.joinReducers(reducerIncrement)).toThrow('two or more reducerFn arguments are required');
+    });
+
+    it('1st ARG is BAD', () => {
+      // Error: AstxReduxUtil.joinReducers() parameter violation: argument position number 1 is NOT a function ... expecting two or more reducerFns to join together
+      expect(()=>AstxReduxUtil.joinReducers('bad', reducerIncrement)).toThrow('argument position number 1 is NOT a function');
+    });
+
+    it('2nd ARG is BAD', () => {
+      // Error: AstxReduxUtil.joinReducers() parameter violation: argument position number 2 is NOT a function ... expecting two or more reducerFns to join together
+      expect(()=>AstxReduxUtil.joinReducers(reducerIncrement, 'bad', reducerIncrement)).toThrow('argument position number 2 is NOT a function');
+    });
+
+  });
 
   describe('initialState tests', () => {
 

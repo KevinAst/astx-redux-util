@@ -1,5 +1,6 @@
 import isFunction from 'lodash.isfunction';
 import last       from 'lodash.last';
+import verify     from '../util/verify';
 
 /**
  * Create a higher-order reducer by combining two or more reducers,
@@ -31,12 +32,23 @@ import last       from 'lodash.last';
  */
 export default function joinReducers(...reducerFns) {
 
-  // TODO: consider validation of joinReducers() params ... an array WITH 0,1,2? or more reducerFns
-
   // define our initialState parameter (optionally, the last parameter)
-  // NOTE: We have to do this programatically because of our function 
-  //       signature's utilization of the "ES6 rest parameter" syntax
+  // NOTE: We have to do this programatically because our function 
+  //       accepts variable number of arguments.
   const initialState = isFunction(last(reducerFns)) ? undefined : reducerFns.pop();
+
+  // validate params
+  const check = verify.prefix('AstxReduxUtil.joinReducers() parameter violation: ');
+
+  check(reducerFns && reducerFns.length >= 2,
+        'two or more reducerFn arguments are required');
+
+  // ... each arg MUST be a function (reducerFn)
+  const badArgNum = reducerFns.reduce( (firstBadArgNum, reducerFn, indx) => {
+    return firstBadArgNum || (isFunction(reducerFn) ? 0 : indx+1);
+  }, 0);
+  check(!badArgNum,
+        `argument position number ${badArgNum} is NOT a function ... expecting two or more reducerFns to join together`);
 
   // expose our new higher-order reducer
   return (state=initialState, action, originalReducerState) => {

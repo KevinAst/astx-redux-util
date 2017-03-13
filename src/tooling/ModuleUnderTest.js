@@ -77,4 +77,24 @@ switch (MODULE_PLATFORM) {
     throw new Error(`*** ERROR *** moduleUnderTest(): Unrecognized MODULE_PLATFORM environment variable value: ${MODULE_PLATFORM}`);
 }
 
-export default moduleUnderTest;
+
+
+//***
+//*** mimic same exports as ../index.js
+//***
+
+const conditionalReducer = moduleUnderTest.conditionalReducer;
+const joinReducers       = moduleUnderTest.joinReducers;
+const reducerHash        = moduleUnderTest.reducerHash;
+
+export {
+  conditionalReducer,
+  joinReducers,
+  reducerHash,
+};
+
+export default {
+  conditionalReducer,
+  joinReducers,
+  reducerHash,
+};

@@ -1,4 +1,6 @@
-import identity from 'lodash.identity';
+import identity   from 'lodash.identity';
+import isFunction from 'lodash.isfunction';
+import verify     from '../util/verify';
 
 /**
  * Create a higher-order reducer that conditionally executes one of
@@ -27,7 +29,14 @@ import identity from 'lodash.identity';
  */
 export default function conditionalReducer(conditionalFn, thenReducerFn, elseReducerFn=identity, initialState) {
 
-  // TODO: consider validation of conditionalReducer() params
+  // validate params
+  const check = verify.prefix('AstxReduxUtil.conditionalReducer() parameter violation: ');
+
+  check(conditionalFn,             'conditionalFn argument is required');
+  check(isFunction(conditionalFn), 'conditionalFn argument is NOT a function');
+  check(thenReducerFn,             'thenReducerFn argument is required');
+  check(isFunction(thenReducerFn), 'thenReducerFn argument is NOT a function');
+  check(isFunction(elseReducerFn), 'elseReducerFn argument is NOT a function');
 
   // expose our new higher-order reducer
   // NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}

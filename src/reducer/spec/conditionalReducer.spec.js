@@ -48,7 +48,36 @@ describe('conditionalReducer() tests', () => {
 
   });
 
-  // TODO: test edge case: validating parameters
+
+  describe('parameter validation', () => {
+
+    it('conditionalFn missing', () => {
+      // Error: AstxReduxUtil.conditionalReducer() parameter violation: conditionalFn argument is required
+      expect(()=>AstxReduxUtil.conditionalReducer()).toThrow('conditionalFn argument is required');
+    });
+
+    it('conditionalFn NOT a function', () => {
+      // Error: AstxReduxUtil.conditionalReducer() parameter violation: conditionalFn argument is NOT a function
+      expect(()=>AstxReduxUtil.conditionalReducer('bad')).toThrow('conditionalFn argument is NOT a function');
+    });
+
+    it('thenReducerFn missing', () => {
+      // Error: AstxReduxUtil.conditionalReducer() parameter violation: thenReducerFn argument is required
+      expect(()=>AstxReduxUtil.conditionalReducer((p)=>p)).toThrow('thenReducerFn argument is required');
+    });
+
+    it('thenReducerFn NOT a function', () => {
+      // Error: AstxReduxUtil.conditionalReducer() parameter violation: thenReducerFn argument is NOT a function
+      expect(()=>AstxReduxUtil.conditionalReducer((p)=>p, 'bad')).toThrow('thenReducerFn argument is NOT a function');
+    });
+
+    it('elseReducerFn NOT a function', () => {
+      // Error: AstxReduxUtil.conditionalReducer() parameter violation: elseReducerFn argument is NOT a function
+      expect(()=>AstxReduxUtil.conditionalReducer((p)=>p, thenReducer, 'bad')).toThrow('elseReducerFn argument is NOT a function');
+    });
+
+  });
+
 
   describe('initialState tests', () => {
 

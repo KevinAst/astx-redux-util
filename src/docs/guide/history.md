@@ -14,15 +14,38 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 <!-- ONLY activated when there are MULTIPLE versions -->
 ## Summary:
 
-Release | Description
-------- | -----------
-&bull; [v0.2.0](#v0.2.0) | Added support for initialState *(Mar 9, 2017)*
-&bull; [v0.1.0](#v0.1.0) | Initial Release *(Mar 8, 2017)*
+Release                  | What                            | *When*
+-------------------------|---------------------------------|------------------
+&bull; [v0.3.0](#v0.3.0) | Parameter Validation            | *Mar 13, 2017*
+&bull; [v0.2.0](#v0.2.0) | Added support for initialState  | *Mar 9, 2017*
+&bull; [v0.1.0](#v0.1.0) | Initial Release                 | *Mar 8, 2017*
 
 
 
 
 ## Details ...
+
+
+
+<!-- ************************************************************* -->
+<h4 class="name" id="v0.3.0">v0.3.0 - Parameter Validation *(Mar 13, 2017)*</h4>
+
+[Full Docs](https://astx-redux-util.js.org/0.3.0)
+&bull;
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.3.0)
+&bull;
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.0)
+
+Parameter validation is now performed on all function calls.  Invalid
+usage results in thrown exceptions.  **NOTE: The API is NOT impacted** in any way.
+
+**SideBar**: Starting in this release, a distribution tarball
+(`astx-redux-util_{ver}tar.gz`) is promoted in the [GitHub Releases
+Page](https://github.com/KevinAst/astx-redux-util/releases), which
+contains various executable bindings **and documentation** (*should
+you wish to retain the docs locally*).  Please refer to the {@tutorial
+dist} section for more details.
+
 
 
 
