@@ -37,7 +37,7 @@ Release | Description
 [GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.0)
 
 Parameter validation is now performed on all function calls.  Invalid
-usage results in exceptions being thrown.  API is **NOT impacted** in any way.
+usage results in thrown exceptions.  **NOTE: The API is NOT impacted** in any way.
 
 ??? running notes to finalize
 
