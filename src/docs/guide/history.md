@@ -16,7 +16,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release                  | What                            | *When*
 -------------------------|---------------------------------|------------------
-&bull; [v0.3.0](#v0.3.0) | Parameter Validation            | *Mar ??, 2017*
+&bull; [v0.3.0](#v0.3.0) | Parameter Validation            | *Mar 13, 2017*
 &bull; [v0.2.0](#v0.2.0) | Added support for initialState  | *Mar 9, 2017*
 &bull; [v0.1.0](#v0.1.0) | Initial Release                 | *Mar 8, 2017*
 
@@ -28,7 +28,7 @@ Release                  | What                            | *When*
 
 
 <!-- ************************************************************* -->
-<h4 class="name" id="v0.3.0">v0.3.0 - Parameter Validation *(Mar ??, 2017)*</h4>
+<h4 class="name" id="v0.3.0">v0.3.0 - Parameter Validation *(Mar 13, 2017)*</h4>
 
 [Full Docs](https://astx-redux-util.js.org/0.3.0)
 &bull;
@@ -46,7 +46,6 @@ contains various executable bindings **and documentation** (*should
 you wish to retain the docs locally*).  Please refer to the {@tutorial
 dist} section for more details.
 
-??? running notes to finalize
 
 
 
