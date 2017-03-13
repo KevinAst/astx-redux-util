@@ -39,6 +39,13 @@ Release                  | What                            | *When*
 Parameter validation is now performed on all function calls.  Invalid
 usage results in thrown exceptions.  **NOTE: The API is NOT impacted** in any way.
 
+**SideBar**: Starting in this release, a distribution tarball
+(`astx-redux-util_{ver}tar.gz`) is promoted in the [GitHub Releases
+Page](https://github.com/KevinAst/astx-redux-util/releases), which
+contains various executable bindings **and documentation** (*should
+you wish to retain the docs locally*).  Please refer to the {@tutorial
+dist} section for more details.
+
 ??? running notes to finalize
 
 

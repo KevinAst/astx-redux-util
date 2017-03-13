@@ -53,6 +53,8 @@ can be used in conjunction with one another.
 - {@tutorial logExt} ... conceptual extension for reducer-based
   centralized logging
 
+- {@tutorial dist} ... where to find this utility (**and a local copy of the docs**)
+
 - {@tutorial history} ... peruse various revisions
 
 - {@tutorial LICENSE} ... legal stuff
