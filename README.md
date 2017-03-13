@@ -37,7 +37,7 @@ npm install --save astx-redux-util
 ```
 
 
-## Usage
+## Examples
 
 ### Basics
 
