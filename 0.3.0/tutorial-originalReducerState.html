@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>originalReducerState - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>User Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-dist.html">Distribution</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>astx-redux-util</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">originalReducerState</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <!-- KJB: removed level 2 header
+    <h2>originalReducerState</h2>
+    -->
+</header>
+
+<article>
+    <p>This sidebar discussion provides some insight into
+<strong>originalReducerState</strong> (<em>mostly an internal implementation detail</em>).</p>
+<p>A fundamental aspect of sequentially joining reducers is that each
+reducer should be able to build on what has been accomplished by a
+prior reducer.  In essence it is an accumulative process.</p>
+<p>The <a href="global.html#joinReducers"><code>joinReducers</code></a> utility handles this by cumulatively passing the
+state parameter that was returned from any prior reducer (in the chain
+of reducers to execute).</p>
+<p>While this does NOT relax the immutable constraint of the reducer's
+state parameter, it is possible for a down-stream reducer to receive a
+state parameter that is a different instance from the start of the
+reduction process (because an up-stream reducer needed to alter it in
+some way).</p>
+<p>As it turns out, this is typically NOT a concern to a client, rather
+merely an implementation detail.</p>
+<p>There are edge cases, however, where a client needs visibility to the
+<strong>originalReducerState</strong>: <em>the immutable state at the start of the
+reduction process</em>.  One case in particular is determining that state
+has changed within a series of reductions (i.e. <a href="global.html#joinReducers"><code>joinReducers</code></a>),
+because each individual reducer only has visibility of the state
+within it's own reduction process.  This case is higlighted in
+<a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+<p>As a result, the <strong>originalReducerState</strong> is <strong>publicly exposed</strong> as
+the 3rd parameter to the <a href="global.html#conditionalReducerCB"><code>conditionalReducerCB</code></a> function (the
+<a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> callback parameter that makes this
+determination).</p>
+<p>Internally, the way in which astx-redux-util manages the
+originalReducerState is by passing it as a 3rd parameter to any
+reducer it is in control of (i.e. invokes).  While from a redux
+perspective, this is non-standard, it doesn't really hurt, because
+reducer functions are NOT reasoning about a 3rd parameter.  The only
+risk is if redux should (at some future point) start to employ
+additional reducer parameters.</p>
+<p>By an overwhelming majority of the time (99.9%), <strong>you should seldom have
+to worry about how originalReducerState is maintained</strong>, because
+astx-redux-util does this for you.</p>
+<p><strong>The only time any of this concerns you</strong> is if your application
+reducer invokes one of the astx-redux-util reducers.  In this case
+(which is rare), your code is responsible for passing
+originalReducerState (the 3rd reducer parameter) to the downstream
+reducer.</p>
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.0)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

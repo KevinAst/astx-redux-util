@@ -25,10 +25,9 @@ Doc related content include:
   # docs/ are LOCAL (i.e. NOT Checked In)
   # simply retained in developer workspace from master/feature branch build (via "npm run docs")
   docs/                ... machine generated docs
-    {project-version}/ ... version pulled package.json
-      *.html
-      *.js
-      *.css
+    *.html
+    *.js
+    *.css
 ```
 
 
@@ -55,8 +54,7 @@ Doc related content include:
   # docs/ are LOCAL (i.e. NOT Checked In)
   # simply retained in developer workspace from master/feature branch build (via "npm run docs")
   docs/                ... machine generated docs
-    {project-version}/ ... version pulled package.json
-      *.html
-      *.js
-      *.css
+    *.html
+    *.js
+    *.css
 ```
