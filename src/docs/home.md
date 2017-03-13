@@ -54,3 +54,5 @@ can be used in conjunction with one another.
   centralized logging
 
 - {@tutorial history} ... peruse various revisions
+
+- {@tutorial LICENSE} ... legal stuff
