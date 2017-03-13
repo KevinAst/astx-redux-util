@@ -14,11 +14,11 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 <!-- ONLY activated when there are MULTIPLE versions -->
 ## Summary:
 
-Release | Description
-------- | -----------
-&bull; [v0.3.0](#v0.3.0) | Parameter Validation *(Mar ??, 2017)*
-&bull; [v0.2.0](#v0.2.0) | Added support for initialState *(Mar 9, 2017)*
-&bull; [v0.1.0](#v0.1.0) | Initial Release *(Mar 8, 2017)*
+Release                  | What                            | *When*
+-------------------------|---------------------------------|------------------
+&bull; [v0.3.0](#v0.3.0) | Parameter Validation            | *Mar ??, 2017*
+&bull; [v0.2.0](#v0.2.0) | Added support for initialState  | *Mar 9, 2017*
+&bull; [v0.1.0](#v0.1.0) | Initial Release                 | *Mar 8, 2017*
 
 
 
