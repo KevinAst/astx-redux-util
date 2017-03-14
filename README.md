@@ -139,7 +139,7 @@ export default AstxReduxUtil.joinReducers(
       Redux.combineReducers({
         x,
         y,
-        curHash: placeboReducer
+        curHash: (s=null)=>s // defaulted state placebo reducer (needed by combineReducers())
       }),
       AstxReduxUtil.conditionalReducer(
         // LAST: maintain curHash
@@ -150,14 +150,7 @@ export default AstxReduxUtil.joinReducers(
           return widget;
         })
     )
-  ),
-
-  null); // initialState
-
-// placeboReducer WITH state initialization (required for Redux.combineReducers())
-function placeboReducer(state=null, action) {
-  return state;
-}
+  ), null); // initialState
 ```
 
 This represents a very comprehensive example of how **Reducer
