@@ -14,16 +14,32 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 <!-- ONLY activated when there are MULTIPLE versions -->
 ## Summary:
 
-Release                  | What                            | *When*
--------------------------|---------------------------------|------------------
-&bull; [v0.3.0](#v0.3.0) | Parameter Validation            | *Mar 13, 2017*
-&bull; [v0.2.0](#v0.2.0) | Added support for initialState  | *Mar 9, 2017*
-&bull; [v0.1.0](#v0.1.0) | Initial Release                 | *Mar 8, 2017*
+Release                  | What                                   | *When*
+-------------------------|----------------------------------------|------------------
+&bull; [v0.4.0](#v0.4.0) | Extension Support with Logging Example | *Mar ??, 2017*
+&bull; [v0.3.0](#v0.3.0) | Parameter Validation                   | *Mar 13, 2017*
+&bull; [v0.2.0](#v0.2.0) | Added support for initialState         | *Mar 9, 2017*
+&bull; [v0.1.0](#v0.1.0) | Initial Release                        | *Mar 8, 2017*
 
 
 
 
 ## Details ...
+
+
+
+<!-- ************************************************************* -->
+<h4 class="name" id="v0.4.0">v0.4.0 - Extension Support with Logging Example *(Mar ??, 2017)*</h4>
+
+[Full Docs](https://astx-redux-util.js.org/0.4.0)
+&bull;
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.4.0)
+&bull;
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.4.0)
+
+??? RUNNING NOTES HERE
+
+
 
 
 
