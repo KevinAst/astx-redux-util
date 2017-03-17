@@ -232,48 +232,49 @@ export default class PatchableHOF {
     createdFn.sym = Symbol();
 
     // return a "wrapped" createdFn, that dynamically applies registered patches at run-time
-    return (...args) => this.applyPatch(createdFn, ...args);
+    return (...args) => applyPatch(this, createdFn, ...args);
   }
 
+}
 
-  /**
-   * Internal method that executes (at run-time) the supplied rootFn,
-   * dynamically applying self's patches.
-   *
-   * @param {function} rootFn the base function to execute, and apply
-   * patches to.
-   * @param {...args} run-time arguments passed to rootFn.
-   *
-   * @returns {*} the result of rootFn invocation, with applied
-   * patches.
-   *
-   * @private
-   */
-  applyPatch(rootFn, ...args) {
 
-    // NOTE: A unique function indentifier should be cataloged on rootFn.sym.
-    //       This is used internally as a caching optimization.
-    //       This should not be a problem because it is maintained internally.
-    //       ... providing applyPatch() is only invoked internally (i.e. it is private)
-    //       ... just in case, we validate it here
-    // ?? move applyPatch to a PRIVATE function INSURING NO abuse!
-    verify(rootFn.sym, 'PatchableHOF.applyPatch() expecting rootFn.sym to uniquely identify this function');
+/**
+ * Internal method that executes (at run-time) the supplied rootFn,
+ * dynamically applying self's patches.
+ *
+ * @param {PatchableHOF} hofHelper the patchableHOF instance to operate
+ * against.
+ * @param {function} rootFn the base function to execute, and apply
+ * patches to.
+ * @param {...args} run-time arguments passed to rootFn.
+ *
+ * @returns {*} the result of rootFn invocation, with applied
+ * patches.
+ *
+ * @private
+ */
+function applyPatch(hofHelper, rootFn, ...args) {
 
-    // locate our rootedStackCache, dynamically create/catalog on first usage
-    let rootedStackCache = this._rootedStackCache[rootFn.sym];
-    if (!rootedStackCache) {
-      // build up our entire stack chain of patches (seeded with the supplied rootFn)
-      rootedStackCache = this._rootedStackCache[rootFn.sym] = 
-        this._patches.reduce( (priorFn, patch) => (...args) => patch.newImpl(priorFn, ...args),
-                              rootFn);
-      // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude optimization check)');
-    }
-    else {
-      // console.log('USING CACHE (PatchableHOF.applyPatch() crude optimization check)');
-    }
+  // NOTE: A unique function indentifier should be cataloged on rootFn.sym.
+  //       This is used internally as a caching optimization.
+  //       This should not be a problem because it is maintained internally.
+  //       Because applyPatch() has now been moved into a TOTALLY private function,
+  //       ... this verification is NO LONGER required.
+  // verify(rootFn.sym, 'PatchableHOF.applyPatch() expecting rootFn.sym to uniquely identify this function');
 
-    // indirectly invoke the supplied rootFn, after applying any registered patches
-    return rootedStackCache(...args);
+  // locate our rootedStackCache, dynamically create/catalog on first usage
+  let rootedStackCache = hofHelper._rootedStackCache[rootFn.sym];
+  if (!rootedStackCache) {
+    // build up our entire stack chain of patches (seeded with the supplied rootFn)
+    rootedStackCache = hofHelper._rootedStackCache[rootFn.sym] = 
+    hofHelper._patches.reduce( (priorFn, patch) => (...args) => patch.newImpl(priorFn, ...args),
+                               rootFn);
+    // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude optimization check)');
+  }
+  else {
+    // console.log('USING CACHE (PatchableHOF.applyPatch() crude optimization check)');
   }
 
+  // indirectly invoke the supplied rootFn, after applying any registered patches
+  return rootedStackCache(...args);
 }
