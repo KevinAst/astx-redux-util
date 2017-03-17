@@ -72,11 +72,11 @@ describe('PatchableHOF tests', () => {
             expect(f2('ProbeB')).toBe('Patch4: Patch3 (trump): ProbeB');
           });
 
-          it.skip('crude optimization check, when applyPatch() logging injected', () => {
-            for (let i=0; i<10; i++) {
-              expect(f1('Logging Cache')).toBe('Patch4: Patch3 (trump): Logging Cache');
-            }
-          });
+          // it('crude VISUAL optimization check, when applyPatch() logging injected', () => {
+          //   for (let i=0; i<10; i++) {
+          //     expect(f1('Logging Cache')).toBe('Patch4: Patch3 (trump): Logging Cache');
+          //   }
+          // });
 
           describe('REMOVE 3rd Patch ... EVEN reverts the trump!', () => {
             

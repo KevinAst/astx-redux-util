@@ -269,11 +269,11 @@ function applyPatch(hofHelper, rootFn, ...args) {
     rootedStackCache = hofHelper._rootedStackCache[rootFn.sym] = 
     hofHelper._patches.reduce( (priorFn, patch) => (...args) => patch.newImpl(priorFn, ...args),
                                rootFn);
-    // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude optimization check)');
+    // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude VISUAL optimization check)');
   }
-  else {
-    // console.log('USING CACHE (PatchableHOF.applyPatch() crude optimization check)');
-  }
+  // else {
+  //   console.log('USING CACHE (PatchableHOF.applyPatch() crude VISUAL optimization check)');
+  // }
 
   // indirectly invoke the supplied rootFn, after applying any registered patches
   return rootedStackCache(...args);
