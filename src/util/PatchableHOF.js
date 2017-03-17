@@ -1,9 +1,6 @@
 import isFunction from 'lodash.isfunction';
 import verify     from '../util/verify';
 
-// ??$$1 ADD SUPPORT FOR patchId WITH unPatch(patchId
-//       ... simply remove the "named" patch from the array, and re-build the cached stack-chain
-
 /*
  * NOTE: This discussion is broader scoped than PatchableHOF class, and
  *       is intended to seed the User Guide of a (soon to be published)
@@ -95,7 +92,9 @@ import verify     from '../util/verify';
  *                  - args ........ the run-time arguments supplied to the createdFn
  *          - patchId ............. a patchId that can be used to "unpatch"
  * 
- *  + hof.unpatchCreatedFns(??patchId): ??
+ *  + hof.unpatchCreatedFns(patchId): boolean (true: successful unpatch, false: patchId NOT found)
+ *        where:
+ *          - patchId ............. the patchId to to "unpatch" (supplied from patchCreatedFns)
  * 
  * 
  * PatchableHOF Usage:
@@ -121,7 +120,7 @@ import verify     from '../util/verify';
  * Features of patch-u include:
  *
  *  - multiple patches are supported by using a function chaining process
- *  - ?? unpatch is supported
+ *  - unpatch is supported
  */
 export default class PatchableHOF {
 
@@ -133,14 +132,26 @@ export default class PatchableHOF {
 
     // carve out our instance variables ...
 
+    // next patch identifier
+    this._nextPatchId = 1;
+
     // array of patches registered via patchCreatedFns()
-    // ... NOTE: NO creator rootFn instance has been yet been applied
-    // ... API: (priorImpl, ...args)
+    // ... NOTE: This is the "raw" patches, WITHOUT any createdFn applied.
+    //           The createdFn is applied in the _rootedStackCache.
+    // ... STRUCTURE:
+    //       [
+    //         {
+    //           patchId: unique-identifier-for-this-patch,
+    //           newImpl: (priorImpl, ...args): *
+    //         },
+    //         ...
+    //       ]
     this._patches = [];
 
-    // cache of fully resolved stack chain patches for EACH of our created rootFn
-    // ... keyed by rootFn.sym (a Symbol uniquely identifying rootFn)
-    // ... API: (...args)
+    // cache of fully resolved stack chain patches for EACH of our registered createdFn
+    // ... keyed by createdFn.sym (a Symbol uniquely identifying rootFn)
+    // ... STRUCTURE:
+    //       _rootedStackCache[createdFn.sym]: (...args) => {funct-with-back-refs to priorFn}
     this._rootedStackCache = {};
   }
 
@@ -172,12 +183,26 @@ export default class PatchableHOF {
     check(creatorFn,             'creatorFn argument is required');
     check(isFunction(creatorFn), 'creatorFn argument is NOT a function');
 
-    // augment the supplied creatorFn
-    creatorFn.patchCreatedFns = (newImpl) => { // ?? optional patchName
-      this._patches.push(newImpl);
+    // augment the supplied creatorFn ... see class doc (above)
+    creatorFn.patchCreatedFns = (newImpl) => {
+      const patchId = `patchId_${this._nextPatchId++}`;
+      this._patches.push({ patchId, newImpl });
       this._rootedStackCache = {}; // clear our rootedStackCache, allowing it to be re-built with new patch
+      return patchId;
+    };
+    creatorFn.unpatchCreatedFns = (patchId) => {
+      const removeIndx = this._patches.findIndex( (patch) => patch.patchId===patchId);
+      if (removeIndx === -1) {
+        return false; // patchId NOT found
+      }
+      else {
+        this._patches.splice(removeIndx, 1); // remove entry
+        this._rootedStackCache = {};         // clear our rootedStackCache, allowing it to be re-built without the removed patch
+        return true; // successful remove
+      }
     };
 
+    // that's all folks :-)
     return creatorFn;
   }
 
@@ -231,7 +256,7 @@ export default class PatchableHOF {
     //       This should not be a problem because it is maintained internally.
     //       ... providing applyPatch() is only invoked internally (i.e. it is private)
     //       ... just in case, we validate it here
-    // ??$$2 we could make applyPatch a totaly private function INSURING NO abuse!
+    // ?? move applyPatch to a PRIVATE function INSURING NO abuse!
     verify(rootFn.sym, 'PatchableHOF.applyPatch() expecting rootFn.sym to uniquely identify this function');
 
     // locate our rootedStackCache, dynamically create/catalog on first usage
@@ -239,7 +264,7 @@ export default class PatchableHOF {
     if (!rootedStackCache) {
       // build up our entire stack chain of patches (seeded with the supplied rootFn)
       rootedStackCache = this._rootedStackCache[rootFn.sym] = 
-        this._patches.reduce( (priorFn, patch) => (...args) => patch(priorFn, ...args),
+        this._patches.reduce( (priorFn, patch) => (...args) => patch.newImpl(priorFn, ...args),
                               rootFn);
       // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude optimization check)');
     }

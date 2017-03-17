@@ -6,6 +6,8 @@ describe('PatchableHOF tests', () => {
   let f1 = null;
   let f2 = null;
 
+  let patchIdFor3rdPatch = null;
+
   before( function() {
     f1 = myCreator('f1');
     f2 = myCreator('f2');
@@ -47,7 +49,7 @@ describe('PatchableHOF tests', () => {
       describe('3rd Patch (trump)', () => {
         
         before( function() {
-          myCreator.patchCreatedFns( (priorImpl, msg) => `Patch3 (trump): ${msg}` );
+          patchIdFor3rdPatch = myCreator.patchCreatedFns( (priorImpl, msg) => `Patch3 (trump): ${msg}` );
         });
         
         it('extension tests', () => {
@@ -75,6 +77,22 @@ describe('PatchableHOF tests', () => {
               expect(f1('Logging Cache')).toBe('Patch4: Patch3 (trump): Logging Cache');
             }
           });
+
+          describe('REMOVE 3rd Patch ... EVEN reverts the trump!', () => {
+            
+            before( function() {
+              myCreator.unpatchCreatedFns( patchIdFor3rdPatch );
+            });
+            
+            it('extension tests', () => {
+              expect(f1('ProbeA')).toBe('Patch4: Patch2: Patch1: f1: ProbeA');
+              expect(f1('ProbeB')).toBe('Patch4: Patch2: Patch1: f1: ProbeB');
+              expect(f2('ProbeA')).toBe('Patch4: Patch2: Patch1: f2: ProbeA');
+              expect(f2('ProbeB')).toBe('Patch4: Patch2: Patch1: f2: ProbeB');
+            });
+
+          });
+
 
         });
 
