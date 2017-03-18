@@ -7,7 +7,7 @@ import PatchableHOF from '../PatchableHOF';
 // helper in making our HOF "patchable"
 const patchableHOF = new PatchableHOF();
 
-// define/expose our HOC utility: myCreator(prefix): fn
+// define/expose our HOF utility: myCreator(prefix): fn
 export default patchableHOF.defineCreator( (prefix) => {
 
   // expose our newly created fn: (msg): 'prefixed msg'

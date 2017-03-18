@@ -121,17 +121,34 @@ import verify     from '../util/verify';
  * As mentioned earlier, PatchableHOF is a "helper" class that allows
  * HOF authors to make their utility "patchable".
  * 
- * For each HOF:
- *   - a PatchableHOF instance should be created.
- *     ... this holds the necessary state to apply patches to the HOF
- *   - the HOF creator function should be registered via:
- *       patchableHOF.defineCreator(...)
+ *  - For each HOF:
+ *    * a PatchableHOF instance should be created.
+ *      ... this holds the necessary state to apply patches to the HOF
+ *    * the HOF creator function should be registered via:
+ *        patchableHOF.defineCreator(...)
  * 
- * Each function that is created/exposed by the HOF, should pass through
- * (i.e. registered) as follows:
- *   patchableHOF.defineCreated(...)
- * 
- * ?? provide example
+ *  - Each function that is created/exposed by the HOF, should be registered via:
+ *       patchableHOF.defineCreated(...)
+ *
+ *  EXAMPLE ...
+ *
+ *  myCreator.js
+ *  ============
+ *  import {PatchableHOF} from 'astx-patch';
+ *  
+ *  // helper in making our HOF "patchable"
+ *  const patchableHOF = new PatchableHOF();
+ *  
+ *  // define/expose our HOF utility: myCreator(prefix): fn
+ *  export default patchableHOF.defineCreator( (prefix) => {
+ *  
+ *    // expose our newly created fn: (msg): 'prefixed msg'
+ *    return patchableHOF.defineCreated( (msg) => {
+ *      return `${prefix}: ${msg}`;
+ *    });
+ *  
+ *  });
+ *    
  * 
  * Features
  * ========
