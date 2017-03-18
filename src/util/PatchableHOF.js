@@ -170,7 +170,7 @@ export default class PatchableHOF {
     // cache of fully resolved stack chain patches for EACH of our registered createdFn
     // ... keyed by createdFn.sym (a Symbol uniquely identifying rootFn)
     // ... STRUCTURE:
-    //       _rootedStackCache[createdFn.sym]: (...args) => {funct-with-back-refs to priorFn}
+    //       _rootedStackCache[createdFn.sym]: (...args) => {funct-with-back-refs to priorImpl}
     this._rootedStackCache = {};
   }
 
@@ -294,7 +294,7 @@ function applyPatch(hofHelper, rootFn, ...args) {
   if (!rootedStackCache) {
     // build up our entire stack chain of patches (seeded with the supplied rootFn)
     rootedStackCache = hofHelper._rootedStackCache[rootFn.sym] = 
-    hofHelper._patches.reduce( (priorFn, patch) => (...args) => patch.newImpl(priorFn, ...args),
+    hofHelper._patches.reduce( (priorImpl, patch) => (...args) => patch.newImpl(priorImpl, ...args),
                                rootFn);
     // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude VISUAL optimization check)');
   }
