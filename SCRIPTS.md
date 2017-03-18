@@ -6,16 +6,14 @@ The following npm scripts are available for this project.
 DEVELOPMENT
 ===========
 
-start ... convenience alias to 'dev' (that launches development process)
+start ... convenience alias to 'dev' (that launches continous dev process)
 
-dev ...... launch development process (continuous build/test)
-
-           NOTE: This REALLY only needs continuous testing ('test:lib:watch'),
-                 because that script targets the master src (i.e. no building
-                 required).
-
-                 HOWEVER an advantage of the continuous build is that
-                 auto-linting is performed!
+dev ...... launch development process (continuous integration)
+           NOTE: Currently this is an alias to test:lib:watch
+                 Other options to consider: 
+                  - npm run test:all:watch
+                  - npm-run-all --parallel build:watch test:lib:watch
+                    ... advantage of continuous build is that auto-linting is performed
 
 
 BUILDING

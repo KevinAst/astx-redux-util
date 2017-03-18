@@ -33,7 +33,7 @@
     "build:watch":           "npm run build -- --watch",
     "check":                 "npm-run-all lint test",
     "clean":                 "npm-run-all build:clean docs:clean",
-    "dev":                   "npm-run-all --parallel build:watch test:lib:watch",
+    "dev":                   "npm run test:lib:watch",
     "docs":                  "./node_modules/.bin/jsdoc --configure ./src/docs/jsdoc.conf.json --verbose",
     "docs:clean":            "rimraf docs",
     "lint":                  "eslint src",
