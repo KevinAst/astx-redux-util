@@ -1,4 +1,5 @@
 import isFunction from 'lodash.isfunction';
+import isArray    from 'lodash.isarray';
 import verify     from '../util/verify';
 
 /*
@@ -79,26 +80,43 @@ import verify     from '../util/verify';
  * for a patch to be applied to a series of functions (all functions
  * created/exposed by an HOF).
  * 
+ * PatchableHOF Usage (Consumer):
+ * =============================
+ * 
  * The HOF "patching" API is publicly available to the HOF consumer by
  * injecting it directly on the HOF creatorFn (as properties of the
  * creatorFn itself), and includes:
  * 
  *  + hof.patchCreatedFns(newImpl): patchId
- *        where:
+ *        WHERE:
  *          - newImpl(priorImpl, ...args): *
  *            ... a function implementing the patch, supplied:
  *                  - priorImpl ... a function representing the prior implementation
  *                                  (typically invoked in newImpl)
  *                  - args ........ the run-time arguments supplied to the createdFn
- *          - patchId ............. a patchId that can be used to "unpatch"
+ *          - return  ............. a patchId that can be used to selectively clear patches
+ *        NOTE:
+ *          - Patches are applied to ALL createdFns regardless of when
+ *            they were created.  In other words, an injected patch
+ *            impacts functions created in the past and future.
  * 
- *  + hof.unpatchCreatedFns(patchId): boolean (true: successful unpatch, false: patchId NOT found)
- *        where:
- *          - patchId ............. the patchId to to "unpatch" (supplied from patchCreatedFns)
+ *  + hof.patchCreatedFnsClear([patchId]): boolean
+ *         WHERE:
+ *          - patchId ............. the optional patchId to clear
+ *                                  - can be an array of patchIds
+ *                                  - if omitted, clears ALL patches
+ *          - return  ............. a boolean indicator
+ *                                  - true:  successful clear
+ *                                  - false: patchId NOT found
+ *        NOTE:
+ *          - Patches are cleared in such a way as then never
+ *            existed. In other words, a mid-stream patch that is
+ *            removed (say 2 out of 3) will cause the 3rd patch to
+ *            reference the 1st patches priorImpl.
  * 
  * 
- * PatchableHOF Usage:
- * ===================
+ * PatchableHOF Usage (Author):
+ * ===========================
  * 
  * As mentioned earlier, PatchableHOF is a "helper" class that allows
  * HOF authors to make their utility "patchable".
@@ -113,6 +131,7 @@ import verify     from '../util/verify';
  * (i.e. registered) as follows:
  *   patchableHOF.defineCreated(...)
  * 
+ * ?? provide example
  * 
  * Features
  * ========
@@ -120,7 +139,7 @@ import verify     from '../util/verify';
  * Features of patch-u include:
  *
  *  - multiple patches are supported by using a function chaining process
- *  - unpatch is supported
+ *  - patch clear is supported (selective or all)
  */
 export default class PatchableHOF {
 
@@ -190,16 +209,24 @@ export default class PatchableHOF {
       this._rootedStackCache = {}; // clear our rootedStackCache, allowing it to be re-built with new patch
       return patchId;
     };
-    creatorFn.unpatchCreatedFns = (patchId) => {
-      const removeIndx = this._patches.findIndex( (patch) => patch.patchId===patchId);
-      if (removeIndx === -1) {
-        return false; // patchId NOT found
+    creatorFn.patchCreatedFnsClear = (patchId) => {
+      const patchIds = !patchId 
+                         ? this._patches.map((patch)=>patch.patchId)
+                         : (isArray(patchId) ? patchId : [patchId]);
+      let success = true;
+      for (const patchId of patchIds) {
+        const removeIndx = this._patches.findIndex( (patch) => patch.patchId===patchId);
+        if (removeIndx === -1) {
+          success = false;
+        }
+        else {
+          this._patches.splice(removeIndx, 1); // remove entry
+        }
       }
-      else {
-        this._patches.splice(removeIndx, 1); // remove entry
-        this._rootedStackCache = {};         // clear our rootedStackCache, allowing it to be re-built without the removed patch
-        return true; // successful remove
-      }
+      // clear our rootedStackCache, allowing it to be re-built without the removed patch(s)
+      // ... do this 100% because it may be a partial success (i.e. some entries removed)
+      this._rootedStackCache = {};
+      return success;
     };
 
     // that's all folks :-)
