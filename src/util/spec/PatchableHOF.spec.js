@@ -7,7 +7,7 @@ describe('PatchableHOF tests', () => {
   let f2 = null;
 
   let patchId1 = null;
-  let patchId2 = null;
+  let patchId2 = null; // eslint-disable-line no-unused-vars
   let patchId3 = null;
   let patchId4 = null;
 
