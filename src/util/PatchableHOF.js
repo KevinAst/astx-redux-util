@@ -5,7 +5,7 @@ import verify     from '../util/verify';
 /*
  * NOTE: This discussion is broader scoped than PatchableHOF class, and
  *       is intended to seed the User Guide of a (soon to be published)
- *       patch-u utility.
+ *       astx-patch utility.
  * 
  * PatchableHOF is a "helper" class that allows the authors of Higher
  * Order Function (HOF) to make their utility "patchable".  With the help
@@ -61,7 +61,7 @@ import verify     from '../util/verify';
  * the class prototype ... that is an extra level of indirection where
  * the function is cataloged, and re-cataloged to apply patches.
  * 
- * That is what the patchableFn() patch-u utility accomplishes.  It
+ * That is what the patchableFn() astx-patch utility accomplishes.  It
  * publicly exposes a "patchable" API on the exposed function.
  * 
  *   AI: expand this when it is written (similar to Patchable HOFs - below).
@@ -136,7 +136,7 @@ import verify     from '../util/verify';
  * Features
  * ========
  * 
- * Features of patch-u include:
+ * Features of astx-patch include:
  *
  *  - multiple patches are supported by using a function chaining process
  *  - patch clear is supported (selective or all)
