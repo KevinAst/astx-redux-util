@@ -1,20 +1,15 @@
-import PatchableHOF from '../PatchableHOF';
+import makePatchableHOF from '../makePatchableHOF';
 
 //***
 //*** sample "patchable" HOF creator function (used in our unit tests)
 //***
 
-// helper in making our HOF "patchable"
-const patchableHOF = new PatchableHOF();
-
 // define/expose our HOF utility: myCreator(prefix): fn
-export default patchableHOF.defineCreator( (prefix) => {
+export default makePatchableHOF((prefix) => {
 
   // expose our newly created fn: (msg): 'prefixed msg'
-  return patchableHOF.defineCreated( (msg) => {
-    // NOTE: we use parameter state from BOTH our creator/created
-    //       in proving the full HOF characteristics
-    return `${prefix}: ${msg}`;
-  });
+  // NOTE: we use parameter state from BOTH our creator/created
+  //       in proving the full HOF characteristics
+  return (msg) => `${prefix}: ${msg}`;
 
 });

@@ -1,7 +1,7 @@
 import expect     from 'expect';
 import myCreator  from './myCreator';
 
-describe('PatchableHOF tests', () => {
+describe('makePatchableHOF() tests', () => {
 
   let f1 = null;
   let f2 = null;
