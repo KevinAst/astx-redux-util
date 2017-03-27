@@ -19,7 +19,7 @@ export default AstxReduxUtil.joinReducers(
       Redux.combineReducers({
         x,
         y,
-        curHash: placeboReducer
+        curHash: (s=null)=>s // defaulted state placebo reducer (needed by combineReducers())
       }),
       AstxReduxUtil.conditionalReducer(
         // LAST: maintain curHash
@@ -30,16 +30,10 @@ export default AstxReduxUtil.joinReducers(
           return widget;
         })
     )
-  ),
+  ), null); // initialState
 
-  null); // initialState
 
-// placeboReducer WITH state initialization (required for Redux.combineReducers())
-function placeboReducer(state=null, action) {
-  return state;
-}
-
-// NOTE: The placeboReducer is slightly different than lodash.identity in
+// NOTE: The curHash placebo reducer is slightly different than lodash.identity in
 //       that it defaults the state parameter to null.  
 //
 //       This is required in conjunction Redux.combineReducers(), and is
@@ -48,7 +42,7 @@ function placeboReducer(state=null, action) {
 //       verses using an individual property reducer (which does NOT have
 //       visibility to other widget properties).  
 //
-//       The placeboReducer works around the following
+//       The defaulted state placebo works around the following
 //       Redux.combineReducers() issues:
 //
 //       - with NO curHash entry ... 
@@ -63,5 +57,5 @@ function placeboReducer(state=null, action) {
 //             If the state passed to the reducer is undefined, you must explicitly return the initial state.
 //             The initial state may not be undefined.
 //
-//       - with curHash entry, using placeboReducer ...
+//       - with curHash entry, using defaulted state placebo ...
 //             Life is GOOD!

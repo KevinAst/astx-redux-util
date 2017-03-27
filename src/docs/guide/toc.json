@@ -23,9 +23,9 @@
       "order": 6,
       "title": "originalReducerState"
   },
-  "why": {
+  "ext": {
       "order": 7,
-      "title": "Why astx-redux-util?"
+      "title": "Extending astx-redux-util"
   },
   "logExt": {
       "order": 8,
@@ -35,12 +35,16 @@
       "order": 9,
       "title": "Distribution"
   },
-  "history": {
+  "why": {
       "order": 10,
+      "title": "Why astx-redux-util?"
+  },
+  "history": {
+      "order": 11,
       "title": "Revision History"
   },
   "LICENSE": {
-      "order": 11,
+      "order": 12,
       "title": "MIT License"
   }
 }

@@ -1,6 +1,6 @@
-import identity   from 'lodash.identity';
-import isFunction from 'lodash.isfunction';
-import verify     from '../util/verify';
+import identity    from 'lodash.identity';
+import isFunction  from 'lodash.isfunction';
+import verify      from '../util/verify';
 
 /**
  * Create a higher-order reducer by combining a set of sub-reducer
@@ -13,12 +13,17 @@ import verify     from '../util/verify';
  * provides an alternative to the switch statement (commonly used to
  * provide this control mechanism).
  * 
- * The **User Guide** discusses reducerHash() in more detail (see
+ * The **Dev Guide** discusses reducerHash() in more detail (see
  * {@tutorial conceptHash}), and additional examples can be found in
  * {@tutorial conceptJoin} and {@tutorial fullExample}.
  *
- * **NOTE**: Because this function is so central to the rudimentary aspects of
- * reduction, it is common to provide a value-added {@tutorial logExt}.
+ * **NOTE**: Because reducerHash is so central to the rudimentary
+ * aspect of reduction, it is a common practice to extend it,
+ * promoting a 
+ * [centralized reducer-based logging capability]{@tutorial logExt}, 
+ * with an ability to correlate logging levels to state changes
+ * *(providing a means to filter logs at a high level with minimal
+ * output)*.
  *
  * @param {ActionReducerHash} actionHandlers - a hash of reducer functions,
  * indexed by the standard redux action.type.
@@ -57,7 +62,7 @@ export default function reducerHash(actionHandlers, initialState) {
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
@@ -65,9 +70,7 @@ export default function reducerHash(actionHandlers, initialState) {
     // execute the handler indexed by the action.type (or the identity pass-through)
     return locateHandler(action)(state, action, originalReducerState);
   };
-
 }
-
 
 
 //***

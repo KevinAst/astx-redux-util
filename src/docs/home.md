@@ -47,13 +47,15 @@ can be used in conjunction with one another.
 - {@tutorial originalReducerState} ... a sidebar discussion of
   originalReducerState
 
+- {@tutorial ext} ... how would one extend astx-redux-util?
+
+- {@tutorial logExt} ... a concrete example of reducer-based
+  centralized logging *("smarter logging")*
+
+- {@tutorial dist} ... where to find this utility **(and a local copy of the docs)**
+
 - {@tutorial why} ... why was astx-redux-util created, and how does it
   compare to other utilities
-
-- {@tutorial logExt} ... conceptual extension for reducer-based
-  centralized logging
-
-- {@tutorial dist} ... where to find this utility (**and a local copy of the docs**)
 
 - {@tutorial history} ... peruse various revisions
 

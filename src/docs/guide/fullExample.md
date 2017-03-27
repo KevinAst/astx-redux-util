@@ -3,7 +3,7 @@ conceptJoin} discussion), let's say in addition to the x/y properties,
 we now introduce a curHash - which is a determinate of whether
 application content has changed.
 
-```JavaScript
+```js
 {
   widget: {
     x:       100,
@@ -25,7 +25,7 @@ Building on our last example (in {@tutorial conceptJoin}), we can
 accomplish this new requirement by simply adding yet another reducer
 to our reduceWidget function.
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
@@ -47,7 +47,7 @@ export default AstxReduxUtil.joinReducers(
       Redux.combineReducers({
         x,
         y,
-        curHash: placeboReducer
+        curHash: (s=null)=>s // defaulted state placebo reducer (needed by combineReducers())
       }),
       AstxReduxUtil.conditionalReducer(
         // LAST: maintain curHash
@@ -58,14 +58,7 @@ export default AstxReduxUtil.joinReducers(
           return widget;
         })
     )
-  ),
-
-  null); // initialState
-
-// placeboReducer WITH state initialization (required for Redux.combineReducers())
-function placeboReducer(state=null, action) {
-  return state;
-}
+  ), null); // initialState
 ```
 
 This represents a very comprehensive example of how **Reducer
@@ -95,7 +88,7 @@ functional decomposition!
    reducers has injected a new widget instance (via the
    `originalReducerState !== widget` condition).
 
-3. The placeboReducer is slightly different than lodash.identity in
+3. The curHash placebo reducer is slightly different than lodash.identity in
    that it defaults the state parameter to null.  
 
    This is required in conjunction
@@ -105,7 +98,7 @@ functional decomposition!
    properties*), verses using an individual property reducer (*which
    does NOT have visibility to other widget properties*).
 
-   The placeboReducer works around the following
+   The defaulted state placebo works around the following
    [Redux.combineReducers()](http://redux.js.org/docs/api/combineReducers.html)
    issues:
 
@@ -121,5 +114,5 @@ functional decomposition!
          If the state passed to the reducer is undefined, you must explicitly return the initial state.
          The initial state may not be undefined.
 
-   - with curHash entry, using placeboReducer ...
+   - with curHash entry, using defaulted state placebo ...
          Life is GOOD!

@@ -1,7 +1,7 @@
 Reducers frequently reason about the action.type, very often using a
 switch statement to drive conditional logic:
 
-```JavaScript
+```js
 export default function widget(widget=null, action) {
 
   switch (action.type) {
@@ -25,7 +25,7 @@ a set of sub-reducer functions that are indexed by the standard
 action.type.
 
 *The following snippet, is equivalent to the one above:*
-```
+```js
 import { reducerHash } from 'astx-redux-util';
 
 export default reducerHash({
