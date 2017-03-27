@@ -7,7 +7,7 @@ import verify     from '../util/verify';
  * the supplied reducerFns, based on the conditionalFn() return
  * directive.
  * 
- * The **User Guide** discusses conditionalReducer() in more detail
+ * The **Dev Guide** discusses conditionalReducer() in more detail
  * (see {@tutorial conceptConditional}), and additional examples can
  * be found in {@tutorial conceptJoin} and {@tutorial fullExample}.
  *
@@ -39,13 +39,13 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
   check(isFunction(elseReducerFn), 'elseReducerFn argument is NOT a function');
 
   // expose our new higher-order reducer
-  // NOTE: For more info on he originalReducerState parameter, refer to the User Guide {@tutorial originalReducerState}
+  // NOTE: For more info on he originalReducerState parameter, refer to the Dev Guide {@tutorial originalReducerState}
   return (state=initialState, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
@@ -85,7 +85,7 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  * reduction process.
  * 
  * Further information can be found in the {@tutorial
- * originalReducerState} discussion of the User Guide.
+ * originalReducerState} discussion of the Dev Guide.
  * 
  * @returns {truthy} A truthy value indicating which reducerFn is
  * executed ... truthy: thenReducerFn(), falsy: elseReducerFn().

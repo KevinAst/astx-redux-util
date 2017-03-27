@@ -13,7 +13,7 @@ import verify      from '../util/verify';
  * provides an alternative to the switch statement (commonly used to
  * provide this control mechanism).
  * 
- * The **User Guide** discusses reducerHash() in more detail (see
+ * The **Dev Guide** discusses reducerHash() in more detail (see
  * {@tutorial conceptHash}), and additional examples can be found in
  * {@tutorial conceptJoin} and {@tutorial fullExample}.
  *
@@ -62,7 +62,7 @@ export default function reducerHash(actionHandlers, initialState) {
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the User Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
