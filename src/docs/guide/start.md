@@ -13,7 +13,7 @@ and therefore accessable through any one of the following techniques ...
 
 ### ES6 Import (Native JS)
 
-```JavaScript
+```js
 import { reducerHash, joinReducers }  from 'astx-redux-util';
 -OR-
 import * as AstxReduxUtil from 'astx-redux-util';
@@ -30,7 +30,7 @@ AstxReduxUtil.joinReducers(...)
 
 ### CommonJS
 
-```JavaScript
+```js
 const { reducerHash, joinReducers } = require('astx-redux-util');
 -OR-
 const AstxReduxUtil = require('astx-redux-util');
@@ -45,7 +45,7 @@ AstxReduxUtil.joinReducers(...)
 
 ### AMD
 
-```JavaScript
+```js
 define(['astx-redux-util', 'otherModule'], function(AstxReduxUtil, otherModule) {
   AstxReduxUtil.reducerHash(...)
   AstxReduxUtil.joinReducers(...)

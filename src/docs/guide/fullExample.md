@@ -3,7 +3,7 @@ conceptJoin} discussion), let's say in addition to the x/y properties,
 we now introduce a curHash - which is a determinate of whether
 application content has changed.
 
-```JavaScript
+```js
 {
   widget: {
     x:       100,
@@ -25,7 +25,7 @@ Building on our last example (in {@tutorial conceptJoin}), we can
 accomplish this new requirement by simply adding yet another reducer
 to our reduceWidget function.
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';

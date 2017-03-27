@@ -7,7 +7,7 @@ the conditional aspect is purely an optimization.
 
 This can be accomplished through the {@link conditionalReducer} utility. 
 
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import identity           from 'lodash.identity';
 import * as AstxReduxUtil from 'astx-redux-util';

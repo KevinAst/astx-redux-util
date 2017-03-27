@@ -6,7 +6,7 @@ An example should clarify this concept.
 
 Let's say we have a widget that contains x/y properties:
 
-```JavaScript
+```js
 {
   widget: {
     x: 100,
@@ -18,7 +18,7 @@ Let's say we have a widget that contains x/y properties:
 The individual x/y properties are nicely managed by the standard
 [Redux.combineReducers] function:
 
-```JavaScript
+```js
 import * as Redux  from 'redux';
 import x           from '../appReducer/x';
 import y           from '../appReducer/y';
@@ -44,7 +44,7 @@ In this case, **we have more work to do**:
 
 One way to accomplish this is through the following procedural logic:
 
-```JavaScript
+```js
 import * as Redux  from 'redux';
 import x           from '../appReducer/x';
 import y           from '../appReducer/y';
@@ -91,7 +91,7 @@ A third utility, the {@link joinReducers} function, combines two or
 more reducers logically executing each in sequence.
 
 *The following snippet, is equivalent to the one above:*
-```JavaScript
+```js
 import * as Redux         from 'redux';
 import * as AstxReduxUtil from 'astx-redux-util';
 import x                  from '../appReducer/x';
