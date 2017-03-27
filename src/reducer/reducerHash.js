@@ -1,8 +1,6 @@
-import identity          from 'lodash.identity';
-import isFunction        from 'lodash.isfunction';
-import verify            from '../util/verify';
-import makePatchableHOF  from '../util/makePatchableHOF';
-
+import identity    from 'lodash.identity';
+import isFunction  from 'lodash.isfunction';
+import verify      from '../util/verify';
 
 /**
  * Create a higher-order reducer by combining a set of sub-reducer
@@ -35,7 +33,7 @@ import makePatchableHOF  from '../util/makePatchableHOF';
  * 
  * @returns {reducerFn} a newly created reducer function (described above).
  */
-function reducerHash(actionHandlers, initialState) {
+export default function reducerHash(actionHandlers, initialState) {
 
   // validate params
   const check = verify.prefix('AstxReduxUtil.reducerHash() parameter violation: ');
@@ -73,10 +71,6 @@ function reducerHash(actionHandlers, initialState) {
     return locateHandler(action)(state, action, originalReducerState);
   };
 }
-
-// NOTE: JSDoc cannot handle an in-line "export default makePatchableHOF()" above, so we do it here
-export default makePatchableHOF(reducerHash);
-
 
 
 //***
