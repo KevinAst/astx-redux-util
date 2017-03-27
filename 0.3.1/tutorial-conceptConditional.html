@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Conditional Reduction - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Dev Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-ext.html">Extending astx-redux-util</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-dist.html">Distribution</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>API Reference</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Conditional Reduction</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <!-- KJB: removed level 2 header
+    <h2>Conditional Reduction</h2>
+    -->
+</header>
+
+<article>
+    <p>There are times where you may wish to conditionally apply a reduction.</p>
+<p>There can be many reasons for this.  Take a simple example where you
+wish to bypass a reduction process upon determination that an action
+will not impact an entire branch of your state tree.  In this example
+the conditional aspect is purely an optimization.</p>
+<p>This can be accomplished through the <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> utility. </p>
+<pre class="prettyprint source lang-js"><code>import * as Redux         from 'redux';
+import identity           from 'lodash.identity';
+import * as AstxReduxUtil from 'astx-redux-util';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
+
+export default AstxReduxUtil.conditionalReducer(
+  // conditionally apply when action.type begins with 'widget.edit'
+  (curState, action, originalReducerState) => action.type.startsWith('widget.edit'),
+  Redux.combineReducers({
+    x,
+    y
+  }), identity, {});</code></pre><p>Here we only invoke the supplied reducer
+(<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers</a>)
+when the action.type begins with 'widget.edit'.  In our contrived
+example, our action types are organized with a federated namespace, so
+it is easy to isolate which actions will impact various parts of our
+state.</p>
+<p><strong>Please Note</strong> that a <code>{}</code> <a href="global.html#InitialState"><code>InitialState</code></a> value is applied in
+this reduction, which provides the fall-back state value during the
+state initialization boot-strap process.</p>
+<p><strong>Also Note:</strong> that normally it is not necessary to supply the
+<code>elseReducerFn</code> <a href="global.html#conditionalReducer"><code>conditionalReducer</code></a> parameter (the third),
+because it defaults to the <a href="https://lodash.com/docs#identity">identity
+function</a> function, which retains
+the state for a falsy directive.  In this case however, we had to
+manually pass the identity function, in order to supply the subsequent
+<a href="global.html#InitialState"><code>InitialState</code></a> parameter.</p>
+<p><strong>More to Come:</strong> This example is merely intended to introduce you to
+the concept of conditional reduction.  It is somewhat &quot;contrived&quot;,
+allowing us to discuss the topic in isolation.  In reality, this
+example may be inappropriate because the optimization is minimal, and
+it tends to make the code more brittle.  Keep in mind, however,
+<strong>there are more legitimate reasons to apply conditional reduction</strong>
+... we will see this in subsequent discussions.</p>
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.1)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
