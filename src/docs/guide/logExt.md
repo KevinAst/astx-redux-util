@@ -73,49 +73,7 @@ consider in your evaluation:
 Our logging extension wraps {@link reducerHash} as follows
 ([astx-redux-util_loggerPolyfill.js](https://github.com/KevinAst/GeekU/blob/master/src/client/startup/astx-redux-util_loggerPolyfill.js)):
 
-```js
-// value-added reducerHash.withLogging()
-// ... a wrapper TO reducerHash() - a higher-order function (HOF)
-//     - WITH an additional parameter:
-//        * log: {Log} the log to use in emitting reducer-based probes
-//                     NOTE: the log's filterName is assumed to be the state element name
-AstxReduxUtil.reducerHash.withLogging = (log, ...reducerHashArgs) => {
-
-  // validate the supplied log parameter
-  assert(log.reducerProbe,
-         'AstxReduxUtil.reducerHash.withLogging() requires a log parameter with a log.reducerProbe() method.');
-
-  // invoke the original reducerHash()
-  const reducerFn = AstxReduxUtil.reducerHash(...reducerHashArgs);
-
-  // expose actionHandlers ... used in additional logging characteristics
-  const actionHandlers = reducerHashArgs[0];
-
-  // wrap the resultant reducerFn to apply our value-added logging
-  return (...reducerArgs) => {
-
-    const state  = reducerArgs[0];
-    const action = reducerArgs[1];
-
-    // invoke the original reducerFn()
-    // NOTE1: The es6 rest syntax accommodates astx-redux-util's
-    //        additional "originalReducerState" argument
-    // NOTE2: Result (via this extension) is expected to be:
-    //        [nextState, logMsgFn|null]
-    const reducerResult   = reducerFn(...reducerArgs);
-    const handlerInvolved = actionHandlers[action.type] ? true : false;
-    const [nextState, logMsgFn] = handlerInvolved
-                                   ? reducerResult
-                                   : [reducerResult, null]; // pass-throughs return the same state
-                                                            // (i.e. NOT wrapped in array)
-    // emit our standardized reducer-based logging probe
-    log.reducerProbe(action, state!==nextState, logMsgFn);
-
-    return nextState;
-  };
-
-};
-```
+<script src="https://gist.github.com/KevinAst/a0d7059d10da278b8fc50f1fbd7a3be2.js"></script>
 
 The inline comments should be self-explanatory, but here are some
 high-level points of interest:
@@ -145,34 +103,13 @@ high-level points of interest:
 
 
 
-
 ## log.reducerProbe()
 
 We also polyfill our Log object with the `log.reducerProbe()` method
 that standardizes ALL reducer-related logging probes
 ([astx-redux-util_loggerPolyfill.js](https://github.com/KevinAst/GeekU/blob/master/src/client/startup/astx-redux-util_loggerPolyfill.js)):
 
-```js
-Log.prototype.reducerProbe = function(action, stateChanged, reducerMsgFn) {
-  const logLevel = (stateChanged)
-                     ? Log.INSPECT   // state change
-                     : (reducerMsgFn)
-                        ? Log.DEBUG  // no state change, but app-specific logic
-                        : Log.TRACE; // no state change, and no app-logic
-
-  // emit the "dynamic" logging probe
-  this.log(logLevel, ()=> {
-    const stateChangedMsg = stateChanged
-                             ? 'STATE CHANGED'
-                             : 'STATE UN-CHANGED';
-    const reducerMsg      = reducerMsgFn
-                             ? `,  Reducer Msg: ${reducerMsgFn()}`
-                             : '';
-    // ex: STATE CHANGED: appState.editSelCrit.extra.fieldOptions,  Action: 'selCrit.edit',  Reducer Msg: set fieldOptions from action
-    return `${stateChangedMsg}: ${this.filterName},  Action: '${action.type}'${reducerMsg}`;
-  });
-};
-```
+<script src="https://gist.github.com/KevinAst/039f7279fe5deb445b003fae045bf029.js"></script>
 
 A **key aspect** passed to this method is **an indicator of whether the
 state has changed**, which dynamically alters the logging level, as
@@ -201,71 +138,7 @@ fullExample} was derived from *(conceptually replace `widget` with
 *(all reducers are found at
 [GeekU/src/client/state](https://github.com/KevinAst/GeekU/tree/master/src/client/state))*.
 
-
-```js
-import * as Redux       from 'redux';
-import * as AstxRedux   from 'astx-redux-util';
-import {AT}             from '../actions';
-import SelCrit          from '../../shared/domain/SelCrit';
-import Log              from '../../shared/util/Log';
-
-import placebo  from './placeboReducer';
-import name     from './appState.editSelCrit.selCrit.name';
-import desc     from './appState.editSelCrit.selCrit.desc';
-import fields   from './appState.editSelCrit.selCrit.fields';
-import sort     from './appState.editSelCrit.selCrit.sort';
-import filter   from './appState.editSelCrit.selCrit.filter';
-import distinguishMajorSortField from './appState.editSelCrit.selCrit.distinguishMajorSortField';
-
-const log         = new Log('appState.editSelCrit.selCrit');
-const log4curHash = new Log('appState.editSelCrit.selCrit.curHash');
-
-export default AstxRedux.joinReducers(
-  // FIRST: determine content shape (i.e. {} or null)
-  AstxRedux.reducerHash.withLogging(log, {
-    [AT.selCrit.edit]:       (selCrit, action) => [action.selCrit, ()=>`set selCrit from action.selCrit: ${FMT(action.selCrit)}`],
-    [AT.selCrit.edit.close]: (selCrit, action) => [null,           ()=>'set selCrit to null'],
-  }),
-  AstxRedux.conditionalReducer(
-    // NEXT: maintain individual selCrit fields
-    //       ONLY when selCrit has content (i.e. is being edited)
-    (selCrit, action, originalReducerState) => selCrit !== null,
-    AstxRedux.joinReducers(
-      Redux.combineReducers({
-        _id:      placebo,
-        key:      placebo,
-        userId:   placebo,
-        itemType: placebo,
-        lastDbModDate: placebo,
-
-        name,
-        desc,
-
-        fields,
-        sort,
-        distinguishMajorSortField,
-        filter,
-
-        dbHash:  placebo,
-        curHash: placebo,
-      }),
-      AstxRedux.conditionalReducer(
-        // LAST: maintain curHash
-        //       ONLY when selCrit has content (see condition above) -AND- has changed
-        (selCrit, action, originalReducerState) => originalReducerState !== selCrit,
-        (selCrit, action) => {
-          const priorHash = selCrit.curHash;
-
-          selCrit.curHash = SelCrit.hash(selCrit); // OK to mutate (because of changed instance)
-
-          log4curHash.reducerProbe(action,
-                                   priorHash !== selCrit.curHash,
-                                   ()=>`resetting selCrit.curHash (because selCrit changed) FROM: '${priorHash}' TO: '${selCrit.curHash}'`);
-          return selCrit;
-        })
-    )
-  ), null); // initialState
-```
+<script src="https://gist.github.com/KevinAst/d1d179fea13d4f86f461d63cd7eeeabf.js"></script>
 
 Notice:
 
