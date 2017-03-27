@@ -39,9 +39,16 @@ Release                  | What                                   | *When*
 
 ??? RUNNING NOTES HERE
 
+**NOTE**: This release is a documentation enhancement only. **The API
+  is NOT impacted** in any way.
+
+1. Docs were refined to include {@tutorial ext} along with an
+   extensive {@tutorial logExt} section, showing how {@link
+   reducerHash} can play a key roll in implementing a centralized
+   reducer-based logging utility.
+
 1. {@tutorial fullExample} was streamlined, replacing the
    placeboReducer with an anonymous arrow function.
-
 
 
 

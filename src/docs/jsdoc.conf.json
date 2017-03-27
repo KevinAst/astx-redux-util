@@ -19,8 +19,13 @@
     "cleverLinks":    true,
     "monospaceLinks": true,
     "default": {
-      "includeDate":       false  // exclude date/time from footers
+      "includeDate":       false, // exclude date/time from footers
 //    "outputSourceFiles": false  // exclude source files (line numbers are not accurate when babel transpiling)
+      "staticFiles": {
+        "include": [
+          "./src/docs/img"
+        ]
+      }
     }
   },
   "opts": { // command line options here

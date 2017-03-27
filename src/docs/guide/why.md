@@ -14,14 +14,14 @@ and tooling required for publishing a micro-library.  This also
 includes various aspects of project documentation (something that is
 important to me).
 
-The astx-redux-util library was pulled from a sandbox project that I
-used to study several technologies and frameworks.
+The astx-redux-util library was pulled from a sandbox project
+([GeekU](https://github.com/KevinAst/GeekU)) that I use to study
+several technologies and frameworks.
 
-My hope is to eventually promote additional astx-redux-util
-functionality from my sandbox project.  One aspect in particular is
-related to managing action creators with a twist: *consistently
-maintaining action types in conjunction with their corresponding
-action creators*.
+I hope to eventually promote additional astx-redux-util functionality
+from this sandbox.  One aspect in particular is related to managing
+action creators with a twist: *consistently maintaining action types
+in conjunction with their corresponding action creators*.
 
 I hope you enjoy this effort, and comments are always welcome.
 

@@ -27,12 +27,12 @@ import verify     from '../util/verify';
  * 
  *  + hof.patchCreatedFns(newImpl): patchId
  *        WHERE:
- *         - newImpl(priorImpl, ...args): *
+ *         - newImpl(priorImpl, ...createdArgs): *
  *           ... a function implementing the patch, supplied:
- *                 - priorImpl ... a function representing the prior
- *                                 implementation (typically invoked in newImpl)
- *                 - args ........ the run-time args supplied to the createdFn
- *         - return  ............. a patchId used to selectively clear patches
+ *                 - priorImpl .... a function representing the prior
+ *                                  implementation (typically invoked in newImpl)
+ *                 - createdArgs .. the run-time args supplied to the createdFn
+ *         - return  .............. a patchId used to selectively clear patches
  * 
  *  + hof.patchCreatedFnsClear([patchId]): boolean
  *         WHERE:
@@ -90,7 +90,7 @@ export default function makePatchableHOF(creatorFn) {
   //       [
   //         {
   //           patchId: unique-identifier-for-this-patch,
-  //           newImpl: (priorImpl, ...args): *
+  //           newImpl: (priorImpl, ...createdArgs): *
   //         },
   //         ...
   //       ]
@@ -99,23 +99,23 @@ export default function makePatchableHOF(creatorFn) {
   // cache of fully resolved stack chain patches for EACH of our registered createdFn
   // ... keyed by createdFn.sym (a Symbol uniquely identifying rootFn)
   // ... STRUCTURE:
-  //       _rootedStackCache[createdFn.sym]: (...args) => {funct-with-back-refs to priorImpl}
+  //       _rootedStackCache[createdFn.sym]: (...createdArgs) => {funct-with-back-refs to priorImpl}
   let _rootedStackCache = {};
 
 
   //***
-  //*** applyPatch(rootFn, ...args) ... internal helper that executes the supplied
-  //***                                 rootFn (at run-time), dynamically applying
-  //***                                 self's patches.
+  //*** applyPatch(rootFn, ...rootArgs) ... internal helper that executes the supplied
+  //***                                     rootFn (at run-time), dynamically applying
+  //***                                     self's patches.
   //***    WHERE: 
-  //***      - rootFn:  the base function to execute, and apply patches
-  //***                 (same as createdFn)
-  //***      - ...args: are the run-time arguments passed to rootFn
+  //***      - rootFn:   the base function to execute, and apply patches
+  //***                  (same as createdFn)
+  //***      - rootArgs: the run-time arguments passed to rootFn
   //***    RETURNS:
   //***      the result of rootFn invocation, with applied patches.
   //***
 
-  const applyPatch = (rootFn, ...args) => {
+  const applyPatch = (rootFn, ...rootArgs) => {
 
     // locate our rootedStackCache, dynamically create/catalog on first usage
     let rootedStackCache = _rootedStackCache[rootFn.sym];
@@ -123,7 +123,7 @@ export default function makePatchableHOF(creatorFn) {
       // build up our entire stack chain of patches (seeded with the supplied rootFn)
       rootedStackCache = _rootedStackCache[rootFn.sym] = 
         _patches.reduce( (priorImpl, patch) => (...args) => patch.newImpl(priorImpl, ...args),
-                                   rootFn);
+                         rootFn);
       // console.log('CREATING CACHE (PatchableHOF.applyPatch() crude VISUAL optimization check)');
     }
     // else {
@@ -131,7 +131,7 @@ export default function makePatchableHOF(creatorFn) {
     // }
 
     // indirectly invoke the supplied rootFn, after applying any registered patches
-    return rootedStackCache(...args);
+    return rootedStackCache(...rootArgs);
   };
 
 
@@ -139,10 +139,10 @@ export default function makePatchableHOF(creatorFn) {
   //*** wrap the supplied creatorFn, applying our patches to it's returned createdFn
   //***
 
-  const creatorFnWrapper = (...args) => {
+  const creatorFnWrapper = (...creatorArgs) => {
 
     // execute our original creatorFn
-    const createdFn = creatorFn(...args);
+    const createdFn = creatorFn(...creatorArgs);
     
     // insuring it returns a function
     const check = verify.prefix('makePatchableHOF ... run-time invocation of higher-order function is expected to ');
@@ -150,7 +150,7 @@ export default function makePatchableHOF(creatorFn) {
 
     // wrap (and return) the newly createdFn to apply our patches
     createdFn.sym = Symbol(); // register a Symbol, which uniquely identifies this fn occurance
-    return (...args) => applyPatch(createdFn, ...args);
+    return (...createdArgs) => applyPatch(createdFn, ...createdArgs);
   };
 
 
@@ -209,7 +209,7 @@ export default function makePatchableHOF(creatorFn) {
  *
  * @callback hof
  * 
- * @param {...*} [args] - The arguments (if any) expected by the HOF.
+ * @param {...*} [creatorArgs] - The arguments (if any) expected by the HOF.
  * 
  * @returns {function} The createdFn exposed by this HOF.
  * 
@@ -381,12 +381,12 @@ properties of the function itself).  This "patching" API includes:
 
  + hof.patchCreatedFns(newImpl): patchId
        WHERE:
-        - newImpl(priorImpl, ...args): * AI: may want to reference newImpl discussion (above)
+        - newImpl(priorImpl, ...createdArgs): * AI: may want to reference newImpl discussion (above)
           ... a function implementing the patch, supplied:
-                - priorImpl ... a function representing the prior
-                                implementation (typically invoked in newImpl)
-                - args ........ the run-time args supplied to the createdFn
-        - return  ............. a patchId used to selectively clear patches
+                - priorImpl .... a function representing the prior
+                                 implementation (typically invoked in newImpl)
+                - createdArgs .. the run-time args supplied to the createdFn
+        - return  .............. a patchId used to selectively clear patches
 
  + hof.patchCreatedFnsClear([patchId]): boolean
         WHERE:
