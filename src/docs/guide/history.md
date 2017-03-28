@@ -40,6 +40,9 @@ Release                  | What                                   | *When*
 
 ?? running notes here ...
 
+PROB NOT IMPORTANT ENOUGH TO MENTION:
+ - changed "User Guide" to "Dev Guide" (missed references in README/SCRIPTS)
+
 
 
 <!-- ************************************************************* -->
