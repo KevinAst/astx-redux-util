@@ -47,7 +47,7 @@ test ................... run ALL unit tests on master src (same as 'test:all' or
                          ===========================================
 test:lib ............... run unit tests that are part of our published library
 test:lib:watch ......... ditto (continuously)
-test:samples ........... run unit tests from our sample code (in the User Guide)
+test:samples ........... run unit tests from our sample code (in the Dev Guide)
 test:samples:watch ..... ditto (continuously)
 test:all ............... run ALL our unit tests
 test:all:watch ......... ditto (continuously)
@@ -66,7 +66,7 @@ test:plat:all
 DOCUMENTATION
 =============
 
-docs ......... build docs from JavaDoc comments (src/*.js), and User Guide (src/docs)
+docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
 docs:clean ... clean the machine-generated docs directory
 
 

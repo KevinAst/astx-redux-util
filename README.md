@@ -26,7 +26,7 @@ can be used in conjunction with one another.
 
 Complete documentation can be found at
 https://astx-redux-util.js.org/, which includes both **API** details,
-and a **User Guide** with full and thorough **examples**!
+and a **Dev Guide** with full and thorough **examples**!
 
 
 ## Install

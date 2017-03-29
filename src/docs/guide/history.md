@@ -16,6 +16,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release                  | What                                   | *When*
 -------------------------|----------------------------------------|------------------
+&bull; [v0.3.2](#v0.3.2) | TBD                                    | *Mar ??, 2017*
 &bull; [v0.3.1](#v0.3.1) | Extension Support with Logging Example | *Mar 27, 2017*
 &bull; [v0.3.0](#v0.3.0) | Parameter Validation                   | *Mar 13, 2017*
 &bull; [v0.2.0](#v0.2.0) | Added support for initialState         | *Mar 9, 2017*
@@ -25,6 +26,22 @@ Release                  | What                                   | *When*
 
 
 ## Details ...
+
+
+
+<!-- ************************************************************* -->
+<h4 class="name" id="v0.3.2">v0.3.2 - TBD *(Mar ??, 2017)*</h4>
+
+[Full Docs](https://astx-redux-util.js.org/0.3.2)
+&bull;
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.3.2)
+&bull;
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.2)
+
+?? running notes here ...
+
+PROB NOT IMPORTANT ENOUGH TO MENTION:
+ - changed "User Guide" to "Dev Guide" (missed references in README/SCRIPTS)
 
 
 
