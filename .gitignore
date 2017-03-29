@@ -9,6 +9,10 @@
 # documentation (generated via "npm run docs")
 /docs/
 
+# code coverage reports
+/.nyc_output/
+/coverage/
+
 # logs
 logs
 *.log
