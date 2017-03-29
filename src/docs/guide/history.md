@@ -8,6 +8,8 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 <!--- Badges for CI Builds ---> 
 [![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master)](https://travis-ci.org/KevinAst/astx-redux-util)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Coverage)
 [![Known Vulnerabilities](https://snyk.io/test/github/kevinast/astx-redux-util/badge.svg)](https://snyk.io/test/github/kevinast/astx-redux-util)
 [![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
 
@@ -38,6 +40,12 @@ Release                  | What                                   | *When*
 &bull;
 [GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.2)
 
+**NOTE**: This release is a tooling enhancement only. **The API is NOT
+  impacted** in any way.
+
+1. Introduce project code coverage, with badges for both grade and coverage.
+
+
 ?? running notes here ...
 
 PROB NOT IMPORTANT ENOUGH TO MENTION:
@@ -55,7 +63,7 @@ PROB NOT IMPORTANT ENOUGH TO MENTION:
 [GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.1)
 
 **NOTE**: This release is a documentation enhancement only. **The API
-  is NOT impacted** in any way.
+          is NOT impacted** in any way.
 
 1. The Dev Guide was refined to include {@tutorial ext} along with an
    extensive {@tutorial logExt} section, showing how {@link

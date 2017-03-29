@@ -36,6 +36,8 @@ prepublish .............. cleanly build/test all machine generated resources,
                             - clean (delete) ALL machine generated resources
                             - build/test all bundled libraries (for publication)
                             - build documentation
+                            - generate the code coverage report
+
 
 
 TESTING
@@ -67,25 +69,30 @@ DOCUMENTATION
 =============
 
 docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
-docs:clean ... clean the machine-generated docs directory
+docs:clean ... clean the machine-generated docs/ directory
 
 
 CODE QUALITY
 ============
 
+check ... convenience script to:
+           - verify code quality (lint), and
+           - run tests (against our master src), and
+           - generate the code coverage report
+
 lint .... verify code quality, linting BOTH production and test code.
           NOTE: Real-time linting is ALSO applied on production code
                 through our WebPack bundler (via 'build:watch')!
 
-check ... convenience script to:
-           - verify code quality (lint) and
-           - run tests (against our master src)
+cov ........... evaluate code coverage in executing our test suite (gen report in coverage/)
+cov:publish ... publish code coverage results to codacy.com (for visiblity)
+cov:clean ..... clean the machine-generated coverage/ directory
 
 
 MISC
 ====
 
-clean ... cleans ALL machine-generated directories (build, and docs)
+clean ... cleans ALL machine-generated directories (build, docs, and coverage)
 ```
 
 
