@@ -31,7 +31,7 @@
     "build:plat:es":         "cross-env BABEL_ENV=es       babel src --out-dir es  --ignore spec,tooling",
     "build:plat:lib":        "cross-env BABEL_ENV=commonjs babel src --out-dir lib --ignore spec,tooling",
     "build:watch":           "npm run build -- --watch",
-    "check":                 "npm-run-all lint test cov",
+    "check":                 "npm-run-all lint cov",
     "clean":                 "npm-run-all build:clean docs:clean cov:clean",
     "cov":                   "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:babel-core/register --colors \"src/**/*.spec.js\"",
     "cov:clean":             "rimraf coverage",

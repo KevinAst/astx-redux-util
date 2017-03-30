@@ -44,7 +44,7 @@ import moduleFromEs        from '../../es/index';
 
 
 //***
-//*** dynamically define our moduleUnderTest (dynamically driven from the MODULE_PLATFORM env var)
+//*** dynamically define our moduleUnderTest (driven from the MODULE_PLATFORM env var)
 //***
 
 const { MODULE_PLATFORM } = process.env;

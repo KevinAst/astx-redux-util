@@ -54,22 +54,15 @@ test:samples:watch ..... ditto (continuously)
 test:all ............... run ALL our unit tests
 test:all:watch ......... ditto (continuously)
 
-                         Following runs ALL tests ON specified target
-                         ============================================
-test:plat:{platform} ... run ALL unit tests on specified Target Platform (see below)
+                         Following runs ALL tests ON specified Target Platform
+                         =====================================================
+test:plat:{platform} ... see discussion below
 test:plat:src
 test:plat:bundle
 test:plat:bundle.min
 test:plat:lib
 test:plat:es
 test:plat:all
-
-
-DOCUMENTATION
-=============
-
-docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
-docs:clean ... clean the machine-generated docs/ directory
 
 
 CODE QUALITY
@@ -87,6 +80,13 @@ lint .... verify code quality, linting BOTH production and test code.
 cov ........... evaluate code coverage in executing our test suite (gen report in coverage/)
 cov:publish ... publish code coverage results to codacy.com (for visiblity)
 cov:clean ..... clean the machine-generated coverage/ directory
+
+
+DOCUMENTATION
+=============
+
+docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
+docs:clean ... clean the machine-generated docs/ directory
 
 
 MISC
@@ -134,7 +134,7 @@ continuously ... just once, after a clean** (to prime the pump).
 ## Target Platform
 
 Some npm scripts target a platform (i.e. the JS module ecosystem),
-using 'plat nomenclature (i.e. platform).
+using 'plat' nomenclature (i.e. platform).
 
 Specifically:
 
@@ -144,6 +144,7 @@ Specifically:
 Supported platforms are:
 
 ```
+Env Variable
 MODULE_PLATFORM  What                 Bindings  Found In               NOTES                   
 ===============  ===================  ========  =====================  ========================
 src              master ES6 source    ES        src/*.js               DEFAULT                 
