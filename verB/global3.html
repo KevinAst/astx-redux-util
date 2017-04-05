@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>API Reference - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<div id="main">
+    
+    <h1 class="page-title">API Reference</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="conditionalReducer"><span class="type-signature"></span>conditionalReducer<span class="signature">(conditionalFn, thenReducerFn, elseReducerFn<span class="signature-attributes">opt</span>, initialState<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global3.html#reducerFn">reducerFn</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a higher-order reducer that conditionally executes one of
+the supplied reducerFns, based on the conditionalFn() return
+directive.</p>
+<p>The <strong>Dev Guide</strong> discusses conditionalReducer() in more detail
+(see <a href="tutorial-conceptConditional.html">Conditional Reduction</a>), and additional examples can
+be found in <a href="tutorial-conceptJoin.html">Joining Reducers</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>conditionalFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#conditionalReducerCB">conditionalReducerCB</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>a callback function
+whose return value determines which reducerFn is executed
+... truthy: thenReducerFn(), falsy: elseReducerFn().</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>thenReducerFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the &quot;wrapped&quot; reducer invoked
+when conditionalFn returns truthy.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>elseReducerFn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>identity</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>the
+optional &quot;wrapped&quot; reducer invoked when conditionalFn returns
+falsy.  DEFAULT: <a href="https://lodash.com/docs#identity">identity function</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initialState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#InitialState">InitialState</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>the optional fall-back state
+value used during the state initialization boot-strap process.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a newly created reducer function (described above).</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="joinReducers"><span class="type-signature"></span>joinReducers<span class="signature">(&hellip;reducerFns, initialState<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global3.html#reducerFn">reducerFn</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_joinReducers.js.html">reducer/joinReducers.js</a>, <a href="reducer_joinReducers.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a higher-order reducer by combining two or more reducers,
+logically executing each in sequence (in essence combining their
+functionality into one).  This is useful when combining various
+reducer types into one logical construct.</p>
+<p><strong>Please Note:</strong> Because each reducer is able to build on what has
+been accomplished by a prior reducer, joinReducers cumulatively
+passes the state parameter that was returned from any prior reducer
+(in the chain of reducers to execute).  In essence this is an
+accumulative process.  While this does NOT relax the immutable
+constraint of the reducer's state parameter, it is possible for a
+down-stream reducer to receive a state parameter that is a
+different instance from the start of the reduction process (because
+an up-stream reducer needed to alter it in some way).</p>
+<p>The <strong>Dev Guide</strong> discusses joinReducers() in more detail
+(see <a href="tutorial-conceptJoin.html">Joining Reducers</a>), and additional examples can
+be found in <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reducerFns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>two or more reducer functions to join
+together.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initialState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#InitialState">InitialState</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the optional fall-back state
+value used during the state initialization boot-strap process.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a newly created reducer function (described above).</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="reducerHash"><span class="type-signature"></span>reducerHash<span class="signature">(actionHandlers, initialState<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="global3.html#reducerFn">reducerFn</a>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Create a higher-order reducer by combining a set of sub-reducer
+functions that are indexed by the standard action.type.  When no
+action.type is acted on, the original state is merely
+passed-through (using the <a href="https://lodash.com/docs#identity">identity
+function</a>).</p>
+<p>This is one of the more prevalent composition reducers, and
+provides an alternative to the switch statement (commonly used to
+provide this control mechanism).</p>
+<p>The <strong>Dev Guide</strong> discusses reducerHash() in more detail (see
+<a href="tutorial-conceptHash.html">Basics</a>), and additional examples can be found in
+<a href="tutorial-conceptJoin.html">Joining Reducers</a> and <a href="tutorial-fullExample.html">A Most Excellent Example</a>.</p>
+<p><strong>NOTE</strong>: Because reducerHash is so central to the rudimentary
+aspect of reduction, it is a common practice to extend it,
+promoting a 
+<a href="tutorial-logExt.html">centralized reducer-based logging capability</a>, 
+with an ability to correlate logging levels to state changes
+<em>(providing a means to filter logs at a high level with minimal
+output)</em>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actionHandlers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#ActionReducerHash">ActionReducerHash</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>a hash of reducer functions,
+indexed by the standard redux action.type.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initialState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#InitialState">InitialState</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the optional fall-back state
+value used during the state initialization boot-strap process.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a newly created reducer function (described above).</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="Action">Action</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tooling_reduxAPI.js.html">tooling/reduxAPI.js</a>, <a href="tooling_reduxAPI.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Symbol</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The action type.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>whatever</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Additional app-specific payload (as needed).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>A standard <a href="http://redux.js.org/docs/basics/Actions.html">redux Action object</a>
+that drives the reduction process.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="ActionReducerHash">ActionReducerHash</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_reducerHash.js.html">reducer/reducerHash.js</a>, <a href="reducer_reducerHash.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>actionType1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The reducer function servicing: 'actionType1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>actionType2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The reducer function servicing: 'actionType2'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>...more</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#reducerFn">reducerFn</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>...etc.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>A hash of reducer functions, indexed by the standard redux
+action.type.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="conditionalReducerCB"><span class="type-signature"></span>conditionalReducerCB<span class="signature">(state, action, originalReducerState)</span><span class="type-signature"> &rarr; {truthy}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducer_conditionalReducer.js.html">reducer/conditionalReducer.js</a>, <a href="reducer_conditionalReducer.js.html#line86">line 86</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>A callback function (used in <a href="global3.html#conditionalReducer"><code>conditionalReducer</code></a>) whose
+return value determines which reducerFn is executed.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current immutable state that is the
+reduction target.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#Action">Action</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The standard redux Action object that
+drives the reduction process.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>originalReducerState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The immutable state at the time
+of the start of the reduction process.</p>
+<p>This is useful in determining whether state has changed within a
+series of reductions <a href="global3.html#joinReducers"><code>joinReducers</code></a> ... because each
+individual reducer only has visibility of the state within it's own
+reduction process.</p>
+<p>Further information can be found in the <a href="tutorial-originalReducerState.html">originalReducerState</a> discussion of the Dev Guide.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>A truthy value indicating which reducerFn is
+executed ... truthy: thenReducerFn(), falsy: elseReducerFn().</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">truthy</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+            
+                
+<h4 class="name" id="InitialState">InitialState</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tooling_reduxAPI.js.html">tooling/reduxAPI.js</a>, <a href="tooling_reduxAPI.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>All astx-redux-util reducer creators, expose an <code>initialState</code>
+parameter which optionally provides a fall-back state value to use
+during the state initialization boot-strap process.</p>
+<p>In general, redux expects your state to have concrete values
+(i.e. something other than <code>undefined</code>).  This means that the
+reduction entry point to each state element should define a
+default.  Keeping this in mind, the <code>initialState</code> parameter is
+optional, because some reducers are &quot;by design&quot; (when combined in a
+composition) intended to be mid-stream processors (i.e. NOT the
+reduction entry point).</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">*</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="reducerFn"><span class="type-signature"></span>reducerFn<span class="signature">(state, action)</span><span class="type-signature"> &rarr; {*}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tooling_reduxAPI.js.html">tooling/reduxAPI.js</a>, <a href="tooling_reduxAPI.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>A standard <a href="http://redux.js.org/docs/basics/Reducers.html">redux reducer function</a>
+that is responsible for state changes.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current immutable state that is the reduction target.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global3.html#Action">Action</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The standard redux action which drives the reduction process.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The resulting state after reduction.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+            
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.2)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
