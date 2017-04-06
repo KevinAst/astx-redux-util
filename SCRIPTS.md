@@ -32,7 +32,8 @@ build:clean ............. clean all machine-generated build directories
 
 prepublish .............. cleanly build/test all machine generated resources,
                           a pre-publication utility:
-                            - check code quality (lint)
+                            - verify code quality (lint)
+                            - show outdated installed packages
                             - clean (delete) ALL machine generated resources
                             - build/test all bundled libraries (for publication)
                             - build documentation
@@ -69,8 +70,9 @@ CODE QUALITY
 ============
 
 check ... convenience script to:
-           - verify code quality (lint), and
-           - run tests (against our master src), and
+           - verify code quality (lint)
+           - show outdated installed packages
+           - run tests (against our master src)
            - generate the code coverage report
 
 lint .... verify code quality, linting BOTH production and test code.
@@ -80,6 +82,9 @@ lint .... verify code quality, linting BOTH production and test code.
 cov ........... evaluate code coverage in executing our test suite (gen report in coverage/)
 cov:publish ... publish code coverage results to codacy.com (for visiblity)
 cov:clean ..... clean the machine-generated coverage/ directory
+
+pkgReview ... show outdated installed packages
+
 
 
 DOCUMENTATION

@@ -18,7 +18,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release                  | What                                   | *When*
 -------------------------|----------------------------------------|------------------
-&bull; [v0.3.2](#v0.3.2) | TBD                                    | *Mar ??, 2017*
+&bull; [v0.3.2](#v0.3.2) | TBD                                    | *Apr ??, 2017*
 &bull; [v0.3.1](#v0.3.1) | Extension Support with Logging Example | *Mar 27, 2017*
 &bull; [v0.3.0](#v0.3.0) | Parameter Validation                   | *Mar 13, 2017*
 &bull; [v0.2.0](#v0.2.0) | Added support for initialState         | *Mar 9, 2017*
@@ -32,7 +32,7 @@ Release                  | What                                   | *When*
 
 
 <!-- ************************************************************* -->
-<h4 class="name" id="v0.3.2">v0.3.2 - TBD *(Mar ??, 2017)*</h4>
+<h4 class="name" id="v0.3.2">v0.3.2 - TBD *(Apr ??, 2017)*</h4>
 
 [Full Docs](https://astx-redux-util.js.org/0.3.2)
 &bull;
@@ -44,6 +44,10 @@ Release                  | What                                   | *When*
   impacted** in any way.
 
 1. Introduce project code coverage, with badges for both grade and coverage.
+
+1. Added pkgReview npm script that highlights any outdated installed packages and
+   incorporate this into the check/prepublish scripts.
+
 
 
 ?? running notes here ...
