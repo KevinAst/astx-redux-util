@@ -18,6 +18,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release                  | What                                   | *When*
 -------------------------|----------------------------------------|------------------
+&bull; [v0.4.0](#v0.4.0) | GitBook Docs                           | *Apr ??, 2017*
 &bull; [v0.3.2](#v0.3.2) | Code Coverage Tooling                  | *Apr 6, 2017*
 &bull; [v0.3.1](#v0.3.1) | Extension Support with Logging Example | *Mar 27, 2017*
 &bull; [v0.3.0](#v0.3.0) | Parameter Validation                   | *Mar 13, 2017*
@@ -28,6 +29,28 @@ Release                  | What                                   | *When*
 
 
 ## Details ...
+
+
+<!-- ************************************************************* -->
+<h4 class="name" id="v0.4.0">v0.4.0 - GitBook Docs *(Apr ??, 2017)*</h4>
+
+[Full Docs](https://astx-redux-util.js.org/0.4.0)
+&bull;
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.4.0)
+&bull;
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.4.0)
+
+
+**NOTE**: This release is a documentation enhancement only. **The API
+  is NOT impacted** in any way.
+
+1. ?? GitBook Docs (integrating Guide/API using GitBook/JSDoc)
+
+?? running log here
+
+
+
+
 
 
 

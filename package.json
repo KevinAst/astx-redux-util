@@ -1,6 +1,6 @@
 {
   "name": "astx-redux-util",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Several redux reducer composition utilities.",
   "main": "lib/index.js",
   "browser": {
