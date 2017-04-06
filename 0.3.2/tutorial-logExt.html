@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Logging Extension - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Dev Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-ext.html">Extending astx-redux-util</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-dist.html">Distribution</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>API Reference</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Logging Extension</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <!-- KJB: removed level 2 header
+    <h2>Logging Extension</h2>
+    -->
+</header>
+
+<article>
+    <p>As a concrete example of extending astx-redux-util, let's explore a
+real-world logging extension.  This example is taken directly from my
+<a href="https://github.com/KevinAst/GeekU">GeekU</a> app <em>(a sandbox project I use
+to study various technologies and frameworks)</em>.</p>
+<p>As it turns out, <a href="global.html#reducerHash"><code>reducerHash</code></a> is a <strong>very central component to
+most state changes</strong>.  An overwhelming majority of time that state
+changes, it is accomplished by a handler that passes through <a href="global.html#reducerHash"><code>reducerHash</code></a>.  <em>In other words the <a href="global.html#reducerHash"><code>reducerHash</code></a> is a clearing
+house for most state changes</em>.  In addition, <a href="global.html#reducerHash"><code>reducerHash</code></a> has a
+distinct advantage of knowing several unique operational aspects, such
+as:</p>
+<ul>
+<li>whether a handler wishes to operate on the state</li>
+<li>and the before/after state of a handler operation</li>
+</ul>
+<p>As a result, <a href="global.html#reducerHash"><code>reducerHash</code></a> can play a key roll in implementing a
+centralized reducer-based logging utility.  The logging extension
+shown here achieves the following advanced characteristics:</p>
+<ul>
+<li>a central location to log reduction-based probes</li>
+<li>promotes a standardized format for reduction-based probes</li>
+<li>dynamically alters the logging probe level based on whether
+the state has changed or not</li>
+</ul>
+<p>This last point is a <strong>key feature</strong>.  The probe's logging level is
+dynamically determined, based on whether the state has changed, and/or
+whether a reducer-specific handler wishes to communicate some
+information.  The <strong>advantage</strong> of this dynamic is that it <strong>allows logging
+filters to be configured at a very high-level</strong> (i.e. for ALL reducers)
+<strong>with minimal output</strong>, because the INSPECT level focuses exclusively on
+reducers that have changed state.  This is a VERY USEFUL feature!</p>
+<p>Logging levels that are used are:</p>
+<pre class="prettyprint source"><code>INSPECT: monitor state changes only
+DEBUG:   includes explicit reducer logic regardless of state changes
+         ... monitors WHICH reducer reasoned about an action
+TRACE:   includes ALL reducer enter/exit points 
+         ... NOT much value: shows ALL state reducer</code></pre><h2>SideBar: Logging</h2><p>While logging may not be as fashionable as it once was, I believe that
+logging can provide valuable insight into both development and
+production diagnostics.</p>
+<p>When it comes to state changing diagnostic tools, utilities such as
+<a href="https://github.com/gaearon/redux-devtools">redux-devtools</a> <strong>provide
+invaluable insight into state changes</strong>, and can be used without any
+tooling in your application code.  With that in mind, <strong>logging</strong> (when
+done right) can <strong>provide additional insight into &quot;why&quot; a state change
+occurred</strong>.</p>
+<p>There are many logging utilities available.  A few features to
+consider in your evaluation:</p>
+<ul>
+<li>filterable probes, allowing each module to have an identity that is filterable</li>
+<li>interactive configuration (out-of-the-box)</li>
+<li>efficient pruning (minimizing probe overhead)</li>
+<li>configurable <ul>
+<li>filter levels</li>
+<li>output format</li>
+<li>output destination</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul>
+<h2>Extending reducerHash</h2><p>Our logging extension wraps <a href="global.html#reducerHash"><code>reducerHash</code></a> as follows
+(<a href="https://github.com/KevinAst/GeekU/blob/master/src/client/startup/astx-redux-util_loggerPolyfill.js">astx-redux-util_loggerPolyfill.js</a>):</p>
+<pre class="prettyprint source lang-js"><code>// value-added reducerHash.withLogging()
+// ... a wrapper TO reducerHash() - a higher-order function (HOF)
+//     - WITH an additional parameter:
+//        * log: {Log} the log to use in emitting reducer-based probes
+//                     NOTE: the log's filterName is assumed to be the state element name
+AstxReduxUtil.reducerHash.withLogging = (log, ...reducerHashArgs) => {
+
+  // validate the supplied log parameter
+  assert(log.reducerProbe,
+         'AstxReduxUtil.reducerHash.withLogging() requires a log parameter with a log.reducerProbe() method.');
+
+  // invoke the original reducerHash()
+  const reducerFn = AstxReduxUtil.reducerHash(...reducerHashArgs);
+
+  // expose actionHandlers ... used in additional logging characteristics
+  const actionHandlers = reducerHashArgs[0];
+
+  // wrap the resultant reducerFn to apply our value-added logging
+  return (...reducerArgs) => {
+
+    const state  = reducerArgs[0];
+    const action = reducerArgs[1];
+
+    // invoke the original reducerFn()
+    // NOTE1: The es6 rest syntax accommodates astx-redux-util's
+    //        additional &quot;originalReducerState&quot; argument
+    // NOTE2: Result (via this extension) is expected to be:
+    //        [nextState, logMsgFn|null]
+    const reducerResult   = reducerFn(...reducerArgs);
+    const handlerInvolved = actionHandlers[action.type] ? true : false;
+    const [nextState, logMsgFn] = handlerInvolved
+                                   ? reducerResult
+                                   : [reducerResult, null]; // pass-throughs return the same state
+                                                            // (i.e. NOT wrapped in array)
+    // emit our standardized reducer-based logging probe
+    log.reducerProbe(action, state!==nextState, logMsgFn);
+
+    return nextState;
+  };
+
+};</code></pre><p>The inline comments should be self-explanatory, but here are some
+high-level points of interest:</p>
+<ul>
+<li><p>The <code>withLogging</code> extension is cataloged on the <a href="global.html#reducerHash"><code>reducerHash</code></a>
+function itself, making it directly available from the
+'astx-redux-util' import.  You may choose to make this it's own
+separate module.</p>
+</li>
+<li><p>The logging process requires addition information (i.e. the log
+object) which is passed as a parameter, along with the <a href="global.html#reducerHash"><code>reducerHash</code></a>
+parameters.  The log's filterName is assumed to be the state element
+name.</p>
+</li>
+<li><p>The wrapper invokes the underlying <a href="global.html#reducerHash"><code>reducerHash</code></a> function, and in
+turn, wraps the created reducer function.</p>
+</li>
+<li><p>The <strong>reducer wrapper</strong> is where the <strong>real enhancement is implemented</strong>.</p>
+<ul>
+<li><p>The <strong>expectations of each handler is enhanced</strong> by allowing it to
+promote BOTH the <strong>nextState</strong>, along with a <strong>logging probe</strong> (which
+makes up part of the overall probe).  An array is used to
+accumulate both these pieces of information.</p>
+</li>
+<li><p>The logging probe is generated through the enhanced
+log.reducerProbe() method <em>(detailed next)</em>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>log.reducerProbe()</h2><p>We also polyfill our Log object with the <code>log.reducerProbe()</code> method
+that standardizes ALL reducer-related logging probes
+(<a href="https://github.com/KevinAst/GeekU/blob/master/src/client/startup/astx-redux-util_loggerPolyfill.js">astx-redux-util_loggerPolyfill.js</a>):</p>
+<pre class="prettyprint source lang-js"><code>Log.prototype.reducerProbe = function(action, stateChanged, reducerMsgFn) {
+  const logLevel = (stateChanged)
+                     ? Log.INSPECT   // state change
+                     : (reducerMsgFn)
+                        ? Log.DEBUG  // no state change, but app-specific logic
+                        : Log.TRACE; // no state change, and no app-logic
+
+  // emit the &quot;dynamic&quot; logging probe
+  this.log(logLevel, ()=> {
+    const stateChangedMsg = stateChanged
+                             ? 'STATE CHANGED'
+                             : 'STATE UN-CHANGED';
+    const reducerMsg      = reducerMsgFn
+                             ? `,  Reducer Msg: ${reducerMsgFn()}`
+                             : '';
+    // ex: STATE CHANGED: appState.editSelCrit.extra.fieldOptions,  Action: 'selCrit.edit',  Reducer Msg: set fieldOptions from action
+    return `${stateChangedMsg}: ${this.filterName},  Action: '${action.type}'${reducerMsg}`;
+  });
+};</code></pre><p>A <strong>key aspect</strong> passed to this method is <strong>an indicator of whether the
+state has changed</strong>, which dynamically alters the logging level, as
+follows:</p>
+<pre class="prettyprint source"><code>INSPECT: monitor state changes only
+DEBUG:   includes explicit reducer logic regardless of state changes
+         ... i.e. monitor WHICH reducer reasoned about an action
+TRACE:   includes ALL reducer enter/exit points 
+         (NOT much value, shows ALL state reducer)</code></pre><h2>Usage</h2><p>From a usage perspective, simply replace <code>reducerHash()</code> invocations
+with <code>reducerHash.withLogging()</code> and pass the appropriate log
+parameter in addition to the reducerHash arguments.</p>
+<p>The following reducer is the real code that our <a href="tutorial-fullExample.html">A Most Excellent Example</a> was derived from <em>(conceptually replace <code>widget</code> with
+<code>selCrit</code>)</em>.  The actual code can be found at
+<a href="https://github.com/KevinAst/GeekU/tree/master/src/client/state/appState.editSelCrit.selCrit.js">appState.editSelCrit.selCrit.js</a>
+<em>(all reducers are found at
+<a href="https://github.com/KevinAst/GeekU/tree/master/src/client/state">GeekU/src/client/state</a>)</em>.</p>
+<pre class="prettyprint source lang-js"><code>import * as Redux       from 'redux';
+import * as AstxRedux   from 'astx-redux-util';
+import {AT}             from '../actions';
+import SelCrit          from '../../shared/domain/SelCrit';
+import Log              from '../../shared/util/Log';
+
+import placebo  from './placeboReducer';
+import name     from './appState.editSelCrit.selCrit.name';
+import desc     from './appState.editSelCrit.selCrit.desc';
+import fields   from './appState.editSelCrit.selCrit.fields';
+import sort     from './appState.editSelCrit.selCrit.sort';
+import filter   from './appState.editSelCrit.selCrit.filter';
+import distinguishMajorSortField from './appState.editSelCrit.selCrit.distinguishMajorSortField';
+
+const log         = new Log('appState.editSelCrit.selCrit');
+const log4curHash = new Log('appState.editSelCrit.selCrit.curHash');
+
+export default AstxRedux.joinReducers(
+  // FIRST: determine content shape (i.e. {} or null)
+  AstxRedux.reducerHash.withLogging(log, {
+    [AT.selCrit.edit]:       (selCrit, action) => [action.selCrit, ()=>`set selCrit from action.selCrit: ${FMT(action.selCrit)}`],
+    [AT.selCrit.edit.close]: (selCrit, action) => [null,           ()=>'set selCrit to null'],
+  }),
+  AstxRedux.conditionalReducer(
+    // NEXT: maintain individual selCrit fields
+    //       ONLY when selCrit has content (i.e. is being edited)
+    (selCrit, action, originalReducerState) => selCrit !== null,
+    AstxRedux.joinReducers(
+      Redux.combineReducers({
+        _id:      placebo,
+        key:      placebo,
+        userId:   placebo,
+        itemType: placebo,
+        lastDbModDate: placebo,
+
+        name,
+        desc,
+
+        fields,
+        sort,
+        distinguishMajorSortField,
+        filter,
+
+        dbHash:  placebo,
+        curHash: placebo,
+      }),
+      AstxRedux.conditionalReducer(
+        // LAST: maintain curHash
+        //       ONLY when selCrit has content (see condition above) -AND- has changed
+        (selCrit, action, originalReducerState) => originalReducerState !== selCrit,
+        (selCrit, action) => {
+          const priorHash = selCrit.curHash;
+
+          selCrit.curHash = SelCrit.hash(selCrit); // OK to mutate (because of changed instance)
+
+          log4curHash.reducerProbe(action,
+                                   priorHash !== selCrit.curHash,
+                                   ()=>`resetting selCrit.curHash (because selCrit changed) FROM: '${priorHash}' TO: '${selCrit.curHash}'`);
+          return selCrit;
+        })
+    )
+  ), null); // initialState</code></pre><p>Notice:</p>
+<ul>
+<li><p>By using <code>reducerHash.withLogging()</code> we tap into our centralized
+reducer-based logging utility.</p>
+</li>
+<li><p>Each reducerHash handler, now returns both the <strong>nextState</strong> along
+with a <strong>logging probe</strong> <em>(wrapped in an array)</em>.</p>
+</li>
+<li><p>The <code>log4curHash.reducerProbe()</code> can also be used outside of
+reducerHash() control <em>(promoting standardized reducer-based logging
+probes anywhere)</em>.</p>
+</li>
+</ul>
+<h2>Demo</h2><p>By way of demonstration, a picture is worth a thousand words.  Our
+logger has a <strong>hidden easter egg</strong> that when invoked, <strong>activates an
+interactive logging configuration dialog</strong>.</p>
+<p><img src="logConfigDialog.png" width="90%"></p>
+<p>By setting our appState root filter to INSPECT, our logging probes are
+limited to <strong>just the reducers that have changed state</strong>:</p>
+<p><img src="logSample.png" width="90%"></p>
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.2)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

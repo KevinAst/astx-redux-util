@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Extending astx-redux-util - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Dev Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-ext.html">Extending astx-redux-util</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-dist.html">Distribution</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>API Reference</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Extending astx-redux-util</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <!-- KJB: removed level 2 header
+    <h2>Extending astx-redux-util</h2>
+    -->
+</header>
+
+<article>
+    <p>There are many reasons to extend the capabilities of any utility.  It
+may be a specific proprietary requirement or a common cross-cutting
+concerns such as timing, logging, etc.  In either case, extending a
+collective utility provides value-added semantics that are centrally
+applied.</p>
+<p>The reducer composition utilities promoted by astx-redux-util are
+higher-order reducers, in that their invocation returns other
+functions (reducers).  Such utilities are typically expanded by
+wrapping them.  In the case of higher-order functions (hof), this
+includes wrapping both the hof (the creator) and the returned function
+(the created).</p>
+<h2>The Extension</h2><p>The basic template for this process is shown here.  We enhance <a href="global.html#reducerHash"><code>reducerHash</code></a>, by applying a hypothetical <strong>foo</strong> operation ...</p>
+<pre class="prettyprint source lang-js"><code>import AstxReduxUtil from 'astx-redux-util';
+
+// value-added reducerHash.withFoo()
+// ... a wrapper applying FOO to reducerHash() - a higher-order function (HOF)
+//     - WITH an additional parameter:
+//        * foo: {Foo} fooBar
+AstxReduxUtil.reducerHash.withFoo = (foo, ...reducerHashArgs) => {
+
+  // invoke the original reducerHash()
+  const reducerFn = AstxReduxUtil.reducerHash(...reducerHashArgs);
+
+  // wrap the resultant reducerFn to apply our value-added FOO
+  return (...reducerArgs) => {
+
+    // NOTE: we have access to foo, reducerHashArgs, and reducerArgs!!!
+
+    // ... before logic here (if any)
+
+    // invoke the original reducerFn()
+    const nextState  = reducerFn(...reducerArgs);
+
+    // ... after logic here (if any)
+
+    return nextState;
+  };
+
+};</code></pre><p>The inline comments should be self-explanatory, but here are some
+high-level points of interest:</p>
+<ul>
+<li><p>The <code>withFoo()</code> extension is cataloged on the reducerHash function
+itself, making it directly available from the 'astx-redux-util'
+import.  You may choose to make this it's own separate module.</p>
+</li>
+<li><p>The <strong>foo</strong> process requires addition information (i.e. a Foo
+object) which is passed as a parameter, along with the reducerHash
+parameters.</p>
+</li>
+<li><p>The wrapper invokes the underlying reducerHash function, and in
+turn, wraps the created reducer function.</p>
+</li>
+<li><p>The reducer wrapper is where the real enhancement is implemented.</p>
+<ul>
+<li><p>We ultimately invoke the original reducerFn(), but have the
+opportunity to both <strong>pre</strong> and <strong>post</strong> process this invocation,
+with what ever logic we wish.</p>
+</li>
+<li><p>Our wrapper has access to the new foo parameter, in addition to
+the standard parameters of this utility (both reducerHashArgs and
+reducerArgs).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Usage</h2><p>From a <strong>usage perspective</strong>, we simply replace <code>reducerHash()</code> invocations
+with <code>reducerHash.withFoo()</code> and pass the appropriate foo parameter in
+addition to the reducerHash arguments.</p>
+<pre class="prettyprint source lang-js"><code>import { reducerHash } from 'astx-redux-util';
+
+const foo = ...;
+
+export default reducerHash.withFoo(foo, {
+  &quot;widget.edit&quot;:       (widget, action) => action.widget,
+  &quot;widget.edit.close&quot;: (widget, action) => null,
+}, null);</code></pre>
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.2)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

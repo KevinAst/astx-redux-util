@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>A Most Excellent Example - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Dev Guide</h3><ul><li><a href="tutorial-start.html">Getting Started</a></li><li><a href="tutorial-conceptHash.html">Basics</a></li><li><a href="tutorial-conceptConditional.html">Conditional Reduction</a></li><li><a href="tutorial-conceptJoin.html">Joining Reducers</a></li><li><a href="tutorial-fullExample.html">A Most Excellent Example</a></li><li><a href="tutorial-originalReducerState.html">originalReducerState</a></li><li><a href="tutorial-ext.html">Extending astx-redux-util</a></li><li><a href="tutorial-logExt.html">Logging Extension</a></li><li><a href="tutorial-dist.html">Distribution</a></li><li><a href="tutorial-why.html">Why astx-redux-util?</a></li><li><a href="tutorial-history.html">Revision History</a></li><li><a href="tutorial-LICENSE.html">MIT License</a></li></ul><h3>API Reference</h3><ul><li><a href="global.html#conditionalReducer">conditionalReducer</a></li><li><a href="global.html#joinReducers">joinReducers</a></li><li><a href="global.html#reducerHash">reducerHash</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">A Most Excellent Example</h1>
+    
+
+    <section>
+
+<header>
+    
+
+    <!-- KJB: removed level 2 header
+    <h2>A Most Excellent Example</h2>
+    -->
+</header>
+
+<article>
+    <p>If we take our widget example one step further (from our <a href="tutorial-conceptJoin.html">Joining Reducers</a> discussion), let's say in addition to the x/y properties,
+we now introduce a curHash - which is a determinate of whether
+application content has changed.</p>
+<pre class="prettyprint source lang-js"><code>{
+  widget: {
+    x:       100,
+    y:       200,
+    curHash: 'IEFBR14'
+  }
+}</code></pre><p>Our widget reducer is the obvious choice to maintain this curHash.  It
+has a unique vantage point for this task, because it is a central
+clearing house that has knowledge anytime the widget state changes.
+This is even independent of how many properties the widget has!  Our
+immutable pattern dictates that if our state changes, a new instance
+will be introduced.  Therefore, we can safely change the curHash anytime
+the widget instance has changed.</p>
+<p>Building on our last example (in <a href="tutorial-conceptJoin.html">Joining Reducers</a>), we can
+accomplish this new requirement by simply adding yet another reducer
+to our reduceWidget function.</p>
+<pre class="prettyprint source lang-js"><code>import * as Redux         from 'redux';
+import * as AstxReduxUtil from 'astx-redux-util';
+import x                  from '../appReducer/x';
+import y                  from '../appReducer/y';
+import Widget             from '../appReducer/Widget';
+
+export default AstxReduxUtil.joinReducers(
+  // FIRST: determine content shape (i.e. {} or null)
+  AstxReduxUtil.reducerHash({
+    &quot;widget.edit&quot;:       (widget, action) => action.widget,
+    &quot;widget.edit.close&quot;: (widget, action) => null
+  }),
+
+  AstxReduxUtil.conditionalReducer(
+    // NEXT: maintain individual x/y fields
+    //       ONLY when widget has content (i.e. is being edited)
+    (widget, action, originalReducerState) => widget !== null,
+    AstxReduxUtil.joinReducers(
+      Redux.combineReducers({
+        x,
+        y,
+        curHash: (s=null)=>s // defaulted state placebo reducer (needed by combineReducers())
+      }),
+      AstxReduxUtil.conditionalReducer(
+        // LAST: maintain curHash
+        //       ONLY when widget has content (see condition above) -AND- has changed
+        (widget, action, originalReducerState) => originalReducerState !== widget,
+        (widget, action) => {
+          widget.curHash = Widget.hash(widget); // OK to mutate (because of changed instance)
+          return widget;
+        })
+    )
+  ), null); // initialState</code></pre><p>This represents a very comprehensive example of how <strong>Reducer
+Composition</strong> can <strong>simplify your life</strong>!  We have combined 3
+sub-reducers into one, applying conditional logic as needed through
+functional decomposition!</p>
+<p><strong>Please NOTE</strong>:</p>
+<ol>
+<li><p>The curHash should only be maintained when the widget <strong>has
+content</strong> (i.e. non-null), -AND- <strong>has changed</strong> .  </p>
+<ul>
+<li><p>The former condition is accomplished through conditionalReducer
+<strong>nesting</strong>.  In other words, the outer conditionalReducer insures
+the widget is non-null.</p>
+</li>
+<li><p>The latter condition utilizes the <code>originalReducerState</code>
+parameter to determine when the widget has changed from ANY of
+the prior sub-reducers.  This parameter is useful when multiple
+reducers are combined, because it represents the state prior to
+the start of reduction process.  Please refer to the <a href="tutorial-originalReducerState.html">originalReducerState</a> discussion for more insight.</p>
+</li>
+</ul>
+</li>
+<li><p>Contrary to any <strong>red flags</strong> that may have been raised on your
+initial glance of the code, <strong>it is OK</strong> to mutate the <code>widget</code>
+state in the last reducer, because we know one of the prior
+reducers has injected a new widget instance (via the
+<code>originalReducerState !== widget</code> condition).</p>
+</li>
+<li><p>The curHash placebo reducer is slightly different than lodash.identity in
+that it defaults the state parameter to null.  </p>
+<p>This is required in conjunction
+<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers()</a>,
+and is related to our technique of maintaining curHash in the
+parent widget reducer (<em>which has visibility to all widget
+properties</em>), verses using an individual property reducer (<em>which
+does NOT have visibility to other widget properties</em>).</p>
+<p>The defaulted state placebo works around the following
+<a href="http://redux.js.org/docs/api/combineReducers.html">Redux.combineReducers()</a>
+issues:</p>
+<ul>
+<li><p>with NO curHash entry ... </p>
+<pre class="prettyprint source"><code>WARNING:
+Unexpected key &quot;curHash&quot; found in previous state received by the reducer.
+Expected to find one of the known reducer keys instead: &quot;x&quot;, &quot;y&quot;.
+Unexpected keys will be ignored.</code></pre></li>
+<li><p>with curHash entry, using lodash.identity ...</p>
+<pre class="prettyprint source"><code>ERROR:
+Reducer &quot;curHash&quot; returned undefined during initialization.
+If the state passed to the reducer is undefined, you must explicitly return the initial state.
+The initial state may not be undefined.</code></pre></li>
+<li><p>with curHash entry, using defaulted state placebo ...</p>
+<pre class="prettyprint source"><code>Life is GOOD!</code></pre></li>
+</ul>
+</li>
+</ol>
+</article>
+
+</section>
+
+</div>
+
+<br class="clear">
+
+<footer>
+    <!-- KJB START: injected the package name/version -->
+    
+    <b>
+      astx-redux-util 
+     (0.3.2)
+    </b>
+    &hellip;
+<a href="./tutorial-LICENSE.html">MIT License</a>
+&hellip;
+Copyright &copy; 2017 Kevin Bridges
+<a href="https://github.com/KevinAst/astx-redux-util">
+  <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+       alt="GitHub"
+       title="astx-redux-util on GitHub"
+       height="18">
+</a>
+<a href="https://www.npmjs.com/package/astx-redux-util">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Npm-logo.svg"
+       alt="npm"
+       title="astx-redux-util on npm"
+       height="12">
+</a>
+ 
+    
+    <!-- KJB END -->
+
+    <!-- KJB: modified following slightly -->
+    <!-- 
+    docs generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using an enhanced <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    -->
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
