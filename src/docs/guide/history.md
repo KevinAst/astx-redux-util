@@ -8,6 +8,8 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 <!--- Badges for CI Builds ---> 
 [![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master)](https://travis-ci.org/KevinAst/astx-redux-util)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Coverage)
 [![Known Vulnerabilities](https://snyk.io/test/github/kevinast/astx-redux-util/badge.svg)](https://snyk.io/test/github/kevinast/astx-redux-util)
 [![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
 
@@ -16,7 +18,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release                  | What                                   | *When*
 -------------------------|----------------------------------------|------------------
-&bull; [v0.3.2](#v0.3.2) | TBD                                    | *Mar ??, 2017*
+&bull; [v0.3.2](#v0.3.2) | Code Coverage Tooling                  | *Apr 6, 2017*
 &bull; [v0.3.1](#v0.3.1) | Extension Support with Logging Example | *Mar 27, 2017*
 &bull; [v0.3.0](#v0.3.0) | Parameter Validation                   | *Mar 13, 2017*
 &bull; [v0.2.0](#v0.2.0) | Added support for initialState         | *Mar 9, 2017*
@@ -30,7 +32,7 @@ Release                  | What                                   | *When*
 
 
 <!-- ************************************************************* -->
-<h4 class="name" id="v0.3.2">v0.3.2 - TBD *(Mar ??, 2017)*</h4>
+<h4 class="name" id="v0.3.2">v0.3.2 - Code Coverage Tooling *(Apr 6, 2017)*</h4>
 
 [Full Docs](https://astx-redux-util.js.org/0.3.2)
 &bull;
@@ -38,10 +40,15 @@ Release                  | What                                   | *When*
 &bull;
 [GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.2)
 
-?? running notes here ...
+**NOTE**: This release is a tooling enhancement only. **The API is NOT
+  impacted** in any way.
 
-PROB NOT IMPORTANT ENOUGH TO MENTION:
- - changed "User Guide" to "Dev Guide" (missed references in README/SCRIPTS)
+1. Introduce project code coverage, with badges for both grade and coverage.
+
+1. Added pkgReview npm script that highlights any outdated installed packages and
+   incorporate this into the check/prepublish scripts.
+
+
 
 
 
@@ -55,7 +62,7 @@ PROB NOT IMPORTANT ENOUGH TO MENTION:
 [GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.3.1)
 
 **NOTE**: This release is a documentation enhancement only. **The API
-  is NOT impacted** in any way.
+          is NOT impacted** in any way.
 
 1. The Dev Guide was refined to include {@tutorial ext} along with an
    extensive {@tutorial logExt} section, showing how {@link

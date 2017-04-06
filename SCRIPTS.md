@@ -32,10 +32,13 @@ build:clean ............. clean all machine-generated build directories
 
 prepublish .............. cleanly build/test all machine generated resources,
                           a pre-publication utility:
-                            - check code quality (lint)
+                            - verify code quality (lint)
+                            - show outdated installed packages
                             - clean (delete) ALL machine generated resources
                             - build/test all bundled libraries (for publication)
                             - build documentation
+                            - generate the code coverage report
+
 
 
 TESTING
@@ -52,9 +55,9 @@ test:samples:watch ..... ditto (continuously)
 test:all ............... run ALL our unit tests
 test:all:watch ......... ditto (continuously)
 
-                         Following runs ALL tests ON specified target
-                         ============================================
-test:plat:{platform} ... run ALL unit tests on specified Target Platform (see below)
+                         Following runs ALL tests ON specified Target Platform
+                         =====================================================
+test:plat:{platform} ... see discussion below
 test:plat:src
 test:plat:bundle
 test:plat:bundle.min
@@ -63,29 +66,38 @@ test:plat:es
 test:plat:all
 
 
-DOCUMENTATION
-=============
-
-docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
-docs:clean ... clean the machine-generated docs directory
-
-
 CODE QUALITY
 ============
+
+check ... convenience script to:
+           - verify code quality (lint)
+           - show outdated installed packages
+           - run tests (against our master src)
+           - generate the code coverage report
 
 lint .... verify code quality, linting BOTH production and test code.
           NOTE: Real-time linting is ALSO applied on production code
                 through our WebPack bundler (via 'build:watch')!
 
-check ... convenience script to:
-           - verify code quality (lint) and
-           - run tests (against our master src)
+cov ........... evaluate code coverage in executing our test suite (gen report in coverage/)
+cov:publish ... publish code coverage results to codacy.com (for visiblity)
+cov:clean ..... clean the machine-generated coverage/ directory
+
+pkgReview ... show outdated installed packages
+
+
+
+DOCUMENTATION
+=============
+
+docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
+docs:clean ... clean the machine-generated docs/ directory
 
 
 MISC
 ====
 
-clean ... cleans ALL machine-generated directories (build, and docs)
+clean ... cleans ALL machine-generated directories (build, docs, and coverage)
 ```
 
 
@@ -127,7 +139,7 @@ continuously ... just once, after a clean** (to prime the pump).
 ## Target Platform
 
 Some npm scripts target a platform (i.e. the JS module ecosystem),
-using 'plat nomenclature (i.e. platform).
+using 'plat' nomenclature (i.e. platform).
 
 Specifically:
 
@@ -137,6 +149,7 @@ Specifically:
 Supported platforms are:
 
 ```
+Env Variable
 MODULE_PLATFORM  What                 Bindings  Found In               NOTES                   
 ===============  ===================  ========  =====================  ========================
 src              master ES6 source    ES        src/*.js               DEFAULT                 

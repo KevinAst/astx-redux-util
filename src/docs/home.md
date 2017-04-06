@@ -19,6 +19,8 @@ can be used in conjunction with one another.
 
 <!--- Badges for CI Builds ---> 
 [![Build Status](https://travis-ci.org/KevinAst/astx-redux-util.svg?branch=master)](https://travis-ci.org/KevinAst/astx-redux-util)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/b7e9e537a56e41a692aef023fd15d9ca)](https://www.codacy.com/app/KevinAst/astx-redux-util?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KevinAst/astx-redux-util&amp;utm_campaign=Badge_Coverage)
 [![Known Vulnerabilities](https://snyk.io/test/github/kevinast/astx-redux-util/badge.svg)](https://snyk.io/test/github/kevinast/astx-redux-util)
 [![NPM Version Badge](https://img.shields.io/npm/v/astx-redux-util.svg)](https://www.npmjs.com/package/astx-redux-util)
 
