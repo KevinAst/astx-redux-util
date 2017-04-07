@@ -6,8 +6,8 @@
 /lib/
 /es/
 
-# documentation (generated via "npm run docs")
-/docs/
+# documentation (machine generated from GitBook)
+/_book/
 
 # code coverage reports
 /.nyc_output/

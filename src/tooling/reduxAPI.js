@@ -33,7 +33,7 @@
  * A standard [redux Action object]{@link http://redux.js.org/docs/basics/Actions.html}
  * that drives the reduction process.
  *
- * @property {string|Symbol} type - The action type.
+ * @property {string} type - The action type.
  * @property {*} whatever - Additional app-specific payload (as needed).
  */
 

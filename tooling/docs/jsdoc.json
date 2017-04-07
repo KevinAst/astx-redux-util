@@ -1,0 +1,7 @@
+// NOTE: all file references are from the perspective of the project root (where the doc build command is issued)
+{
+  "plugins": ["node_modules/jsdoc-babel"],
+  "babel": {
+    "presets": [ "es2015" ]
+  }
+}

@@ -1,0 +1,37 @@
+{ 
+  "gitbook":   "3.2.2",
+  "root":      "./docs",
+  "structure": { 
+    "readme":  "intro.md",
+    "summary": "toc.md" 
+  },
+  "plugins": ["-sharing", "-livereload", "toolbar", "packageinfo"],
+  "pluginsConfig": {
+    "toolbar": {
+        "buttons": [
+          {
+            "label": "GitHub",
+            "icon": "fa fa-github",
+            "url": "https://github.com/KevinAst/astx-redux-util"
+          },
+          {
+            "label": "NPM",
+            "icon": "fa fa-bullseye",
+            "url": "https://www.npmjs.com/package/astx-redux-util"
+          }
+        ]
+    }
+  },
+  "variables": { 
+    "guide": {
+      "intro": "[Introduction](/intro.md)",
+      "start": "[Getting Started](/start.md)"
+    },
+    "api": {
+      "ref":                  "[API Reference](/api.md)",
+      "conditionalReducer":   "[`conditionalReducer()`](/api.md#conditionalReducer)",
+      "joinReducers":         "[`joinReducers()`](/api.md#joinReducers)",
+      "reducerHash":          "[`reducerHash()`](/api.md#reducerHash)"
+    }
+  }
+}

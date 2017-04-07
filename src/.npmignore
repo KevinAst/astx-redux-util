@@ -1,6 +1,3 @@
-# do NOT publish docs to npm (src/docs/* master source of our documentation)
-docs
-
 # do NOT publish any spec/ directory (unit tests spread throughout our src/ code base)
 spec
 
