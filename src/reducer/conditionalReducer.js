@@ -7,7 +7,7 @@ import verify     from '../util/verify';
  * the supplied reducerFns, based on the conditionalFn() return
  * directive.
  * 
- * The **Dev Guide** discusses conditionalReducer() in more detail
+ * The {{book.guide.devGuide}} discusses conditionalReducer() in more detail
  * (see {{book.guide.conceptConditional}}), and additional examples can
  * be found in {{book.guide.conceptJoin}} and {{book.guide.fullExample}}.
  *
@@ -85,7 +85,7 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  * reduction process.
  * 
  * Further information can be found in the
- * {{book.guide.originalReducerState}} discussion of the Dev Guide.
+ * {{book.guide.originalReducerState}} discussion of the {{book.guide.devGuide}}.
  * 
  * @returns {truthy} A truthy value indicating which reducerFn is
  * executed ... truthy: thenReducerFn(), falsy: elseReducerFn().

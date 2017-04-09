@@ -25,6 +25,8 @@
   "variables": { 
 
     "guide": {
+      "devGuide":             "[**Dev Guide**](/index.html)",
+
       "conceptConditional":   "[`Conditional Reduction`](/concepts/conditionalReducer.md)",
       "conceptJoin":          "[`Joining Reducers`](/concepts/joinReducers.md)",
       "concepts":             "[`Concepts`](/concepts/README.md)",

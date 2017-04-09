@@ -13,7 +13,7 @@ import verify      from '../util/verify';
  * provides an alternative to the switch statement (commonly used to
  * provide this control mechanism).
  * 
- * The **Dev Guide** discusses reducerHash() in more detail (see
+ * The {{book.guide.devGuide}} discusses reducerHash() in more detail (see
  * {{book.guide.conceptHash}}), and additional examples can be found in
  * {{book.guide.conceptJoin}} and {{book.guide.fullExample}}.
  *

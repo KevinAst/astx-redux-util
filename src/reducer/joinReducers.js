@@ -18,7 +18,7 @@ import verify     from '../util/verify';
  * different instance from the start of the reduction process (because
  * an up-stream reducer needed to alter it in some way).
  * 
- * The **Dev Guide** discusses joinReducers() in more detail
+ * The {{book.guide.devGuide}} discusses joinReducers() in more detail
  * (see {{book.guide.conceptJoin}}), and additional examples can
  * be found in {{book.guide.fullExample}}.
  *
