@@ -1,6 +1,6 @@
 # Table of content 
 
-### astx-redux-util
+### astx-redux-util (1.0.0)
 * [Getting Started](start.md)
 
 ----

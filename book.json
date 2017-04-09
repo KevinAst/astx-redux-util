@@ -5,7 +5,7 @@
     "readme":  "intro.md",
     "summary": "toc.md" 
   },
-  "plugins": ["-sharing", "-livereload", "toolbar", "packageinfo"],
+  "plugins": ["-sharing", "-livereload", "toolbar"],
   "pluginsConfig": {
     "toolbar": {
         "buttons": [

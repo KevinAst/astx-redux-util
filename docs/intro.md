@@ -1,4 +1,4 @@
-# astx-redux-util ({{""|npmPackage("version")}})
+# astx-redux-util
 
 The astx-redux-util library promotes several redux reducer composition
 utilities, which blend multiple reducers together forming a richer

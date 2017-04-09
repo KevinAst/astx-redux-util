@@ -20,7 +20,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release           | What                                   | *When*
 ------------------|----------------------------------------|------------------
-[v0.4.0](#v0_4_0) | GitBook Docs                           | *Apr ??, 2017*
+[v1.0.0](#v1_0_0) | GitBook Docs                           | *Apr ??, 2017*
 [v0.3.2](#v0_3_2) | Code Coverage Tooling                  | *Apr 6, 2017*
 [v0.3.1](#v0_3_1) | Extension Support with Logging Example | *Mar 27, 2017*
 [v0.3.0](#v0_3_0) | Parameter Validation                   | *Mar 13, 2017*
@@ -36,21 +36,25 @@ Release           | What                                   | *When*
 
 <!-- ************************************************************* -->
 <br/><br/><br/>
-<h3 id="v0_4_0" style="margin: 10px 0px; border-width: 5px 0px; padding: 5px; border-style: solid;">
-  v0.4.0 - GitBook Docs <i>(Apr ??, 2017)</i>
+<h3 id="v1_0_0" style="margin: 10px 0px; border-width: 5px 0px; padding: 5px; border-style: solid;">
+  v1.0.0 - GitBook Docs <i>(Apr ??, 2017)</i>
 </h3>
-[Full Docs](https://astx-redux-util.js.org/0.4.0)
+[Full Docs](https://astx-redux-util.js.org/1.0.0)
 &bull;
-[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v0.4.0)
+[GitHub Release](https://github.com/KevinAst/astx-redux-util/releases/tag/v1.0.0)
 &bull;
-[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v0.4.0)
+[GitHub Content](https://github.com/KevinAst/astx-redux-util/tree/v1.0.0)
+
+**NOTE**: This is the **First Production Release**!
 
 **NOTE**: This release is a documentation enhancement only. **The API
-  is NOT impacted** in any way.
+is NOT impacted** in any way.
 
 1. Documentation is now generated using GitBook (while still employing
-   JSDoc for the API).  Read how this was accomplished here??
-   reference gist -or- whatever
+   JSDoc for the API).
+
+   Read how this was accomplished **here** TODO: check back for
+   article (expected before 4/16/2017).
 
 ?? running log here
 
