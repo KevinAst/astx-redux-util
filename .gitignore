@@ -10,7 +10,8 @@
 /_book/
 
 # api documentation (machine generated from jsdoc2md)
-/docs/api.md
+# ... hmmm: cannot ignore it (even though it is machine generated), because gitbook ignores it too :-(
+# /docs/api.md
 
 # code coverage reports
 /.nyc_output/
