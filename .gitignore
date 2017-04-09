@@ -9,6 +9,9 @@
 # documentation (machine generated from GitBook)
 /_book/
 
+# api documentation (machine generated from jsdoc2md)
+/docs/api.md
+
 # code coverage reports
 /.nyc_output/
 /coverage/

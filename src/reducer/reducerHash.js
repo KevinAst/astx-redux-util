@@ -14,13 +14,13 @@ import verify      from '../util/verify';
  * provide this control mechanism).
  * 
  * The **Dev Guide** discusses reducerHash() in more detail (see
- * {@tutorial conceptHash}), and additional examples can be found in
- * {@tutorial conceptJoin} and {@tutorial fullExample}.
+ * {{book.guide.conceptHash}}), and additional examples can be found in
+ * {{book.guide.conceptJoin}} and {{book.guide.fullExample}}.
  *
  * **NOTE**: Because reducerHash is so central to the rudimentary
  * aspect of reduction, it is a common practice to extend it,
  * promoting a 
- * [centralized reducer-based logging capability]{@tutorial logExt}, 
+ * [`centralized reducer-based logging capability`](/extending/logExt.md), 
  * with an ability to correlate logging levels to state changes
  * *(providing a means to filter logs at a high level with minimal
  * output)*.
@@ -62,7 +62,7 @@ export default function reducerHash(actionHandlers, initialState) {
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {{book.guide.originalReducerState}}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
