@@ -10,7 +10,7 @@
 /_book/
 
 # api documentation (machine generated from jsdoc2md)
-# /docs/api.md
+/docs/api.md
 
 # code coverage reports
 /.nyc_output/
