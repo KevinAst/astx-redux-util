@@ -17,7 +17,7 @@ import verify      from '../util/verify';
  * {{book.guide.conceptHash}}), and additional examples can be found in
  * {{book.guide.conceptJoin}} and {{book.guide.fullExample}}.
  *
- * **NOTE**: Because reducerHash is so central to the rudimentary
+ * **SideBar**: Because reducerHash is so central to the rudimentary
  * aspect of reduction, it is a common practice to extend it,
  * promoting a 
  * [`centralized reducer-based logging capability`](/extending/logExt.md), 

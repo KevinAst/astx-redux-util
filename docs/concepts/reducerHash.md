@@ -33,7 +33,7 @@ import { reducerHash } from 'astx-redux-util';
 export default reducerHash({
   "widget.edit":       (widget, action) => action.widget,
   "widget.edit.close": (widget, action) => null,
-}, null);
+}, null); // initialState
 ```
 
 Not only is the conditional logic better encapsulated, but the default
@@ -41,10 +41,13 @@ pass-through logic is automatically applied (using the [identity
 function](https://lodash.com/docs#identity)), passing through the
 original state when no action.type is acted on.
 
-**Please Note** that a `null` {{book.api.InitialState}} value is applied in
+**Please Note** A `null` {{book.api.InitialState}} value is applied in
 this reduction, which provides the fall-back state value during the
 state initialization boot-strap process.
 
-**Also Note** that because {{book.api.reducerHash}} is so central to the
+**SideBar** Because {{book.api.reducerHash}} is so central to the
 rudimentary aspects of reduction, it is common to provide a
-value-added {{book.guide.logExt}}.
+value-added {{book.guide.logExt}}, with the ability to correlate
+logging levels to state changes *(providing a means to filter logs at
+a high level with minimal output)*.
+
