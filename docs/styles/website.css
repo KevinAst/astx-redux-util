@@ -12,10 +12,10 @@
 }
 
 /* condense line-spacing */
-.markdown-section {     /* overall line-spacing (was: 1.7) */
-  line-height: 1.4;
+.markdown-section {
+  line-height: 1.4;     /* overall line-spacing (was: 1.7) */
 }
-.markdown-section pre { /* code-snippet line-spacing (was: 1.7) */
-  line-height: 1.1;
+.markdown-section pre {
+  line-height: 1.2;     /* code-snippet line-spacing (was: 1.7) */
   padding:    .5em;     /* also reduce padding around code block (was: .85em 1em) */
 }
