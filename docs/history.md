@@ -20,7 +20,7 @@ Notes](https://github.com/KevinAst/astx-redux-util/releases).
 
 Release           | What                                   | *When*
 ------------------|----------------------------------------|------------------
-[v1.0.0](#v1_0_0) | GitBook Docs                           | *Apr ??, 2017*
+[v1.0.0](#v1_0_0) | GitBook Docs                           | *Apr 11, 2017*
 [v0.3.2](#v0_3_2) | Code Coverage Tooling                  | *Apr 6, 2017*
 [v0.3.1](#v0_3_1) | Extension Support with Logging Example | *Mar 27, 2017*
 [v0.3.0](#v0_3_0) | Parameter Validation                   | *Mar 13, 2017*
@@ -37,7 +37,7 @@ Release           | What                                   | *When*
 <!-- ************************************************************* -->
 <br/><br/><br/>
 <h3 id="v1_0_0" style="margin: 10px 0px; border-width: 5px 0px; padding: 5px; border-style: solid;">
-  v1.0.0 - GitBook Docs <i>(Apr ??, 2017)</i>
+  v1.0.0 - GitBook Docs <i>(Apr 11, 2017)</i>
 </h3>
 [Full Docs](https://astx-redux-util.js.org/1.0.0)
 &bull;
@@ -50,17 +50,15 @@ Release           | What                                   | *When*
 **NOTE**: This release is a documentation enhancement only. **The API
 is NOT impacted** in any way.
 
-1. Documentation is now generated using GitBook (while still employing
-   JSDoc for the API).
-
-   Read how this was accomplished **here** TODO: check back for
-   article (expected before 4/16/2017).
+1. Our **documentation** has a **new and improved look**, using
+   [GitBook](https://github.com/GitbookIO/gitbook), integrated with
+   [JSDoc](http://usejsdoc.org/) (for the API).  I have not seen
+   GitBook/JSDoc integrated before.  If you are curious, read this
+   article: [Integrating GitBook with JSDoc to Document Your Open
+   Source
+   Project](https://gist.github.com/KevinAst/7e12648245ff2a8e9c1557135014b933).
 
 2. Removed unused dependency: lodash.isarray
-
-?? running log here
-
-
 
 
 
