@@ -56,6 +56,8 @@ is NOT impacted** in any way.
    Read how this was accomplished **here** TODO: check back for
    article (expected before 4/16/2017).
 
+2. Removed unused dependency: lodash.isarray
+
 ?? running log here
 
 
