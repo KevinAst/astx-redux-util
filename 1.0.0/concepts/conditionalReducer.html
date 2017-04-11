@@ -1,0 +1,544 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Conditional Reduction · astx-redux-util</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="Kevin J. Bridges <kevinast@gmail.com> (https://github.com/KevinAst)">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="joinReducers.html" />
+    
+    
+    <link rel="prev" href="reducerHash.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">astx-redux-util (1.0.0)</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../start.html">
+            
+                <a href="../start.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Concepts
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="reducerHash.html">
+            
+                <a href="reducerHash.html">
+            
+                    
+                    Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.2" data-path="conditionalReducer.html">
+            
+                <a href="conditionalReducer.html">
+            
+                    
+                    Conditional Reduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="joinReducers.html">
+            
+                <a href="joinReducers.html">
+            
+                    
+                    Joining Reducers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../fullExample.html">
+            
+                <a href="../fullExample.html">
+            
+                    
+                    A Most Excellent Example
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api.html">
+            
+                <a href="../api.html">
+            
+                    
+                    API Reference
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../api.html">
+            
+                <a href="../api.html#conditionalReducer">
+            
+                    
+                    conditionalReducer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../api.html">
+            
+                <a href="../api.html#joinReducers">
+            
+                    
+                    joinReducers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../api.html">
+            
+                <a href="../api.html#reducerHash">
+            
+                    
+                    reducerHash
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../originalReducerState.html">
+            
+                <a href="../originalReducerState.html">
+            
+                    
+                    originalReducerState
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../extending/ext.html">
+            
+                <a href="../extending/ext.html">
+            
+                    
+                    Extending astx-redux-util
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../extending/logExt.html">
+            
+                <a href="../extending/logExt.html">
+            
+                    
+                    Logging Extension
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../dist.html">
+            
+                <a href="../dist.html">
+            
+                    
+                    Distribution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../why.html">
+            
+                <a href="../why.html">
+            
+                    
+                    Why astx-redux-util?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../history.html">
+            
+                <a href="../history.html">
+            
+                    
+                    Revision History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../LICENSE.html">
+            
+                <a href="../LICENSE.html">
+            
+                    
+                    MIT License
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Conditional Reduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="conditional-reduction">Conditional Reduction</h1>
+<p>There are times where you may wish to conditionally apply a reduction.</p>
+<p>There can be many reasons for this.  Take a simple example where you
+wish to bypass a reduction process upon determination that an action
+will not impact an entire branch of your state tree.  In this example
+the conditional aspect is purely an optimization.</p>
+<p>This can be accomplished through the <a href="../api.html#conditionalReducer"><code>conditionalReducer()</code></a> utility. </p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Redux         <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>;
+<span class="hljs-keyword">import</span> identity           <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash.identity&apos;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> AstxReduxUtil <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;astx-redux-util&apos;</span>;
+<span class="hljs-keyword">import</span> x                  <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../appReducer/x&apos;</span>;
+<span class="hljs-keyword">import</span> y                  <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../appReducer/y&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> AstxReduxUtil.conditionalReducer(
+  <span class="hljs-comment">// conditionally apply when action.type begins with &apos;widget.edit&apos;</span>
+  (curState, action, originalReducerState) =&gt; action.type.startsWith(<span class="hljs-string">&apos;widget.edit&apos;</span>),
+  Redux.combineReducers({
+    x,
+    y
+  }), identity, {});
+</code></pre>
+<p>Here we only invoke the supplied reducer
+(<a href="http://redux.js.org/docs/api/combineReducers.html" target="_blank">Redux.combineReducers</a>)
+when the action.type begins with &apos;widget.edit&apos;.  In our contrived
+example, our action types are organized with a federated namespace, so
+it is easy to isolate which actions will impact various parts of our
+state.</p>
+<p><strong>Please Note</strong> that a <code>{}</code> <a href="../api.html#InitialState"><code>InitialState</code></a> value is applied in
+this reduction, which provides the fall-back state value during the
+state initialization boot-strap process.</p>
+<p><strong>Also Note:</strong> that normally it is not necessary to supply the
+<code>elseReducerFn</code> <a href="../api.html#conditionalReducer"><code>conditionalReducer()</code></a> parameter (the third),
+because it defaults to the <a href="https://lodash.com/docs#identity" target="_blank">identity
+function</a> function, which retains
+the state for a falsy directive.  In this case however, we had to
+manually pass the identity function, in order to supply the subsequent
+<a href="../api.html#InitialState"><code>InitialState</code></a> parameter.</p>
+<p><strong>More to Come:</strong> This example is merely intended to introduce you to
+the concept of conditional reduction.  It is somewhat &quot;contrived&quot;,
+allowing us to discuss the topic in isolation.  In reality, this
+example may be inappropriate because the optimization is minimal, and
+it tends to make the code more brittle.  Keep in mind, however,
+<strong>there are more legitimate reasons to apply conditional reduction</strong>
+... we will see this in subsequent discussions.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="reducerHash.html" class="navigation navigation-prev " aria-label="Previous page: Basics">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="joinReducers.html" class="navigation navigation-next " aria-label="Next page: Joining Reducers">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Conditional Reduction","level":"2.1.2","depth":2,"next":{"title":"Joining Reducers","level":"2.1.3","depth":2,"path":"concepts/joinReducers.md","ref":"concepts/joinReducers.md","articles":[]},"previous":{"title":"Basics","level":"2.1.1","depth":2,"path":"concepts/reducerHash.md","ref":"concepts/reducerHash.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-livereload","toolbar","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"toolbar":{"buttons":[{"label":"GitHub","icon":"fa fa-github","url":"https://github.com/KevinAst/astx-redux-util"},{"label":"NPM","icon":"fa fa-bullseye","url":"https://www.npmjs.com/package/astx-redux-util"}]},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kevin J. Bridges <kevinast@gmail.com> (https://github.com/KevinAst)","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"intro.md","glossary":"GLOSSARY.md","summary":"toc.md"},"variables":{"guide":{"LICENSE":"[`MIT License`](/LICENSE.md)","ext":"[`Extending astx-redux-util`](/extending/ext.md)","start":"[`Getting Started`](/start.md)","dist":"[`Distribution`](/dist.md)","devGuide":"[**Dev Guide**](/index.html)","why":"[`Why astx-redux-util?`](/why.md)","concepts":"[`Concepts`](/concepts/README.md)","conceptJoin":"[`Joining Reducers`](/concepts/joinReducers.md)","history":"[`Revision History`](/history.md)","originalReducerState":"[`originalReducerState`](/originalReducerState.md)","conceptHash":"[`Basics`](/concepts/reducerHash.md)","fullExample":"[`A Most Excellent Example`](/fullExample.md)","logExt":"[`Logging Extension`](/extending/logExt.md)","conceptConditional":"[`Conditional Reduction`](/concepts/conditionalReducer.md)"},"api":{"ref":"[`API Reference`](/api.md)","conditionalReducer":"[`conditionalReducer()`](/api.md#conditionalReducer)","conditionalReducerCB":"[`conditionalReducerCB()`](/api.md#conditionalReducerCB)","joinReducers":"[`joinReducers()`](/api.md#joinReducers)","reducerHash":"[`reducerHash()`](/api.md#reducerHash)","InitialState":"[`InitialState`](/api.md#InitialState)"}},"title":"astx-redux-util","gitbook":"3.2.2","description":"Redux Reducer Composition Utilities"},"file":{"path":"concepts/conditionalReducer.md","mtime":"2017-04-11T15:38:07.486Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-11T15:40:32.431Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-toolbar/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

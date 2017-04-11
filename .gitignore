@@ -6,10 +6,14 @@
 /lib/
 /es/
 
-# documentation (generated via "npm run docs")
-/docs/
+# documentation (machine generated from GitBook)
+/_book/
 
-# code coverage (generated via "npm run cov")
+# api documentation (machine generated from jsdoc2md)
+# ... hmmm: cannot ignore it (even though it is machine generated), because gitbook ignores it too :-(
+# /docs/api.md
+
+# code coverage reports
 /.nyc_output/
 /coverage/
 
