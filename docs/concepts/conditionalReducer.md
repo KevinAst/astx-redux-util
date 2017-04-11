@@ -1,3 +1,5 @@
+# Conditional Reduction
+
 There are times where you may wish to conditionally apply a reduction.
 
 There can be many reasons for this.  Take a simple example where you
@@ -5,7 +7,7 @@ wish to bypass a reduction process upon determination that an action
 will not impact an entire branch of your state tree.  In this example
 the conditional aspect is purely an optimization.
 
-This can be accomplished through the {@link conditionalReducer} utility. 
+This can be accomplished through the {{book.api.conditionalReducer}} utility. 
 
 ```js
 import * as Redux         from 'redux';
@@ -30,17 +32,17 @@ example, our action types are organized with a federated namespace, so
 it is easy to isolate which actions will impact various parts of our
 state.
 
-**Please Note** that a `{}` {@link InitialState} value is applied in
+**Please Note** that a `{}` {{book.api.InitialState}} value is applied in
 this reduction, which provides the fall-back state value during the
 state initialization boot-strap process.
 
 **Also Note:** that normally it is not necessary to supply the
-`elseReducerFn` {@link conditionalReducer} parameter (the third),
+`elseReducerFn` {{book.api.conditionalReducer}} parameter (the third),
 because it defaults to the [identity
 function](https://lodash.com/docs#identity) function, which retains
 the state for a falsy directive.  In this case however, we had to
 manually pass the identity function, in order to supply the subsequent
-{@link InitialState} parameter.
+{{book.api.InitialState}} parameter.
 
 **More to Come:** This example is merely intended to introduce you to
 the concept of conditional reduction.  It is somewhat "contrived",

@@ -90,8 +90,20 @@ pkgReview ... show outdated installed packages
 DOCUMENTATION
 =============
 
-docs ......... build docs from JavaDoc comments (src/*.js), and Dev Guide (src/docs)
-docs:clean ... clean the machine-generated docs/ directory
+docs ... build docs - integrating Dev Guide (GitBook: docs/*) with API (JSDoc comments: src/*.js)
+
+docs:api ....... generate docs/api.md from embedded JSDoc comments in src/*.js (run as needed)
+
+docs:prepare ... install gitbook/plugins/dependencies (run once and whenever a plugin is added)
+docs:build ..... alias to docs script (minus docs:prepare)
+docs:serve ..... build/serve docs (http://localhost:4000/), continuously watching for changes
+
+docs:jsdoc2md:help ... show jsdoc2md command-line help (convenience)
+docs:gitbook:help .... show GitBook command-line help (convenience)
+
+docs:clean ... clean the machine-generated docs (_book/)
+
+
 
 
 MISC

@@ -1,3 +1,5 @@
+# originalReducerState
+
 This sidebar discussion provides some insight into
 **originalReducerState** (*mostly an internal implementation detail*).
 
@@ -5,7 +7,7 @@ A fundamental aspect of sequentially joining reducers is that each
 reducer should be able to build on what has been accomplished by a
 prior reducer.  In essence it is an accumulative process.
 
-The {@link joinReducers} utility handles this by cumulatively passing the
+The {{book.api.joinReducers}} utility handles this by cumulatively passing the
 state parameter that was returned from any prior reducer (in the chain
 of reducers to execute).
 
@@ -21,14 +23,14 @@ merely an implementation detail.
 There are edge cases, however, where a client needs visibility to the
 **originalReducerState**: *the immutable state at the start of the
 reduction process*.  One case in particular is determining that state
-has changed within a series of reductions (i.e. {@link joinReducers}),
+has changed within a series of reductions (i.e. {{book.api.joinReducers}}),
 because each individual reducer only has visibility of the state
 within it's own reduction process.  This case is higlighted in
-{@tutorial fullExample}.
+{{book.guide.fullExample}}.
 
 As a result, the **originalReducerState** is **publicly exposed** as
-the 3rd parameter to the {@link conditionalReducerCB} function (the
-{@link conditionalReducer} callback parameter that makes this
+the 3rd parameter to the {{book.api.conditionalReducerCB}} function (the
+{{book.api.conditionalReducer}} callback parameter that makes this
 determination).
 
 Internally, the way in which astx-redux-util manages the

@@ -7,9 +7,9 @@ import verify     from '../util/verify';
  * the supplied reducerFns, based on the conditionalFn() return
  * directive.
  * 
- * The **Dev Guide** discusses conditionalReducer() in more detail
- * (see {@tutorial conceptConditional}), and additional examples can
- * be found in {@tutorial conceptJoin} and {@tutorial fullExample}.
+ * The {{book.guide.devGuide}} discusses conditionalReducer() in more detail
+ * (see {{book.guide.conceptConditional}}), and additional examples can
+ * be found in {{book.guide.conceptJoin}} and {{book.guide.fullExample}}.
  *
  * @param {conditionalReducerCB} conditionalFn - a callback function
  * whose return value determines which reducerFn is executed
@@ -39,13 +39,13 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
   check(isFunction(elseReducerFn), 'elseReducerFn argument is NOT a function');
 
   // expose our new higher-order reducer
-  // NOTE: For more info on he originalReducerState parameter, refer to the Dev Guide {@tutorial originalReducerState}
+  // NOTE: For more info on he originalReducerState parameter, refer to the Dev Guide {{book.guide.originalReducerState}}
   return (state=initialState, action, originalReducerState) => {
 
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {{book.guide.originalReducerState}}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }
@@ -65,7 +65,7 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
 //***
 
 /**
- * A callback function (used in {@link conditionalReducer}) whose
+ * A callback function (used in {{book.api.conditionalReducer}}) whose
  * return value determines which reducerFn is executed.
  *
  * @callback conditionalReducerCB
@@ -80,12 +80,12 @@ export default function conditionalReducer(conditionalFn, thenReducerFn, elseRed
  * of the start of the reduction process.
  *
  * This is useful in determining whether state has changed within a
- * series of reductions {@link joinReducers} ... because each
+ * series of reductions {{book.api.joinReducers}} ... because each
  * individual reducer only has visibility of the state within it's own
  * reduction process.
  * 
- * Further information can be found in the {@tutorial
- * originalReducerState} discussion of the Dev Guide.
+ * Further information can be found in the
+ * {{book.guide.originalReducerState}} discussion of the {{book.guide.devGuide}}.
  * 
  * @returns {truthy} A truthy value indicating which reducerFn is
  * executed ... truthy: thenReducerFn(), falsy: elseReducerFn().

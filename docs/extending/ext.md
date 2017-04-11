@@ -1,3 +1,5 @@
+# Extending astx-redux-util
+
 There are many reasons to extend the capabilities of any utility.  It
 may be a specific proprietary requirement or a common cross-cutting
 concerns such as timing, logging, etc.  In either case, extending a
@@ -14,8 +16,9 @@ includes wrapping both the hof (the creator) and the returned function
 
 ## The Extension
 
-The basic template for this process is shown here.  We enhance {@link
-reducerHash}, by applying a hypothetical **foo** operation ...
+The basic template for this process is shown here.  We enhance
+{{book.api.reducerHash}}, by applying a hypothetical **foo** operation
+...
 
 ```js
 import AstxReduxUtil from 'astx-redux-util';
@@ -74,9 +77,10 @@ high-level points of interest:
 
 ## Usage
 
-From a **usage perspective**, we simply replace `reducerHash()` invocations
-with `reducerHash.withFoo()` and pass the appropriate foo parameter in
-addition to the reducerHash arguments.
+From a **usage perspective**, we simply replace
+{{book.api.reducerHash}} invocations with `reducerHash.withFoo()` and
+pass the appropriate foo parameter in addition to the reducerHash
+arguments.
 
 ```js
 import { reducerHash } from 'astx-redux-util';

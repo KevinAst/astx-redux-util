@@ -10,7 +10,7 @@
 //***
 
 /**
- * A standard [redux reducer function]{@link http://redux.js.org/docs/basics/Reducers.html}
+ * A standard [redux reducer function](http://redux.js.org/docs/basics/Reducers.html)
  * that is responsible for state changes.
  *
  * @callback reducerFn
@@ -30,10 +30,10 @@
 /**
  * @typedef {Object} Action
  *
- * A standard [redux Action object]{@link http://redux.js.org/docs/basics/Actions.html}
+ * A standard [redux Action object](http://redux.js.org/docs/basics/Actions.html)
  * that drives the reduction process.
  *
- * @property {string|Symbol} type - The action type.
+ * @property {string} type - The action type.
  * @property {*} whatever - Additional app-specific payload (as needed).
  */
 

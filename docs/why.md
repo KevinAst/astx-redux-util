@@ -1,7 +1,9 @@
+# Why astx-redux-util?
+
 This section provides some insight into why astx-redux-util was
 created, and how it compares to other similar utilities.
 
-One of the astx-redux-util functions ({@link reducerHash}) is a stock
+One of the astx-redux-util functions ({{book.api.reducerHash}}) is a stock
 feature in other reducer libraries, such as [redux-actions
 handleactions](https://www.npmjs.com/package/redux-actions#handleactionsreducermap-defaultstate).
 With that said, astx-redux-util promotes other reducer compositions

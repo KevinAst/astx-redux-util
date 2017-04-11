@@ -18,9 +18,9 @@ import verify     from '../util/verify';
  * different instance from the start of the reduction process (because
  * an up-stream reducer needed to alter it in some way).
  * 
- * The **Dev Guide** discusses joinReducers() in more detail
- * (see {@tutorial conceptJoin}), and additional examples can
- * be found in {@tutorial fullExample}.
+ * The {{book.guide.devGuide}} discusses joinReducers() in more detail
+ * (see {{book.guide.conceptJoin}}), and additional examples can
+ * be found in {{book.guide.fullExample}}.
  *
  * @param {...reducerFn} reducerFns two or more reducer functions to join
  * together.
@@ -56,7 +56,7 @@ export default function joinReducers(...reducerFns) {
     // maintain the originalReducerState as the immutable state
     // at the time of the start of the reduction process
     // ... in support of joinReducers()
-    // ... for more info, refer to the Dev Guide {@tutorial originalReducerState}
+    // ... for more info, refer to the Dev Guide {{book.guide.originalReducerState}}
     if (originalReducerState === undefined) {
       originalReducerState = state;
     }

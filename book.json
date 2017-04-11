@@ -1,0 +1,60 @@
+{ 
+  "gitbook":     "3.2.2",
+  "root":        "./docs",
+  "title":       "astx-redux-util",
+  "description": "Redux Reducer Composition Utilities",
+  "author":      "Kevin J. Bridges <kevinast@gmail.com> (https://github.com/KevinAst)",
+  "structure": { 
+    "readme":  "intro.md",
+    "summary": "toc.md" 
+  },
+  "plugins": ["-sharing", "-livereload", "toolbar"],
+  "pluginsConfig": {
+    "toolbar": {
+        "buttons": [
+          {
+            "label": "GitHub",
+            "icon": "fa fa-github",
+            "url": "https://github.com/KevinAst/astx-redux-util"
+          },
+          {
+            "label": "NPM",
+            "icon": "fa fa-bullseye",
+            "url": "https://www.npmjs.com/package/astx-redux-util"
+          }
+        ]
+    }
+  },
+  "variables": { 
+
+    "guide": {
+      "devGuide":             "[**Dev Guide**](/index.html)",
+
+      "conceptConditional":   "[`Conditional Reduction`](/concepts/conditionalReducer.md)",
+      "conceptJoin":          "[`Joining Reducers`](/concepts/joinReducers.md)",
+      "concepts":             "[`Concepts`](/concepts/README.md)",
+      "conceptHash":          "[`Basics`](/concepts/reducerHash.md)",
+
+      "dist":                 "[`Distribution`](/dist.md)",
+
+      "ext":                  "[`Extending astx-redux-util`](/extending/ext.md)",
+      "logExt":               "[`Logging Extension`](/extending/logExt.md)",
+
+      "fullExample":          "[`A Most Excellent Example`](/fullExample.md)",
+      "history":              "[`Revision History`](/history.md)",
+      "LICENSE":              "[`MIT License`](/LICENSE.md)",
+      "originalReducerState": "[`originalReducerState`](/originalReducerState.md)",
+      "start":                "[`Getting Started`](/start.md)",
+      "why":                  "[`Why astx-redux-util?`](/why.md)"
+    },
+
+    "api": {
+      "ref":                  "[`API Reference`](/api.md)",
+      "conditionalReducer":   "[`conditionalReducer()`](/api.md#conditionalReducer)",
+      "conditionalReducerCB": "[`conditionalReducerCB()`](/api.md#conditionalReducerCB)",
+      "joinReducers":         "[`joinReducers()`](/api.md#joinReducers)",
+      "reducerHash":          "[`reducerHash()`](/api.md#reducerHash)",
+      "InitialState":          "[`InitialState`](/api.md#InitialState)"
+    }
+  }
+}

@@ -10,7 +10,7 @@ Reducer composition is not new.  Redux itself provides the innovative
 utility which allows you to fuse individual reducers together to build
 up the overall shape of your application state.
 
-The most prevalent astx-redux-util utility is {@link reducerHash},
+The most prevalent astx-redux-util utility is {{book.api.reducerHash}},
 which lets you combine sub-reducers in such a way as to eliminate
 the switch statement commonly used to delineate action type.  
 
@@ -26,39 +26,43 @@ can be used in conjunction with one another.
 
 ## At a Glance
 
-- {@tutorial start} ... installation and access
+- {{book.guide.start}} ... installation and access
 
-- Concepts:
+- {{book.guide.concepts}}:
 
-  - {@tutorial conceptHash} ... using {@link reducerHash}, eliminate
+  - {{book.guide.conceptHash}} ... using {{book.api.reducerHash}}, eliminate
     the switch statement commonly found in reducers *("look ma, no
     switch")*
 
-  - {@tutorial conceptConditional} ... using {@link
-    conditionalReducer}, invoke a reducer only when certain
-    constraints are met *("to reduce or NOT to reduce; that is the
-    question")*
+  - {{book.guide.conceptConditional}} ... using
+    {{book.api.conditionalReducer}}, invoke a reducer only when
+    certain constraints are met *("to reduce or NOT to reduce; that is
+    the question")*
 
-  - {@tutorial conceptJoin} ... using {@link joinReducers}, team up
+  - {{book.guide.conceptJoin}} ... using {{book.api.joinReducers}}, team up
     multiple reducers to promote higher order functionality *("working
     together is success" - Henry Ford)*
 
-- {@tutorial fullExample} ... a more complete example employing many
+- {{book.guide.fullExample}} ... a more complete example employing many
   of the astx-redux-util utility functions
 
-- {@tutorial originalReducerState} ... a sidebar discussion of
+- {{book.api.ref}} ... details the low-level functional API
+
+- {{book.guide.originalReducerState}} ... a sidebar discussion of
   originalReducerState
 
-- {@tutorial ext} ... how would one extend astx-redux-util?
+- {{book.guide.ext}} ... how would one extend astx-redux-util?
 
-- {@tutorial logExt} ... a concrete example of reducer-based
-  centralized logging *("smarter logging")*
+  - {{book.guide.logExt}} ... a concrete example of reducer-based
+    centralized logging *("smarter logging")*
 
-- {@tutorial dist} ... where to find this utility **(and a local copy of the docs)**
 
-- {@tutorial why} ... why was astx-redux-util created, and how does it
+- {{book.guide.dist}} ... where to find this utility **(and a local
+  copy of the docs)**
+
+- {{book.guide.why}} ... why was astx-redux-util created, and how does it
   compare to other utilities
 
-- {@tutorial history} ... peruse various revisions
+- {{book.guide.history}} ... peruse various revisions
 
-- {@tutorial LICENSE} ... legal stuff
+- {{book.guide.LICENSE}} ... legal stuff

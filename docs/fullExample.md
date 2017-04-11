@@ -1,7 +1,9 @@
-If we take our widget example one step further (from our {@tutorial
-conceptJoin} discussion), let's say in addition to the x/y properties,
-we now introduce a curHash - which is a determinate of whether
-application content has changed.
+# A Most Excellent Example
+
+If we take our widget example one step further (from our
+{{book.guide.conceptJoin}} discussion), let's say in addition to the
+x/y properties, we now introduce a curHash - which is a determinate of
+whether application content has changed.
 
 ```js
 {
@@ -21,7 +23,7 @@ immutable pattern dictates that if our state changes, a new instance
 will be introduced.  Therefore, we can safely change the curHash anytime
 the widget instance has changed.
 
-Building on our last example (in {@tutorial conceptJoin}), we can
+Building on our last example (in {{book.guide.conceptJoin}}), we can
 accomplish this new requirement by simply adding yet another reducer
 to our reduceWidget function.
 
@@ -75,12 +77,12 @@ functional decomposition!
      **nesting**.  In other words, the outer conditionalReducer insures
      the widget is non-null.
 
-   - The latter condition utilizes the `originalReducerState`
+   - The latter condition utilizes the {{book.guide.originalReducerState}}
      parameter to determine when the widget has changed from ANY of
      the prior sub-reducers.  This parameter is useful when multiple
      reducers are combined, because it represents the state prior to
-     the start of reduction process.  Please refer to the {@tutorial
-     originalReducerState} discussion for more insight.
+     the start of reduction process.  Please refer to the
+     {{book.guide.originalReducerState}} discussion for more insight.
 
 2. Contrary to any **red flags** that may have been raised on your
    initial glance of the code, **it is OK** to mutate the `widget`

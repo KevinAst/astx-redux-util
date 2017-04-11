@@ -1,3 +1,5 @@
+# Distribution
+
 This utility is primarily distributed as an [npm
 package](https://www.npmjs.com/package/astx-redux-util) (*simply `npm
 install` and use it in your [Node.js](https://nodejs.org/en/)

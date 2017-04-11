@@ -1,3 +1,5 @@
+# Joining Reducers
+
 Occasionally it is necessary for a state to have multiple reductions
 applied to it.  Typically this occurs when the reducers involved
 represent fundamentally different operational types.
@@ -86,8 +88,8 @@ export default function widget(widget=null, action) {
 
 A more elegant solution can be accomplished by employing reducer
 composition, eliminating the procedural code completely.  We have
-already discussed {@link reducerHash} and {@link conditionalReducer}.
-A third utility, the {@link joinReducers} function, combines two or
+already discussed {{book.api.reducerHash}} and {{book.api.conditionalReducer}}.
+A third utility, the {{book.api.joinReducers}} function, combines two or
 more reducers logically executing each in sequence.
 
 *The following snippet, is equivalent to the one above:*

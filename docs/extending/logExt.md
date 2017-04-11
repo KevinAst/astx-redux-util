@@ -1,20 +1,22 @@
+# Logging Extension
+
 As a concrete example of extending astx-redux-util, let's explore a
 real-world logging extension.  This example is taken directly from my
 [GeekU](https://github.com/KevinAst/GeekU) app *(a sandbox project I use
 to study various technologies and frameworks)*.
 
-As it turns out, {@link reducerHash} is a **very central component to
-most state changes**.  An overwhelming majority of time that state
-changes, it is accomplished by a handler that passes through {@link
-reducerHash}.  *In other words the {@link reducerHash} is a clearing
-house for most state changes*.  In addition, {@link reducerHash} has a
-distinct advantage of knowing several unique operational aspects, such
-as:
+As it turns out, {{book.api.reducerHash}} is a **very central
+component to most state changes**.  An overwhelming majority of time
+that state changes, it is accomplished by a handler that passes
+through {{book.api.reducerHash}}.  *In other words the
+{{book.api.reducerHash}} is a clearing house for most state changes*.
+In addition, {{book.api.reducerHash}} has a distinct advantage of
+knowing several unique operational aspects, such as:
 
  - whether a handler wishes to operate on the state
  - and the before/after state of a handler operation
 
-As a result, {@link reducerHash} can play a key roll in implementing a
+As a result, {{book.api.reducerHash}} can play a key roll in implementing a
 centralized reducer-based logging utility.  The logging extension
 shown here achieves the following advanced characteristics:
  - a central location to log reduction-based probes
@@ -70,7 +72,7 @@ consider in your evaluation:
 
 ## Extending reducerHash
 
-Our logging extension wraps {@link reducerHash} as follows
+Our logging extension wraps {{book.api.reducerHash}} as follows
 ([astx-redux-util_loggerPolyfill.js](https://github.com/KevinAst/GeekU/blob/master/src/client/startup/astx-redux-util_loggerPolyfill.js)):
 
 ```js
@@ -120,18 +122,18 @@ AstxReduxUtil.reducerHash.withLogging = (log, ...reducerHashArgs) => {
 The inline comments should be self-explanatory, but here are some
 high-level points of interest:
 
-- The `withLogging` extension is cataloged on the {@link reducerHash}
+- The `withLogging` extension is cataloged on the {{book.api.reducerHash}}
   function itself, making it directly available from the
   'astx-redux-util' import.  You may choose to make this it's own
   separate module.
 
 - The logging process requires addition information (i.e. the log
-  object) which is passed as a parameter, along with the {@link reducerHash}
-  parameters.  The log's filterName is assumed to be the state element
-  name.
+  object) which is passed as a parameter, along with the
+  {{book.api.reducerHash}} parameters.  The log's filterName is
+  assumed to be the state element name.
 
-- The wrapper invokes the underlying {@link reducerHash} function, and in
-  turn, wraps the created reducer function.
+- The wrapper invokes the underlying {{book.api.reducerHash}}
+  function, and in turn, wraps the created reducer function.
 
 - The **reducer wrapper** is where the **real enhancement is implemented**.
 
@@ -190,13 +192,13 @@ TRACE:   includes ALL reducer enter/exit points
 
 ## Usage
 
-From a usage perspective, simply replace `reducerHash()` invocations
-with `reducerHash.withLogging()` and pass the appropriate log
-parameter in addition to the reducerHash arguments.
+From a usage perspective, simply replace {{book.api.reducerHash}}
+invocations with `reducerHash.withLogging()` and pass the appropriate
+log parameter in addition to the reducerHash arguments.
 
-The following reducer is the real code that our {@tutorial
-fullExample} was derived from *(conceptually replace `widget` with
-`selCrit`)*.  The actual code can be found at
+The following reducer is the real code that our
+{{book.guide.fullExample}} was derived from *(conceptually replace
+`widget` with `selCrit`)*.  The actual code can be found at
 [appState.editSelCrit.selCrit.js](https://github.com/KevinAst/GeekU/tree/master/src/client/state/appState.editSelCrit.selCrit.js)
 *(all reducers are found at
 [GeekU/src/client/state](https://github.com/KevinAst/GeekU/tree/master/src/client/state))*.
@@ -276,8 +278,8 @@ Notice:
   with a **logging probe** *(wrapped in an array)*.
 
 - The `log4curHash.reducerProbe()` can also be used outside of
-  reducerHash() control *(promoting standardized reducer-based logging
-  probes anywhere)*.
+  {{book.api.reducerHash}} control *(promoting standardized
+  reducer-based logging probes anywhere)*.
 
 
 ## Demo
@@ -286,9 +288,9 @@ By way of demonstration, a picture is worth a thousand words.  Our
 logger has a **hidden easter egg** that when invoked, **activates an
 interactive logging configuration dialog**.
 
-<img src="logConfigDialog.png" width="90%">
+<img src="img/logConfigDialog.png" width="90%">
 
 By setting our appState root filter to INSPECT, our logging probes are
 limited to **just the reducers that have changed state**:
 
-<img src="logSample.png" width="90%">
+<img src="img/logSample.png" width="90%">
